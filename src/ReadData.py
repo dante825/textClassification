@@ -10,8 +10,9 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-inputFileLoc = '/home/db/development/workspaces/pycharmWorkspace/textClassification/output/20newsGroup.csv'
-# inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/20newsGroup.csv'
+# inputFileLoc = '/home/db/development/workspaces/pycharmWorkspace/textClassification/output/20newsGroup.csv'
+inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/20newsGroup.csv'
+# inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/test.csv'
 
 spark = SparkSession.builder \
             .appName('TEXT_CLASSIFICATION') \
@@ -23,13 +24,13 @@ spark = SparkSession.builder \
 spark.sparkContext.setLogLevel("ERROR")
 
 logging.info('Reading 20 news group datasets.')
-# data = spark.read.csv(inputFileLoc, header=True)
+data = spark.read.csv(inputFileLoc, header=True)
 
-data = spark.createDataFrame([
-    (0, "Hi I heard about Spark", "a"),
-    (1, "I wish Java could use case classes", "b"),
-    (2, "Logistic,regression,models,are,neat", "a")
-], ["id", "text", "category"])
+# data = spark.createDataFrame([
+#     (0, "Hi I heard about Spark", "a"),
+#     (1, "I wish Java could use case classes", "b"),
+#     (2, "Logistic,regression,models,are,neat", "a")
+# ], ["id", "text", "category"])
 
 # Displaying the data read
 data.show()
@@ -47,18 +48,18 @@ countTokens = udf(lambda words: len(words), IntegerType())
 
 regexTokenized = regexTokenizer.transform(data)
 regexTokenizedData = regexTokenized.select('text', 'words', 'category').withColumn('tokens', countTokens(F.col('words')))
-regexTokenizedData.show(truncate=False)
+regexTokenizedData.show(truncate=True)
 
 ########## Stopwords Remover #########
 stopwordsRemover = StopWordsRemover(inputCol='words', outputCol='filtered')
 removedStopWordsData = stopwordsRemover.transform(regexTokenizedData)
-removedStopWordsData.show(truncate=False)
+removedStopWordsData.show(truncate=True)
 
 # countVectors = CountVectorizer(inputCol='filtered', outputCol='features', vocabSize=3, minDF=2.0)
 countVectors = CountVectorizer(inputCol='filtered', outputCol='features')
 model = countVectors.fit(removedStopWordsData)
 result = model.transform(removedStopWordsData)
-result.show(truncate=False)
+result.show(truncate=True)
 
 ######## String indexer #########
 indexer = StringIndexer(inputCol='category', outputCol='label')
