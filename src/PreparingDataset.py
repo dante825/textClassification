@@ -49,16 +49,23 @@ def get_category(path):
 def pre_process_text(string):
     prefixes = ['Xref', 'Path', 'From', 'Newsgroup', 'Subject', 'Summary', 'Keywords', 'Message-ID', 'Date',
                 'Expires', 'Followup-to', 'Distribution', 'Organization','Approved', 'Supercedes', 'Lines',
-                'X-Newsreader', 'References', 'NNTP-Posting-Host', 'In-reply-to', 'Sender', 'News-Software']
+                'X-Newsreader', 'References', 'NNTP-Posting-Host', 'In-reply-to', 'Sender', 'News-Software',
+                'Article-I.D.', 'Article I D']
     string_list = string.split('\n')
     new_string = []
     for text in string_list:
         if text.startswith(tuple(prefixes)):
             continue
         else:
+            # Remove all symbols, retain only alphabets and numbers
             text = re.sub('[^A-Za-z0-9]+', ' ', text)
-            new_string.append(text)
-    return ' '.join(new_string)
+            # Remove all extra whitespace
+            text = re.sub('\\s+', ' ', text)
+            new_string.append(text.strip())
+    new_text = ' '.join(new_string)
+    # The maximum number of characters in libre calc cell is 32767
+    # new_text = new_text[:32766]
+    return new_text
 
 
 def main():
