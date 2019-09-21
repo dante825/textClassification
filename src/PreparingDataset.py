@@ -33,6 +33,8 @@ def get_files():
     # Create the dataframe from the data read
     list_of_tuple = list(zip(text, text_class))
     df = pd.DataFrame(list_of_tuple, columns=['text', 'category'])
+    # Remove rows with empty text cell
+    df = df[df.text != '']
     df.to_csv('../output/20newsGroup.csv', index=False, encoding='utf8')
 
 
@@ -64,7 +66,7 @@ def pre_process_text(string):
             new_string.append(text.strip())
     new_text = ' '.join(new_string)
     # The maximum number of characters in libre calc cell is 32767
-    # new_text = new_text[:32766]
+    new_text = new_text[:32766]
     return new_text
 
 
