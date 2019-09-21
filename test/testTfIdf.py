@@ -12,7 +12,6 @@ logging.basicConfig(level=logging.INFO)
 
 # inputFileLoc = '/home/db/development/workspaces/pycharmWorkspace/textClassification/output/20newsGroup.csv'
 inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/20newsGroup.csv'
-# inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/test.csv'
 
 spark = SparkSession.builder \
             .appName('TEXT_CLASSIFICATION') \
@@ -26,12 +25,6 @@ spark.sparkContext.setLogLevel("OFF")
 logging.info('Reading 20 news group datasets.')
 data = spark.read.csv(inputFileLoc, header=True)
 
-# data = spark.createDataFrame([
-#     (0, "Hi I heard about Spark", "a"),
-#     (1, "I wish Java could use case classes", "b"),
-#     (2, "Logistic,regression,models,are,neat", "a")
-# ], ["id", "text", "category"])
-
 # Displaying the data read
 data.show()
 
@@ -43,6 +36,11 @@ featurizedData = hashingTf.transform(wordsData)
 
 idf = IDF(inputCol='rawFeatures', outputCol='features')
 idfModel = idf.fit(featurizedData)
-rescaledData =  idfModel.transform(featurizedData)
+rescaledData = idfModel.transform(featurizedData)
 
-rescaledData.select('category', 'features').show()
+indexer = StringIndexer(inputCol='category', outputCol='label')
+model = indexer.fit(rescaledData)
+indexed = model.transform(rescaledData)
+
+indexed.show()
+indexed.select('category', 'features', 'label').show()
