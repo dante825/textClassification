@@ -11,8 +11,8 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 # inputFileLoc = '/home/db/development/workspaces/pycharmWorkspace/textClassification/output/20newsGroup.csv'
-inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/20newsGroup.csv'
-# inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/test.csv'
+# inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/20newsGroup.csv'
+inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/test.csv'
 
 spark = SparkSession.builder \
             .appName('TEXT_CLASSIFICATION') \
@@ -21,7 +21,7 @@ spark = SparkSession.builder \
             .config('spark.cores.max', '4') \
             .getOrCreate()
 
-spark.sparkContext.setLogLevel("ERROR")
+spark.sparkContext.setLogLevel("OFF")
 
 logging.info('Reading 20 news group datasets.')
 data = spark.read.csv(inputFileLoc, header=True)
@@ -61,7 +61,7 @@ model = countVectors.fit(removedStopWordsData)
 result = model.transform(removedStopWordsData)
 result.show(truncate=True)
 
-######## String indexer #########
+######## String indexer ######### encodes a string column of labels to a indices
 indexer = StringIndexer(inputCol='category', outputCol='label')
 model = indexer.fit(result)
 indexed = model.transform(result)
