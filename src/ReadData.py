@@ -11,8 +11,8 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 # inputFileLoc = '/home/db/development/workspaces/pycharmWorkspace/textClassification/output/20newsGroup.csv'
-# inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/20newsGroup.csv'
-inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/test.csv'
+inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/20newsGroup.csv'
+# inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/test.csv'
 
 spark = SparkSession.builder \
             .appName('TEXT_CLASSIFICATION') \
