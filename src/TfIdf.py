@@ -1,5 +1,6 @@
 from pyspark.sql import SparkSession
 from pyspark.ml.feature import Tokenizer, RegexTokenizer, StopWordsRemover, CountVectorizer, IndexToString, HashingTF, IDF
+from pyspark.ml.classification import LinearSVC
 from pyspark.ml.classification import LogisticRegression
 from pyspark.ml import Pipeline
 from pyspark.sql.functions import udf
@@ -26,7 +27,7 @@ logging.info('Reading 20 news group datasets.')
 data = spark.read.csv(inputFileLoc, header=True)
 
 # Displaying the data read
-data.show()
+# data.show()
 
 tokenizer = Tokenizer(inputCol='text', outputCol='words')
 wordsData = tokenizer.transform(data)
@@ -42,7 +43,19 @@ indexer = StringIndexer(inputCol='category', outputCol='label')
 model = indexer.fit(rescaledData)
 indexed = model.transform(rescaledData)
 
-indexed.show()
-indexed.select('category', 'features', 'label').show()
+# indexed.show()
+# indexed.select('category', 'features', 'label').show()
 # To know which category is the index
 indexed.groupBy(["category", 'label']).count().sort('label').show(truncate=False)
+
+# Partition the data for training and testing
+(trainingData, testData) = indexed.randomSplit([0.7, 0.3], seed=100)
+print("training dataset count: " + str(trainingData.count()))
+print("testing dataset count: " + str(testData.count()))
+
+#### Linear Support Vector Machine
+# Only support binary classification! Pyspark don't have the 3 ML algorithms needed!
+lsvc = LinearSVC(maxIter=10, regParam=0.1)
+lsvcModel = lsvc.fit(trainingData)
+print("Coefficients: " + str(lsvcModel.coefficients))
+print("Intercept: " + str(lsvcModel.intercept))
