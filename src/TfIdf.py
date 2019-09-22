@@ -44,3 +44,5 @@ indexed = model.transform(rescaledData)
 
 indexed.show()
 indexed.select('category', 'features', 'label').show()
+# To know which category is the index
+indexed.groupBy(["category", 'label']).count().sort('label').show(truncate=False)
