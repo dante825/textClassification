@@ -1,18 +1,16 @@
 from pyspark.sql import SparkSession
-from pyspark.ml.feature import Tokenizer, RegexTokenizer, StopWordsRemover, CountVectorizer, IndexToString, HashingTF, IDF
-from pyspark.ml.classification import LinearSVC
-from pyspark.ml.classification import LogisticRegression
-from pyspark.ml import Pipeline
+from pyspark.ml.feature import Tokenizer, HashingTF, IDF
+from pyspark.ml.feature import StringIndexer
+from pyspark.sql.types import StringType
 from pyspark.sql.functions import udf
-import pyspark.sql.functions as F
-from pyspark.sql.types import IntegerType
-from pyspark.ml.feature import OneHotEncoder, StringIndexer, VectorAssembler
 import logging
 
 logging.basicConfig(level=logging.INFO)
 
 # inputFileLoc = '/home/db/development/workspaces/pycharmWorkspace/textClassification/output/20newsGroup.csv'
 inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/20newsGroup.csv'
+trainOutputLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/train.csv'
+testOutputLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/test.csv'
 
 spark = SparkSession.builder \
             .appName('TEXT_CLASSIFICATION') \
@@ -50,12 +48,11 @@ indexed.groupBy(["category", 'label']).count().sort('label').show(truncate=False
 
 # Partition the data for training and testing
 (trainingData, testData) = indexed.randomSplit([0.7, 0.3], seed=100)
-print("training dataset count: " + str(trainingData.count()))
-print("testing dataset count: " + str(testData.count()))
+# print("training dataset count: " + str(trainingData.count())) #14026
+# print("testing dataset count: " + str(testData.count())) #5936
 
-#### Linear Support Vector Machine
-# Only support binary classification! Pyspark don't have the 3 ML algorithms needed!
-lsvc = LinearSVC(maxIter=10, regParam=0.1)
-lsvcModel = lsvc.fit(trainingData)
-print("Coefficients: " + str(lsvcModel.coefficients))
-print("Intercept: " + str(lsvcModel.intercept))
+train_df = trainingData.toPandas()
+print(train_df.head(10))
+print(train_df.columns.values)
+test_df = testData.toPandas()
+print(test_df.head(10))
