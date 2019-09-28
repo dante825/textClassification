@@ -44,7 +44,7 @@ indexed = model.transform(rescaledData)
 # indexed.show()
 # indexed.select('category', 'features', 'label').show()
 # To know which category is the index
-indexed.groupBy(["category", 'label']).count().sort('label').show(truncate=False)
+# indexed.groupBy(["category", 'label']).count().sort('label').show(truncate=False)
 
 # Partition the data for training and testing
 (trainingData, testData) = indexed.randomSplit([0.7, 0.3], seed=100)
@@ -52,7 +52,11 @@ indexed.groupBy(["category", 'label']).count().sort('label').show(truncate=False
 # print("testing dataset count: " + str(testData.count())) #5936
 
 train_df = trainingData.toPandas()
-print(train_df.head(10))
-print(train_df.columns.values)
+sub_train_df = train_df[['features', 'label']]
+sub_train_df.to_csv(trainOutputLoc, index=False)
+# print(sub_train_df.head(10))
+# print(sub_train_df.columns.values)
 test_df = testData.toPandas()
-print(test_df.head(10))
+sub_test_df = test_df[['features', 'label']]
+# print(sub_test_df.head(10))
+sub_test_df.to_csv(testOutputLoc, index=False)
