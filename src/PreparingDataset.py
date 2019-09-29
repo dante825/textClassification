@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 def get_files():
-    path = '/home/dante/development/datasets/20_newsgroups/'
+    path = '/home/dante/development/datasets/20news-18828/'
 
     # Getting all the files path
     files = []
@@ -35,7 +35,7 @@ def get_files():
     df = pd.DataFrame(list_of_tuple, columns=['text', 'category'])
     # Remove rows with empty text cell
     df = df[df.text != '']
-    df.to_csv('../output/20newsGroup.csv', index=False, encoding='utf8')
+    df.to_csv('../output/20newsGroup18828.csv', index=False, encoding='utf8')
 
 
 def get_category(path):
