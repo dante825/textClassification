@@ -8,7 +8,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 # inputFileLoc = '/home/db/development/workspaces/pycharmWorkspace/textClassification/output/20newsGroup.csv'
-inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/20newsGroup.csv'
+inputFileLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/20newsGroup18828.csv'
 trainOutputLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/train.csv'
 testOutputLoc = '/home/dante/development/workspaces/pycharm-workspace/textClassification/output/test.csv'
 
