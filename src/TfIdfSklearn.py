@@ -28,13 +28,13 @@ tfidf = TfidfVectorizer()
 # features = tfidf.fit_transform(df.text).toarray()
 X_train_tfidf = tfidf.fit_transform(train_df.text)
 print(X_train_tfidf.shape)
+X_test_tfidf = tfidf.transform(test_df.text)
 # labels = df.category_id
 # print(labels)
 
 clf = MultinomialNB().fit(X_train_tfidf, train_df.category_id)
-
-X_test_tfidf = tfidf.transform(test_df.text)
 predicted = clf.predict(X_test_tfidf)
+
 result = confusion_matrix(test_df['category_id'], predicted)
 print(result)
 accuracy = accuracy_score(test_df['category_id'], predicted)
