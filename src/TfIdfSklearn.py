@@ -11,11 +11,16 @@ import numpy as np
 
 pd.set_option('display.width', 320)
 np.set_printoptions(linewidth=320)
+
 df = pd.read_csv('../output/20newsGroup18828.csv')
 df['category_id'] = df.category.factorize()[0]
-print(df['category_id'].unique())
-print(df['category'].unique())
+
+# Some details about the data
+# print(df.groupby(['category', 'category_id']).count().sort_values('category_id'))
+
 train_df, test_df = train_test_split(df, test_size=0.2)
+print(train_df.groupby(['category', 'category_id']).count().sort_values('category_id'))
+print(test_df.groupby(['category', 'category_id']).count().sort_values('category_id'))
 
 # tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, encoding='latin-1', ngram_range=(1,2),
 #                         stop_words='english')
