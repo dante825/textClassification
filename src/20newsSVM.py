@@ -23,6 +23,7 @@ train_df, test_df = train_test_split(df, test_size=0.2)
 
 tfidf = TfidfVectorizer()
 X_train_features = tfidf.fit_transform(train_df.text)
+X_test_tfidf = tfidf.transform(test_df.text)
 
 clf = svm.SVC(gamma='scale', decision_function_shape='ovo')
 clf.fit(X_train_features, train_df.category_id)
