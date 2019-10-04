@@ -7,23 +7,23 @@ Indexed Categories
 
 |category                |label|count|
 |------------------------|-----|-----|
-|rec.sport.hockey        |0.0  |1000 |
-|sci.space               |1.0  |1000 |
-|alt.atheism             |2.0  |1000 |
-|talk.politics.mideast   |3.0  |1000 |
-|talk.religion.misc      |4.0  |1000 |
-|talk.politics.guns      |5.0  |1000 |
-|talk.politics.misc      |6.0  |1000 |
-|sci.crypt               |7.0  |999  |
-|sci.med                 |8.0  |999  |
-|rec.sport.baseball      |9.0  |999  |
-|rec.autos               |10.0 |999  |
-|sci.electronics         |11.0 |999  |
-|comp.windows.x          |12.0 |998  |
-|comp.sys.mac.hardware   |13.0 |998  |
-|soc.religion.christian  |14.0 |997  |
-|comp.sys.ibm.pc.hardware|15.0 |997  |
-|rec.motorcycles         |16.0 |997  |
-|comp.os.ms-windows.misc |17.0 |995  |
-|comp.graphics           |18.0 |993  |
-|misc.forsale            |19.0 |992  |
+|rec.sport.baseball      |0    |993  |
+|sci.med                 |1    |988  |
+|comp.sys.mac.hardware   |2    |957  |
+|talk.politics.mideast   |3    |940  |
+|comp.graphics           |4    |970  |
+|misc.forsale            |5    |962  |
+|talk.politics.guns      |6    |910  |
+|rec.motorcycles         |7    |993  |
+|sci.electronics         |8    |981  |
+|comp.windows.x          |9    |978  |
+|rec.autos               |10   |988  |
+|talk.politics.misc      |11   |775  |
+|comp.os.ms-windows.misc |12   |980  |
+|talk.religion.misc      |13   |628  |
+|sci.space               |14   |986  |
+|rec.sport.hockey        |15   |998  |
+|soc.religion.christian  |16   |997  |
+|alt.atheism             |17   |798  |
+|comp.sys.ibm.pc.hardware|18   |979  |
+|sci.crypt               |19   |991  |
