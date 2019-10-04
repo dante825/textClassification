@@ -1,3 +1,7 @@
+"""
+Can use spark to convert the text to tf-idf features but ML algorithms
+cannot be applied on the features.
+"""
 from pyspark.sql import SparkSession
 from pyspark.ml.feature import Tokenizer, HashingTF, IDF
 from pyspark.ml.feature import StringIndexer
