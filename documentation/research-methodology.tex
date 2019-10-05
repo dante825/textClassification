@@ -1,0 +1,37 @@
+%!TEX ROOT = main.tex
+\chapter{Research Methodology}
+\section{Introduction}
+This section would illustrate the process flow of how to carry out the experiments to fulfil the aforementioned objectives.
+
+\section{Process Flow}
+\begin{tikzpicture}[node distance = 2cm, auto]
+\node [block] (init) {News articles};
+\node [block, below of=init] (preprocessing) {Preprocessing};
+\node [block, below of=preprocessing] (tfidf) {TF-IDF};
+\node [block, below of=tfidf] (dimred) {Dimension Reduction};
+\node [block, below of=dimred] (ml) {Train Machine Learning Models};
+\node [block, below of=ml] (validate) {Validate the models};
+\node [block, below of=validate] (test) {Test the models};
+\node [block, below of=test] (eval) {Evaluate the performance};
+% Draw the edges
+\path [line] (init) -- (preprocessing);
+\path [line] (preprocessing) -- (tfidf);
+\path [line] (tfidf) -- (dimred);
+\path [line] (dimred) -- (ml);
+\path [line] (ml) -- (validate);
+\path [line] (validate) -- (test);
+\path [line] (test) -- (eval);
+\end{tikzpicture}
+
+First, the news articles must undergo preprocessing. The preprocessing includes converting all the words to lowercase, numbers and punctuations removal, stop words removal, stemming and others. 
+
+After preprocessing, TF-IDF algorithm would be applied on the text to extract the features from the text. The resulting vector space from TF-IDF would be undergo a dimension reduction algorithm.
+
+After vector space model dimension is reduced, the vector space model is used to train a machine learning algorithm. The trained machine learning model is validated and tested and its performance is evaluated.
+
+The vector space model of the news articles from TF-IDF can undergo different dimension reduction algorithm or none at all. The classification accuracy stemming from this differences would be compared. 
+
+The machine learning algorithms use to train the models would be the few document classification machine learning algorithms chosen in chapter 2, namely SVM, kNN and Neural Network.
+
+\section{Conclusion}
+With the method mentioned above, the experiments would be carry out and the results would be recorded. The results would be compared and the differences would be analysed.

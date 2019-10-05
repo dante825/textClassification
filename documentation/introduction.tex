@@ -1,0 +1,67 @@
+%!TEX ROOT = main.tex
+\chapter{Introduction}
+\section{Introduction}
+As optical character recognition technology advances, large number of physical documents are 
+made electronically available and many more articles are created and available online. The 
+information contain within these documents would need to be extracted, analyzed, stored and 
+made searchable so that others can make use of it. Natural language processing (NLP) methods 
+are needed to analyze the content or the sentiment in the text.
+
+Document classification is one 	of the NLP method that categorize the text into different topics or categories. This classification would be helpful to future researchers who want to find some topic from the text. The researchers could just focus on the category they are interested in rather than skimming through all the documents to obtain the intended information. 
+
+The technology breakthrough in recent years, machine learning algorithms, processing power of processors have been a boost in NLP field. With the breakthroughs, there has been an advancement of the methods used in NLP with artificial intelligence without the need of intervention of domain experts. 
+
+There are several approaches to the document classification problem, multilabel where 
+each document can belong to several categories or classification, where each document can 
+only belong to one category. Within machine learning methods, there is clustering which is an unsupervised learning method or the supervised learning approach. This shall focus in the the direction of classification rather than multilabel and clustering.
+
+In document classification most of the algorithms used vector space model to represent the unstrucutured textual data. \cite{vectorSpaceModelText}. This vector space model represent the sequence of the textual features and their weight, it is easy to implement and provide uniform representation for documents. However, it has a drawback, it represent all the words in the documents, the dimension of the vector would be huge. This huge vector space model would impact the performance of the machine learning tasks. \cite{knnVectorSpaceReduction}. Therefore, this study would focus on the dimension reduction on vector space model on document classification.
+
+\subsection{Problem Statement}
+Term vectors is one of the most commonly used document representation algorithms, but dimension of the feature space can too large and the vectors can be too sparse. \cite{knnVectorSpaceReduction}
+
+\subsection{Research Objectives}
+\begin{enumerate}
+	\item To identify a document representation algorithm that is optimized to extract the features from news articles
+	\item To investigate the machine learning (ML) algorithm used in document classification and apply the most suitable algorithm.
+	\item To evaluate the performance of the document represenation and document classification algorithm.
+\end{enumerate}
+
+\subsection{Research Questions}
+\begin{enumerate}
+	\item Which dimension reduction algorithm is optimized for news article?
+	\item How complexities of the features influence the accuracy?
+	\item Which is the best machine learning algorithms in document classification?
+\end{enumerate}
+
+\subsection{Research Motivation}
+In the age of big data, the amount of data generated and collected is growing at an explosive 
+rate. Much of the data generated and collected is in the form of unstructured text. The value 
+contained within the text cannot be extracted and be useful to us without natural language 
+processing (NLP). Document classification is one of the pillars in natural language processing.
+
+In document classification, the unstructured text would be given a label or multiple label 
+dependent on the method used. These labels would make the data more meaningful and 
+searchable. Users can search for a topic just by selecting text with the particular label rather than performing a manual word search on all the text document.
+
+Bag of words is the most commonly used document representation method in document classification. Bag of words would produce a vector space model of the textual data representation. The dimension of this vector space model would be big because of the amount of words in the documents. This huge dimension of vector space model would decrease the performance of the document classification algorithms. 
+
+With dimension reduction algorithms, the dimension of the vector space would be decreased and the performance of the machine learning algorithms would be increased. However, the effect of the different dimension reduction algorithms might have a different effect on the performance of the machine learning algorithms.
+
+This study would investigate the effect of the dimension reduction algorithms on the performance of the machine learning algorithms. 
+
+\subsection{Research Significance}
+This ressearch would classify news articles into different categories. In order to do that, first the features have to be extracted from the documents. The features might need to be compressed. Then the features are used to train machine learning models. After that, the trained machine learning models are validated and tested to evaluate its performance. 
+
+The document representation method is the most commonly used bag of words approach, Term Frequency - Inverse Document Frequency (TF-IDF). In this approach, the documents are converted into vector space models. Due to the large amount of words in the documents, the vector space would be large and sparse, this is known as the curse of dimensionality problem. This large and sparse vector space would be an obstacle to document classification, machine learning models accuracy would be impacted due to the large vector space.
+
+By applying dimension reduction algorithms to the vector space model, the vector space and sparsity of the vector could be reduced. With the reduced vector, the accuracy of the machine learning models would be increased. However, which of the dimension reduction algorithms would perform best for document classification on news articles? This study would try to answer this question by studying which of the dimension reduction algorithm is most suitabled and applying it on a dataset.
+
+\subsection{Expected Outcome}
+\begin{enumerate}
+	\item A prototype document classification application with 80% accuracy
+	\item A dimension reduction algorithm is applied on the extracted features of the documents
+	\item A best suited machine learning algorithm is applied on the document classification application
+	\item Evaluate the accuracy of the document classification application
+\end{enumerate}
+
