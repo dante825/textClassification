@@ -51,7 +51,6 @@ def tfidf_with_vectorizer():
     Use vectorizer to compute the tf-idf scores
     :return:
     """
-
     raw_df = pd.read_csv('../output/20newsGroup18828.csv')
     raw_data = raw_df['text']
     # raw_data = [
@@ -63,6 +62,7 @@ def tfidf_with_vectorizer():
     # ]
 
     tfidf_vectorizer = TfidfVectorizer(use_idf=True)
+    # tfidf_vectorizer = TfidfVectorizer()
     tfidf_vectorizer_vectors = tfidf_vectorizer.fit_transform(raw_data)
 
     # Get the first vector
