@@ -27,3 +27,13 @@ Dataset categories count
 |alt.atheism             |17   |798  |
 |comp.sys.ibm.pc.hardware|18   |979  |
 |sci.crypt               |19   |991  |
+
+
+Roadmap or milestones:
+- Knn [working, 0.80]
+- SVM [linearSVC 0.91]
+- Neural network [sort of working, accuracy dependent on training time, 0.92]
+
+- Knn with sparse PCA or truncated SVD [not working]
+- SVM with sparse PCA or truncated SVD [not working]
+- NN with sparse PCA or truncated SVD [not working]
