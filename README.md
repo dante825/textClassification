@@ -30,7 +30,8 @@ Dataset categories count
 
 
 Roadmap or milestones:
-- Knn [working, 0.80]
+- naiveBayes [0.87]
+- Knn [working, 0.83]
 - SVM [linearSVC 0.91]
 - Neural network [sort of working, accuracy dependent on training time, 0.92]
 
