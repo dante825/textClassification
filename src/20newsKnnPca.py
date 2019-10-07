@@ -20,8 +20,9 @@ train_df, test_df, x_train_features, x_test_features = generate_tfidf()
 
 svd = TruncatedSVD(n_components=1000, n_iter=7, random_state=42, tol=0.0)
 
-X_train_reduced = svd.fit(x_train_features)
-X_test_reduced = svd.fit(x_test_features)
+X_train_reduced = svd.fit_transform(x_train_features)
+X_test_reduced = svd.fit_transform(x_test_features)
+print(X_train_reduced)
 
 classifier = KNeighborsClassifier(n_neighbors=6)
 classifier.fit(X_train_reduced, train_df.category_id)
