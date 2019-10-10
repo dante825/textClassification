@@ -17,20 +17,19 @@ np.set_printoptions(linewidth=320)
 
 start_time = time.time()
 train_df, test_df, x_train_features, x_test_features = generate_tfidf()
+print(train_df.shape)
+print(x_train_features.shape)
 
 svd = TruncatedSVD(n_components=1000, n_iter=7, random_state=42, tol=0.0)
 
 X_train_reduced = svd.fit_transform(x_train_features)
 X_test_reduced = svd.fit_transform(x_test_features)
-print(X_train_reduced)
+print(X_train_reduced.shape)
 
 classifier = KNeighborsClassifier(n_neighbors=6)
 classifier.fit(X_train_reduced, train_df.category_id)
 
 predicted = classifier.predict(X_test_reduced)
-# print(predict.shape)
-# print(predict)
-# print(classifier.predict_proba([[0.9]]))
 
 result = confusion_matrix(test_df['category_id'], predicted)
 print(result)
