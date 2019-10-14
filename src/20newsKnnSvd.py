@@ -20,7 +20,7 @@ train_df, test_df, x_train_features, x_test_features = generate_tfidf()
 print(train_df.shape)
 print(x_train_features.shape)
 
-svd = TruncatedSVD(n_components=1000, n_iter=7, random_state=42, tol=0.0)
+svd = TruncatedSVD(n_components=350, n_iter=7, random_state=42, tol=0.0)
 
 X_train_reduced = svd.fit_transform(x_train_features)
 X_test_reduced = svd.fit_transform(x_test_features)

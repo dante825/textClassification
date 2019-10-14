@@ -5,7 +5,7 @@ https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.SparsePC
 from GenTfIdf import generate_tfidf
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.decomposition import SparsePCA
+from sklearn.decomposition import PCA, IncrementalPCA
 import pandas as pd
 import time
 import numpy as np
@@ -19,7 +19,8 @@ train_df, test_df, x_train_features, x_test_features = generate_tfidf()
 print(train_df.shape)
 print(x_train_features.shape)
 
-transformer = SparsePCA(n_components=1000, normalize_components=True, random_state=0)
+n_components = 100
+transformer = IncrementalPCA(n_components=n_components, batch_size=100)
 
 X_train_reduced = transformer.fit_transform(x_train_features.todense())
 X_test_reduced = transformer.fit_transform(x_test_features.todense())
