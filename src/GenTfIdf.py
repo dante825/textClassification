@@ -28,3 +28,8 @@ def generate_tfidf():
     # test_df['features'] = x_test_features
 
     return train_df, test_df, x_train_features, x_test_features
+
+
+def tfidf_generator():
+    # https: // www.kaggle.com / dex314 / tfidf - truncatedsvd - and -light - gbm
+    df = pd.read_csv('../output/20newsGroup18828.csv')
