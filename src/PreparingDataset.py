@@ -63,7 +63,7 @@ def pre_process_text(string):
             text = re.sub('[^A-Za-z0-9]+', ' ', text)
             # Remove all extra whitespace
             text = re.sub('\\s+', ' ', text)
-            new_string.append(text.strip())
+            new_string.append(text.strip().lower())
     new_text = ' '.join(new_string)
     # The maximum number of characters in libre calc cell is 32767
     new_text = new_text[:32766]
