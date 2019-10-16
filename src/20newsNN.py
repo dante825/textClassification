@@ -12,19 +12,20 @@ pd.set_option('display.width', 320)
 np.set_printoptions(linewidth=320)
 
 start_time = time.time()
-train_df, test_df, x_train_features, x_test_features = generate_tfidf()
+x_train, y_train, x_test, y_test = generate_tfidf()
+print(x_train.shape)
 
 # Have to manually interrupt it to produce result
 clf = MLPClassifier(tol=1e-3)
 # clf = MLPClassifier(alpha=1, max_iter=100)
-clf.fit(x_train_features, train_df.category_id)
+clf.fit(x_train, y_train)
 
-predicted = clf.predict(x_test_features)
+predicted = clf.predict(x_test)
 
-result = confusion_matrix(test_df['category_id'], predicted)
+result = confusion_matrix(y_test, predicted)
 print(result)
-accuracy = accuracy_score(test_df['category_id'], predicted)
+accuracy = accuracy_score(y_test, predicted)
 print("accuracy score: " + accuracy.astype(str))
-report = classification_report(test_df['category_id'], predicted)
+report = classification_report(y_test, predicted)
 print(report)
 print('Total time taken: {0:.2f}s'.format(time.time() - start_time))
