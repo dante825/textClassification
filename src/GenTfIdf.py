@@ -24,15 +24,16 @@ def generate_tfidf():
     # Some details about the data
     # print(df.groupby(['category', 'category_id']).count().sort_values('category_id'))
 
-    train_df, test_df = train_test_split(df, test_size=0.2)
     # print(train_df.groupby(['category', 'category_id']).count().sort_values('category_id'))
     # print(test_df.groupby(['category', 'category_id']).count().sort_values('category_id'))
 
     tfidf = TfidfVectorizer(analyzer='word', stop_words='english')
-    x_train = tfidf.fit_transform(train_df.text)
-    x_test = tfidf.transform(test_df.text)
-
-    return x_train, train_df.category_id, x_test, test_df.category_id
+    x = tfidf.fit_transform(df.text)
+    y = df['category_id']
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+    # To make space in memory
+    del df
+    return x_train, y_train, x_test, y_test
 
 
 def tfidf_generator():
