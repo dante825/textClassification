@@ -16,25 +16,24 @@ pd.set_option('display.max.columns', 100)
 np.set_printoptions(linewidth=320)
 
 start_time = time.time()
-train_df, test_df, x_train_features, x_test_features = generate_tfidf()
-print(train_df.shape)
-print(x_train_features.shape)
+x_train, y_train, x_test, y_test = generate_tfidf()
+print(x_train.shape)
 
 svd = TruncatedSVD(n_components=350, n_iter=7, random_state=42, tol=0.0)
 
-X_train_reduced = svd.fit_transform(x_train_features)
-X_test_reduced = svd.fit_transform(x_test_features)
+X_train_reduced = svd.fit_transform(x_train)
+X_test_reduced = svd.fit_transform(x_test)
 print(X_train_reduced.shape)
 
 classifier = KNeighborsClassifier(n_neighbors=6)
-classifier.fit(X_train_reduced, train_df.category_id)
+classifier.fit(X_train_reduced, y_train)
 
 predicted = classifier.predict(X_test_reduced)
 
-result = confusion_matrix(test_df['category_id'], predicted)
+result = confusion_matrix(y_test, predicted)
 print(result)
-accuracy = accuracy_score(test_df['category_id'], predicted)
+accuracy = accuracy_score(y_test, predicted)
 print("accuracy score: " + accuracy.astype(str))
-report = classification_report(test_df['category_id'], predicted)
+report = classification_report(y_test, predicted)
 print(report)
 print('Total time taken: {0:.2f}s'.format(time.time() - start_time))

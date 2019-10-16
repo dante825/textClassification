@@ -15,15 +15,14 @@ pd.set_option('display.max.columns', 100)
 np.set_printoptions(linewidth=320)
 
 start_time = time.time()
-train_df, test_df, x_train_features, x_test_features = generate_tfidf()
-print(train_df.shape)
-print(x_train_features.shape)
+x_train, y_train, x_test, y_test = generate_tfidf()
+print(x_train.shape)
 
 n_components = 100
 transformer = IncrementalPCA(n_components=n_components, batch_size=100)
 
-X_train_reduced = transformer.fit_transform(x_train_features.todense())
-X_test_reduced = transformer.fit_transform(x_test_features.todense())
+X_train_reduced = transformer.fit_transform(x_train.todense())
+X_test_reduced = transformer.fit_transform(x_test.todense())
 print(X_train_reduced.shape)
 
 # classifier = KNeighborsClassifier(n_neighbors=6)
