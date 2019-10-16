@@ -10,7 +10,8 @@ logging.basicConfig(level=logging.INFO)
 
 
 def get_files():
-    path = '/home/dante/development/datasets/20news-18828/'
+    # path = '/home/dante/development/datasets/20news-18828/'
+    path = '/home/db/development/datasets/20news-18828/'
 
     # Getting all the files path
     files = []
@@ -22,7 +23,7 @@ def get_files():
     text = []
     text_class = []
     for f in files:
-        # logging.info('reading file: {}'.format(f))
+        logging.info('reading file: {}'.format(f))
         text_class.append(get_category(f))
         with open(f, 'r', encoding='utf-8', errors='backslashreplace') as reader:
             text_str = reader.read()
@@ -59,11 +60,15 @@ def pre_process_text(string):
         if text.startswith(tuple(prefixes)):
             continue
         else:
+            # TODO: maybe remove stop_words at this stage, removing symbols maybe detrimental to stopwords removal
+            # Currently trying to let tf-idf handle the cleaning
+
             # Remove all symbols, retain only alphabets and numbers
-            text = re.sub('[^A-Za-z0-9]+', ' ', text)
+            # text = re.sub('[^A-Za-z0-9]+', ' ', text)
             # Remove all extra whitespace
-            text = re.sub('\\s+', ' ', text)
-            new_string.append(text.strip().lower())
+            # text = re.sub('\\s+', ' ', text)
+            # new_string.append(text.strip().lower())
+            new_string.append(text.strip())
     new_text = ' '.join(new_string)
     # The maximum number of characters in libre calc cell is 32767
     new_text = new_text[:32766]
