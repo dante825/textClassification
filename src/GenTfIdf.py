@@ -7,7 +7,6 @@ from sklearn.decomposition import NMF, TruncatedSVD, LatentDirichletAllocation
 from sklearn import preprocessing
 from sklearn import pipeline
 from sklearn.base import BaseEstimator, TransformerMixin
-from nltk.corpus import stopwords
 import pandas as pd
 import numpy as np
 
