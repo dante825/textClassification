@@ -7,10 +7,12 @@ import logging
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from nltk.stem import PorterStemmer
 import time
 import re
 
 nltk.download('stopwords')
+ps = PorterStemmer()
 logging.basicConfig(level=logging.INFO)
 
 
@@ -75,6 +77,8 @@ def pre_process_text(string):
             tmp_line = re.sub('[^A-Za-z0-9]+', ' ', tmp_line)
             # Lower the case
             tmp_line = tmp_line.lower()
+            # Stemming
+            tmp_line = stemming(tmp_line)
             # Strip the leading and trailing whitespace
             tmp_line = tmp_line.strip()
             # Remove all extra whitespace
@@ -91,6 +95,12 @@ def stopwords_removal(words: str) -> str:
     tokens = word_tokenize(words)
     filtered_words = [w for w in tokens if not w in stop_words]
     return ' '.join(filtered_words)
+
+
+def stemming(words: str) -> str:
+    tokens = word_tokenize(words)
+    stemmed = [ps.stem(word=w) for w in tokens]
+    return ' '.join(stemmed)
 
 
 def main():
