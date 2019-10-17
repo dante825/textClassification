@@ -69,4 +69,5 @@ Back to TF-IDF, add stemmer or lemmatization, remove stop words
 
 Stemming may reduce the dimension\
 Currently, after tfidf the dimension is aorund (15033,130877)\
-After stemming:
+After stop words removal, 125026
+After stemming: 101790
