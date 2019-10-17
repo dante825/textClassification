@@ -4,8 +4,13 @@ Read the raw dataset downloaded from uci repository into a csv file in 2 columns
 import os
 import pandas as pd
 import logging
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+import time
 import re
 
+nltk.download('stopwords')
 logging.basicConfig(level=logging.INFO)
 
 
@@ -55,28 +60,43 @@ def pre_process_text(string):
                 'X-Newsreader', 'References', 'NNTP-Posting-Host', 'In-reply-to', 'Sender', 'News-Software',
                 'Article-I.D.', 'Article I D']
     string_list = string.split('\n')
-    new_string = []
-    for text in string_list:
-        if text.startswith(tuple(prefixes)):
+    new_line = []
+    for line in string_list:
+        if line.startswith(tuple(prefixes)):
             continue
         else:
-            # TODO: maybe remove stop_words at this stage, removing symbols maybe detrimental to stopwords removal
-            # Currently trying to let tf-idf handle the cleaning
-
+            # Remove email addresses
+            tmp_line = re.sub('\S*@\S*\s?', '', line)
+            # Remove stopwords
+            tmp_line = stopwords_removal(tmp_line)
+            # Remove apostrophes s
+            tmp_line = re.sub(r"'s", '', tmp_line)
             # Remove all symbols, retain only alphabets and numbers
-            # text = re.sub('[^A-Za-z0-9]+', ' ', text)
+            tmp_line = re.sub('[^A-Za-z0-9]+', ' ', tmp_line)
+            # Lower the case
+            tmp_line = tmp_line.lower()
+            # Strip the leading and trailing whitespace
+            tmp_line = tmp_line.strip()
             # Remove all extra whitespace
-            # text = re.sub('\\s+', ' ', text)
-            # new_string.append(text.strip().lower())
-            new_string.append(text.strip())
-    new_text = ' '.join(new_string)
+            tmp_line = re.sub(r"\s\s+", " ", tmp_line)
+            new_line.append(tmp_line)
+    new_text = ' '.join(new_line)
     # The maximum number of characters in libre calc cell is 32767
-    new_text = new_text[:32766]
+    # new_text = new_text[:32766]
     return new_text
 
 
+def stopwords_removal(words: str) -> str:
+    stop_words = set(stopwords.words('english'))
+    tokens = word_tokenize(words)
+    filtered_words = [w for w in tokens if not w in stop_words]
+    return ' '.join(filtered_words)
+
+
 def main():
+    start_time = time.time()
     get_files()
+    print("Time taken: {0:.2f}s".format(time.time() - start_time))
 
 
 if __name__ == "__main__":
