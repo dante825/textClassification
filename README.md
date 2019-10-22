@@ -71,3 +71,6 @@ Stemming may reduce the dimension\
 Currently, after tfidf the dimension is aorund (15033,130877)\
 After stop words removal, 125026
 After stemming: 101790
+
+Dimension reduction would reduce the accuracy is expected since the information
+in every data point is reduced
