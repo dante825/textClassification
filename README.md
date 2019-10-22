@@ -74,3 +74,15 @@ After stemming: 101790
 
 Dimension reduction would reduce the accuracy is expected since the information
 in every data point is reduced
+
+Accuracy comparison on different machines (limit tf-idf features to 8000)
+
+| ML algorithm  | home-pc  | work-pc |
+|---------------|----------|---------|
+|KNN            | 0.36     |         |
+|SVM            | 0.88     |         |
+|NN             | 0.88(56s)|         |
+|naiveBayes     | 0.84     |         |
+|KnnSvd (5)     | 0.23(3s) |         |
+|SvmSvd(4)      | 0.33(3s) |         |
+|NnSvd (3)      | 0.35(8s) |         |
