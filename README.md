@@ -79,10 +79,10 @@ Accuracy comparison on different machines (limit tf-idf features to 8000)
 
 | ML algorithm  | home-pc  | work-pc |
 |---------------|----------|---------|
-|KNN            | 0.36     |         |
-|SVM            | 0.88     |         |
-|NN             | 0.88(56s)|         |
-|naiveBayes     | 0.84     |         |
-|KnnSvd (5)     | 0.23(3s) |         |
-|SvmSvd(4)      | 0.33(3s) |         |
-|NnSvd (3)      | 0.35(8s) |         |
+|KNN            | 0.36     |   0.36  |
+|SVM            | 0.88     |   0.88  |
+|NN             | 0.88(56s)|0.88(57s)|
+|naiveBayes     | 0.84     |   0.84  |
+|KnnSvd (5)     | 0.23(3s) |0.23(2s) |
+|SvmSvd(4)      | 0.33(3s) |0.33(3s) |
+|NnSvd (3)      | 0.35(8s) |0.34(5s) |
