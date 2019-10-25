@@ -4,30 +4,6 @@ Text classification with 20 news group dataset
 The dataset is available at: http://archive.ics.uci.edu/ml/datasets/Twenty+Newsgroups
 
 Dataset categories count
-using df.factorize
-
-|category                |label|count|
-|------------------------|-----|-----|
-|rec.sport.baseball      |0    |993  |
-|sci.med                 |1    |988  |
-|comp.sys.mac.hardware   |2    |957  |
-|talk.politics.mideast   |3    |940  |
-|comp.graphics           |4    |970  |
-|misc.forsale            |5    |962  |
-|talk.politics.guns      |6    |910  |
-|rec.motorcycles         |7    |993  |
-|sci.electronics         |8    |981  |
-|comp.windows.x          |9    |978  |
-|rec.autos               |10   |988  |
-|talk.politics.misc      |11   |775  |
-|comp.os.ms-windows.misc |12   |980  |
-|talk.religion.misc      |13   |628  |
-|sci.space               |14   |986  |
-|rec.sport.hockey        |15   |998  |
-|soc.religion.christian  |16   |997  |
-|alt.atheism             |17   |798  |
-|comp.sys.ibm.pc.hardware|18   |979  |
-|sci.crypt               |19   |991  |
 
 using preprocessing label encoder
 
@@ -54,35 +30,22 @@ using preprocessing label encoder
 |talk.politics.misc       |18            |775  |
 |talk.religion.misc       |19            |628  |
 
-Roadmap or milestones:
-- naiveBayes [0.87]
-- Knn [working, 0.83]
-- SVM [linearSVC 0.91]
-- Neural network [sort of working, accuracy dependent on training time, 0.92]
-
-- Knn with sparse PCA or truncated SVD [not working]
-- SVM with sparse PCA or truncated SVD [not working]
-- NN with sparse PCA or truncated SVD [not working]
-
-Sparse PCA ran out of memory and Truncated SVD accuracy is bad (0.06)\
-Back to TF-IDF, add stemmer or lemmatization, remove stop words
-
-Stemming may reduce the dimension\
-Currently, after tfidf the dimension is aorund (15033,130877)\
-After stop words removal, 125026
-After stemming: 101790
-
-Dimension reduction would reduce the accuracy is expected since the information
-in every data point is reduced
 
 Accuracy comparison on different machines (limit tf-idf features to 8000)
 
-| ML algorithm  | home-pc  | work-pc |
-|---------------|----------|---------|
-|KNN            | 0.36     |   0.36  |
-|SVM            | 0.88     |   0.88  |
-|NN             | 0.88(56s)|0.88(57s)|
+| ML algorithm  | home-pc  | work-pc | unlimited to 8k |
+|---------------|----------|---------|-----------------|
+|KNN            | 0.36     |   0.36  |  0.87           |
+|SVM            | 0.88     |   0.88  |  0.91           |
+|NN             | 0.88(56s)|0.88(57s)|  0.92           |
 |naiveBayes     | 0.84     |   0.84  |
 |KnnSvd (5)     | 0.23(3s) |0.23(2s) |
 |SvmSvd(4)      | 0.33(3s) |0.33(3s) |
 |NnSvd (3)      | 0.35(8s) |0.34(5s) |
+
+Dimension reduction would reduce the accuracy of the classification because it remove
+the information available for the classifier.
+
+Have to find some methods to increase the accuracy.
+- Standard scaler
+- lemmatization
