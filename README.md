@@ -31,7 +31,7 @@ using preprocessing label encoder
 |talk.religion.misc       |19            |628  |
 
 
-Accracy scores
+Accracy scores with stemming
 
 | ML algorithm  | 8000     | > 8k    |
 |---------------|----------|---------|
@@ -46,6 +46,4 @@ Accracy scores
 Dimension reduction would reduce the accuracy of the classification because it remove
 the information available for the classifier.
 
-Have to find some methods to increase the accuracy.
-- Standard scaler
-- lemmatization
+Lemmatization does not have any improvement on the accuracy compared to stemming
