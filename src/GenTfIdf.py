@@ -16,17 +16,15 @@ np.set_printoptions(linewidth=320)
 
 def generate_tfidf():
     df = pd.read_csv('../output/20newsGroup18828.csv')
-    # df['category_id'] = df.category.factorize()[0]
     label = preprocessing.LabelEncoder()
     df['category_id'] = label.fit_transform(df.category)
 
     # Some details about the data
     # print(df.groupby(['category', 'category_id']).count().sort_values('category_id'))
 
-    # print(train_df.groupby(['category', 'category_id']).count().sort_values('category_id'))
-    # print(test_df.groupby(['category', 'category_id']).count().sort_values('category_id'))
-
+    # Limit the features
     tfidf = TfidfVectorizer(analyzer='word', stop_words='english', max_features=8000)
+
     # tfidf = TfidfVectorizer(ngram_range=(1,3), max_features=8000, strip_accents='unicode', lowercase=True,
     #                         analyzer='word', token_pattern=r'\w+', use_idf=True, smooth_idf=True, sublinear_tf=True,
     #                         stop_words='english',)
