@@ -31,17 +31,17 @@ using preprocessing label encoder
 |talk.religion.misc       |19            |628  |
 
 
-Accuracy comparison on different machines (limit tf-idf features to 8000)
+Accracy scores
 
-| ML algorithm  | home-pc  | work-pc | unlimited to 8k |
-|---------------|----------|---------|-----------------|
-|KNN            | 0.36     |   0.36  |  0.87           |
-|SVM            | 0.88     |   0.88  |  0.91           |
-|NN             | 0.88(56s)|0.88(57s)|  0.92           |
-|naiveBayes     | 0.84     |   0.84  |
-|KnnSvd (5)     | 0.23(3s) |0.23(2s) |
-|SvmSvd(4)      | 0.33(3s) |0.33(3s) |
-|NnSvd (3)      | 0.35(8s) |0.34(5s) |
+| ML algorithm  | 8000     | > 8k    |
+|---------------|----------|---------|
+|KNN            | 0.76     |  0.76   |
+|SVM            | 0.88     |  0.91   |
+|NN             | 0.88     |  0.91   |
+|naiveBayes     | 0.84     |  0.84   |
+|KnnSvd (3)     | 0.35(3s) |  0.13   |
+|SvmSvd(4)      | 0.33(3s) |  0.13   |
+|NnSvd (3)      | 0.35(8s) |  0.13   |
 
 Dimension reduction would reduce the accuracy of the classification because it remove
 the information available for the classifier.
