@@ -7,18 +7,22 @@ import logging
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
 from nltk.stem import PorterStemmer
 import time
 import re
 
 nltk.download('stopwords')
+nltk.download('wordnet')
 ps = PorterStemmer()
+lemmatizer = WordNetLemmatizer()
 logging.basicConfig(level=logging.INFO)
 
+output_loc = '../output/20newsGroup18828.csv'
 
 def get_files():
-    # path = '/home/dante/development/datasets/20news-18828/'
-    path = '/home/db/development/datasets/20news-18828/'
+    path = '/home/dante/development/datasets/20news-18828/'
+    # path = '/home/db/development/datasets/20news-18828/'
 
     # Getting all the files path
     files = []
@@ -43,7 +47,7 @@ def get_files():
     df = pd.DataFrame(list_of_tuple, columns=['text', 'category'])
     # Remove rows with empty text cell
     df = df[df.text != '']
-    df.to_csv('../output/20newsGroup18828.csv', index=False, encoding='utf8')
+    df.to_csv(output_loc, index=False, encoding='utf8')
 
 
 def get_category(path):
@@ -79,10 +83,11 @@ def pre_process_text(string):
             tmp_line = tmp_line.lower()
             # Stemming
             tmp_line = stemming(tmp_line)
+            # tmp_line = lemmatization(tmp_line)
             # Strip the leading and trailing whitespace
             tmp_line = tmp_line.strip()
             # Remove all extra whitespace
-            tmp_line = re.sub(r"\s\s+", " ", tmp_line)
+            # tmp_line = re.sub(r"\s\s+", " ", tmp_line)
             new_line.append(tmp_line)
     new_text = ' '.join(new_line)
     # The maximum number of characters in libre calc cell is 32767
@@ -101,6 +106,12 @@ def stemming(words: str) -> str:
     tokens = word_tokenize(words)
     stemmed = [ps.stem(word=w) for w in tokens]
     return ' '.join(stemmed)
+
+
+def lemmatization(words: str) -> str:
+    tokens = word_tokenize(words)
+    lemmatized = [lemmatizer.lemmatize(word=w) for w in tokens]
+    return ' '.join(lemmatized)
 
 
 def main():
