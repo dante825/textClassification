@@ -19,13 +19,13 @@ start_time = time.time()
 x_train, y_train, x_test, y_test = generate_tfidf()
 print(x_train.shape)
 
-svd = TruncatedSVD(n_components=5, n_iter=7, random_state=42, tol=0.0)
+svd = TruncatedSVD(n_components=3, n_iter=7, random_state=42, tol=0.0)
 
 X_train_reduced = svd.fit_transform(x_train)
 X_test_reduced = svd.fit_transform(x_test)
 print(X_train_reduced.shape)
 
-classifier = KNeighborsClassifier(n_neighbors=6)
+classifier = KNeighborsClassifier(n_neighbors=123)
 classifier.fit(X_train_reduced, y_train)
 
 predicted = classifier.predict(X_test_reduced)

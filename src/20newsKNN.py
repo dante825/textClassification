@@ -18,7 +18,7 @@ print(x_train.shape)
 # print(x_test.shape)
 # print(y_test.shape)
 
-classifier = KNeighborsClassifier(n_neighbors=6)
+classifier = KNeighborsClassifier(n_neighbors=123)
 classifier.fit(x_train, y_train)
 
 predicted = classifier.predict(x_test)
