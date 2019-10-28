@@ -17,7 +17,6 @@ print(x_train.shape)
 
 # Have to manually interrupt it to produce result
 clf = MLPClassifier(tol=1e-3)
-# clf = MLPClassifier(alpha=1, max_iter=100)
 clf.fit(x_train, y_train)
 
 predicted = clf.predict(x_test)
