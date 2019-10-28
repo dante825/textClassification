@@ -15,6 +15,7 @@ np.set_printoptions(linewidth=320)
 
 
 def generate_tfidf():
+    # df = pd.read_csv('../output/20newsGroup-lemmatized.csv')
     df = pd.read_csv('../output/20newsGroup18828.csv')
     label = preprocessing.LabelEncoder()
     df['category_id'] = label.fit_transform(df.category)
@@ -23,13 +24,12 @@ def generate_tfidf():
     # print(df.groupby(['category', 'category_id']).count().sort_values('category_id'))
 
     # Limit the features
-    tfidf = TfidfVectorizer(analyzer='word', stop_words='english', max_features=8000)
-
-    # tfidf = TfidfVectorizer(ngram_range=(1,3), max_features=8000, strip_accents='unicode', lowercase=True,
-    #                         analyzer='word', token_pattern=r'\w+', use_idf=True, smooth_idf=True, sublinear_tf=True,
-    #                         stop_words='english',)
+    tfidf = TfidfVectorizer(analyzer='word', stop_words='english', max_features=8000, lowercase=True,
+                            use_idf=True, smooth_idf=True)
+    # tokenizer=r'\w+'
     x = tfidf.fit_transform(df.text)
     y = df['category_id']
+
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
     # To make space in memory
     del df
