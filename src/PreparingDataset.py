@@ -73,21 +73,22 @@ def pre_process_text(string):
         else:
             # Remove email addresses
             tmp_line = re.sub('\S*@\S*\s?', '', line)
+            # Lower the case
+            tmp_line = tmp_line.lower()
             # Remove stopwords
             tmp_line = stopwords_removal(tmp_line)
             # Remove apostrophes s
             tmp_line = re.sub(r"'s", '', tmp_line)
             # Remove all symbols, retain only alphabets and numbers
-            tmp_line = re.sub('[^A-Za-z0-9]+', ' ', tmp_line)
-            # Lower the case
-            tmp_line = tmp_line.lower()
+            # tmp_line = re.sub('[^A-Za-z0-9]+', ' ', tmp_line)
+            tmp_line = re.sub('[^A-Za-z]+', ' ', tmp_line)
             # Stemming
             tmp_line = stemming(tmp_line)
             # tmp_line = lemmatization(tmp_line)
             # Strip the leading and trailing whitespace
             tmp_line = tmp_line.strip()
             # Remove all extra whitespace
-            # tmp_line = re.sub(r"\s\s+", " ", tmp_line)
+            tmp_line = re.sub(r"\s+", " ", tmp_line)
             new_line.append(tmp_line)
     new_text = ' '.join(new_line)
     # The maximum number of characters in libre calc cell is 32767
@@ -114,9 +115,16 @@ def lemmatization(words: str) -> str:
     return ' '.join(lemmatized)
 
 
+def test_sub():
+    text = "am i person think red sleeveless uniform ugli yet anoth reason wo n t win nl west    eric roush bchm biochem duke edu i marxist groucho sort grafitti pari  t"
+    print(text)
+    new_text = re.sub(r'\s+', ' ', text)
+    print(new_text)
+
 def main():
     start_time = time.time()
     get_files()
+    # test_sub()
     print("Time taken: {0:.2f}s".format(time.time() - start_time))
 
 
