@@ -20,6 +20,7 @@ logging.basicConfig(level=logging.INFO)
 
 output_loc = '../output/20newsGroup18828.csv'
 
+
 def get_files():
     path = '/home/dante/development/datasets/20news-18828/'
     # path = '/home/db/development/datasets/20news-18828/'
@@ -91,8 +92,6 @@ def pre_process_text(string):
             tmp_line = re.sub(r"\s+", " ", tmp_line)
             new_line.append(tmp_line)
     new_text = ' '.join(new_line)
-    # The maximum number of characters in libre calc cell is 32767
-    # new_text = new_text[:32766]
     return new_text
 
 
@@ -115,17 +114,10 @@ def lemmatization(words: str) -> str:
     return ' '.join(lemmatized)
 
 
-def test_sub():
-    text = "am i person think red sleeveless uniform ugli yet anoth reason wo n t win nl west    eric roush bchm biochem duke edu i marxist groucho sort grafitti pari  t"
-    print(text)
-    new_text = re.sub(r'\s+', ' ', text)
-    print(new_text)
-
 def main():
     start_time = time.time()
     get_files()
-    # test_sub()
-    print("Time taken: {0:.2f}s".format(time.time() - start_time))
+    logging.info("Time taken: {0:.2f}s".format(time.time() - start_time))
 
 
 if __name__ == "__main__":
