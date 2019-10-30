@@ -47,3 +47,7 @@ Dimension reduction would reduce the accuracy of the classification because it r
 the information available for the classifier.
 
 Lemmatization does not have any improvement on the accuracy compared to stemming
+
+ways to explore to solve this problem:
+1. according to the KNN term reduction paper, seems like it is using term frequency rather than tf-idf, it deletes the term that appeared only once.
+2. with term frequency then dimension reduction should have an increase in accuracy.
