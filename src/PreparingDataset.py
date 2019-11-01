@@ -16,14 +16,14 @@ nltk.download('stopwords')
 nltk.download('wordnet')
 ps = PorterStemmer()
 lemmatizer = WordNetLemmatizer()
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
 output_loc = '../output/20newsGroup18828.csv'
 
 
 def get_files():
-    path = '/home/dante/development/datasets/20news-18828/'
-    # path = '/home/db/development/datasets/20news-18828/'
+    # path = '/home/dante/development/datasets/20news-18828/'
+    path = '/home/db/development/datasets/20news-18828/'
 
     # Getting all the files path
     files = []
@@ -35,7 +35,7 @@ def get_files():
     text = []
     text_class = []
     for f in files:
-        logging.info('reading file: {}'.format(f))
+        logging.info('reading file: %s', f)
         text_class.append(get_category(f))
         with open(f, 'r', encoding='utf-8', errors='backslashreplace') as reader:
             text_str = reader.read()
@@ -83,9 +83,9 @@ def pre_process_text(string):
             # Remove all symbols, retain only alphabets and numbers
             # tmp_line = re.sub('[^A-Za-z0-9]+', ' ', tmp_line)
             tmp_line = re.sub('[^A-Za-z]+', ' ', tmp_line)
-            # Stemming
-            tmp_line = stemming(tmp_line)
-            # tmp_line = lemmatization(tmp_line)
+            # Stemming or lemmatization
+            # tmp_line = stemming(tmp_line)
+            tmp_line = lemmatization(tmp_line)
             # Strip the leading and trailing whitespace
             tmp_line = tmp_line.strip()
             # Remove all extra whitespace
@@ -110,14 +110,14 @@ def stemming(words: str) -> str:
 
 def lemmatization(words: str) -> str:
     tokens = word_tokenize(words)
-    lemmatized = [lemmatizer.lemmatize(word=w) for w in tokens]
+    lemmatized = [lemmatizer.lemmatize(word=w, pos='v') for w in tokens]
     return ' '.join(lemmatized)
 
 
 def main():
     start_time = time.time()
     get_files()
-    logging.info("Time taken: {0:.2f}s".format(time.time() - start_time))
+    logging.info("Time taken: %.2fs", (time.time() - start_time))
 
 
 if __name__ == "__main__":
