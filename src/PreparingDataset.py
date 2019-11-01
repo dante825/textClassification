@@ -9,6 +9,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.stem import PorterStemmer
+from nltk.corpus import wordnet
 import time
 import re
 
@@ -110,8 +111,22 @@ def stemming(words: str) -> str:
 
 def lemmatization(words: str) -> str:
     tokens = word_tokenize(words)
-    lemmatized = [lemmatizer.lemmatize(word=w, pos='v') for w in tokens]
+    pos = nltk.pos_tag(tokens)
+    lemmatized = [lemmatizer.lemmatize(word=item[0], pos=get_wordnet_pos(item[1])) for item in pos]
     return ' '.join(lemmatized)
+
+
+def get_wordnet_pos(treebank_tag):
+    if treebank_tag.startswith('J'):
+        return wordnet.ADJ
+    elif treebank_tag.startswith('V'):
+        return wordnet.VERB
+    elif treebank_tag.startswith('N'):
+        return wordnet.NOUN
+    elif treebank_tag.startswith('R'):
+        return wordnet.ADV
+    else:
+        return wordnet.NOUN
 
 
 def main():
