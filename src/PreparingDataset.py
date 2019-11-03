@@ -23,8 +23,8 @@ output_loc = '../output/20newsGroup18828.csv'
 
 
 def get_files():
-    # path = '/home/dante/development/datasets/20news-18828/'
-    path = '/home/db/development/datasets/20news-18828/'
+    path = '/home/dante/development/datasets/20news-18828/'
+    # path = '/home/db/development/datasets/20news-18828/'
 
     # Getting all the files path
     files = []
@@ -79,18 +79,21 @@ def pre_process_text(string):
             tmp_line = tmp_line.lower()
             # Remove stopwords
             tmp_line = stopwords_removal(tmp_line)
-            # Remove apostrophes s
-            tmp_line = re.sub(r"'s", '', tmp_line)
             # Remove all symbols, retain only alphabets and numbers
             # tmp_line = re.sub('[^A-Za-z0-9]+', ' ', tmp_line)
             tmp_line = re.sub('[^A-Za-z]+', ' ', tmp_line)
+            # Remove all the single letter
+            tmp_line = re.sub(r"\s+[a-z]{1}[\s+]", " ", tmp_line)
+            tmp_line = re.sub(r"\s+[a-z]{1}$", "", tmp_line)
+            tmp_line = re.sub(r"^[a-z]{1}\s+", "", tmp_line)
+            # Remove all extra whitespace
+            tmp_line = re.sub(r"\n", " ", tmp_line)
+            tmp_line = re.sub(r"\s+", " ", tmp_line)
             # Stemming or lemmatization
             # tmp_line = stemming(tmp_line)
             tmp_line = lemmatization(tmp_line)
             # Strip the leading and trailing whitespace
             tmp_line = tmp_line.strip()
-            # Remove all extra whitespace
-            tmp_line = re.sub(r"\s+", " ", tmp_line)
             new_line.append(tmp_line)
     new_text = ' '.join(new_line)
     return new_text
@@ -98,6 +101,10 @@ def pre_process_text(string):
 
 def stopwords_removal(words: str) -> str:
     stop_words = set(stopwords.words('english'))
+    more_stop_words = ['article', 'writes', 'write', 'say', 'nntp', 'posting', 'host', 'berkeley', 'edu', 'hmm', 'll',
+                       'wo', 't', 'reply', 'think', 'u', 'go', 've', 'repost', 'e', 'mail', 're', 'r', 'o', 'hey',
+                       'hi', 'n', 'dear', 'reader']
+    stop_words.update(more_stop_words)
     tokens = word_tokenize(words)
     filtered_words = [w for w in tokens if not w in stop_words]
     return ' '.join(filtered_words)
