@@ -2,7 +2,7 @@
 The base line. A complete program of converting the text to TF-IDF and then apply a
 machine learning algorithm on the data.
 """
-from GenTfIdf import generate_tfidf
+from GenTfIdf import generate_tfidf, generate_tf
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 import pandas as pd
@@ -14,6 +14,7 @@ np.set_printoptions(linewidth=320)
 
 start_time = time.time()
 x_train, y_train, x_test, y_test = generate_tfidf()
+# x_train, y_train, x_test, y_test = generate_tf()
 print(x_train.shape)
 
 clf = MultinomialNB().fit(x_train, y_train)

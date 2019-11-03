@@ -1,7 +1,7 @@
 """
 https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html
 """
-from GenTfIdf import generate_tfidf
+from GenTfIdf import generate_tfidf, generate_tf
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 import time
@@ -13,6 +13,7 @@ np.set_printoptions(linewidth=320)
 
 start_time = time.time()
 x_train, y_train, x_test, y_test = generate_tfidf()
+# x_train, y_train, x_test, y_test = generate_tf()
 print(x_train.shape)
 
 # Have to manually interrupt it to produce result

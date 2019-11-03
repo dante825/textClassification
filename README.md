@@ -31,7 +31,7 @@ using preprocessing label encoder
 |talk.religion.misc       |19            |628  |
 
 
-Accracy scores with stemming
+Accracy scores with lemmatization
 
 | ML algorithm  | 8000     | > 8k    |
 |---------------|----------|---------|
@@ -42,6 +42,19 @@ Accracy scores with stemming
 |KnnSvd (3)     | 0.35(3s) |  0.13   |
 |SvmSvd(4)      | 0.33(3s) |  0.13   |
 |NnSvd (3)      | 0.35(8s) |  0.13   |
+
+Accuray scores with term frequency
+
+| ML algorithm  | 8000     | > 8k    |
+|---------------|----------|---------|
+|KNN            | 0.28     |     |
+|SVM            | 0.81     |     |
+|NN             | 0.84     |     |
+|naiveBayes     | 0.81     |     |
+|KnnSvd (3)     |  |     |
+|SvmSvd(4)      |  |     |
+|NnSvd (3)      |  |     |
+
 
 Dimension reduction would reduce the accuracy of the classification because it remove
 the information available for the classifier.
