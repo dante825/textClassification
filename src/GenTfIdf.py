@@ -7,9 +7,14 @@ from sklearn.decomposition import NMF, TruncatedSVD, LatentDirichletAllocation
 from sklearn import preprocessing
 from sklearn import pipeline
 from sklearn.base import BaseEstimator, TransformerMixin
+from numpy import ravel
 import pandas as pd
 import numpy as np
+import scipy
+import logging
 
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 pd.set_option('display.width', 320)
 np.set_printoptions(linewidth=320)
 
@@ -42,8 +47,27 @@ def generate_tf():
     count_vect = CountVectorizer(analyzer='word', max_features=8000, stop_words='english', lowercase=True)
     x = count_vect.fit_transform(df.text)
     y = df['category_id']
+    # print(type(x)) scipy.sparse.csr.csr_matrix
+    # print(type(y)) pandas.core.series.Series
+    # print(count_vect.get_feature_names())
+    # print(x.toarray())
 
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+    # cx = scipy.sparse.coo_matrix(x)
+    # for i, j, v in zip(cx.row, cx.col, cx.data):
+    #     print ("(%d, %d), %s" % (i, j, v))
+    # remove documents with too few features
+
+    # to_keep = x.sum(axis=1) >= config['min_train_features']
+    # to_keep = np.ravel(np.array(to_keep))
+    # logging.info('%d/%d train documents have enough features',
+    #              sum(to_keep), len(y))
+    # tr_matrix = x[to_keep, :]
+    cols_to_keep = ravel(x.sum(0) > 2)
+    x2 = x[:, cols_to_keep].A
+    print(x.shape)
+    print(x2.shape)
+    x_train, x_test, y_train, y_test = train_test_split(x2, y, test_size=0.2, random_state=42)
+
     return x_train, y_train, x_test, y_test
 
 
