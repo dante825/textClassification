@@ -3,7 +3,7 @@ https://scikit-learn.org/stable/modules/multiclass.html
 https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html#sklearn.decomposition.TruncatedSVD
 https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html
 """
-from GenTfIdf import generate_tfidf
+from GenTfIdf import generate_tfidf, generate_tf
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.decomposition import TruncatedSVD
@@ -16,13 +16,14 @@ pd.set_option('display.max.columns', 100)
 np.set_printoptions(linewidth=320)
 
 start_time = time.time()
-x_train, y_train, x_test, y_test = generate_tfidf()
+# x_train, y_train, x_test, y_test = generate_tfidf()
+x_train, y_train, x_test, y_test = generate_tf()
 print(x_train.shape)
 
-svd = TruncatedSVD(n_components=3, n_iter=7, random_state=42, tol=0.0)
+svd = TruncatedSVD(n_components=4000, n_iter=7, random_state=42, tol=0.0)
 
 X_train_reduced = svd.fit_transform(x_train)
-X_test_reduced = svd.fit_transform(x_test)
+X_test_reduced = svd.transform(x_test)
 print(X_train_reduced.shape)
 
 classifier = KNeighborsClassifier(n_neighbors=123)
