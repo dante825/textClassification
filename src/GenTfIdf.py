@@ -18,10 +18,11 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 pd.set_option('display.width', 320)
 np.set_printoptions(linewidth=320)
+input_file = "../output/20newsGroup18828.csv"
 
 
 def generate_tfidf():
-    df = pd.read_csv('../output/20newsGroup18828.csv')
+    df = pd.read_csv(input_file)
     label = preprocessing.LabelEncoder()
     df['category_id'] = label.fit_transform(df.category)
 
@@ -42,15 +43,28 @@ def generate_tfidf():
 
 
 def generate_tf():
-    df = pd.read_csv('../output/20newsGroup18828.csv')
+    df = pd.read_csv(input_file)
     label = preprocessing.LabelEncoder()
     df['category_id'] = label.fit_transform(df.category)
-    count_vect = CountVectorizer(analyzer='word', max_features=8000, stop_words='english', lowercase=True)
+    count_vect = CountVectorizer(analyzer='word', stop_words='english', max_features=8000, lowercase=True)
+    x = count_vect.fit_transform(df.text)
+    y = df['category_id']
+
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+
+    return x_train, y_train, x_test, y_test
+
+
+def generate_tf_reduced(factor: int):
+    df = pd.read_csv(input_file)
+    label = preprocessing.LabelEncoder()
+    df['category_id'] = label.fit_transform(df.category)
+    count_vect = CountVectorizer(analyzer='word', stop_words='english', lowercase=True)
     x = count_vect.fit_transform(df.text)
     y = df['category_id']
 
     print(x.shape)
-    print(x.indptr)
+    # print(x.indptr)
     # print(x[1,:])
     # print(x.data)
     # print(type(x)) # scipy.sparse.csr.csr_matrix
@@ -75,7 +89,7 @@ def generate_tf():
     # cols_to_keep = np.where(np.logical_not(np.in1d(all_cols, cols_to_delete)))[0]
     # m = old_m[:, cols_to_keep]
     mat = x.tocsc()
-    greaterThanOne_cols = np.diff(mat.indptr) > 10
+    greaterThanOne_cols = np.diff(mat.indptr) > factor
     new_indptr = mat.indptr[np.append(True, greaterThanOne_cols)]
     new_shape = (mat.shape[0], np.count_nonzero(greaterThanOne_cols))
     x2 = csc_matrix((mat.data, mat.indices, new_indptr), shape=new_shape)

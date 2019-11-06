@@ -1,7 +1,7 @@
 """
 https://scikit-learn.org/stable/modules/multiclass.html
 """
-from GenTfIdf import generate_tfidf, generate_tf
+from GenTfIdf import generate_tfidf, generate_tf, generate_tf_reduced
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 from sklearn.neighbors import KNeighborsClassifier
 import pandas as pd
@@ -13,7 +13,8 @@ np.set_printoptions(linewidth=320)
 
 start_time = time.time()
 # x_train, y_train, x_test, y_test = generate_tfidf()
-x_train, y_train, x_test, y_test = generate_tf()
+# x_train, y_train, x_test, y_test = generate_tf()
+x_train, y_train, x_test, y_test = generate_tf_reduced(1000)
 print(x_train.shape)
 # print(y_train.shape)
 # print(x_test.shape)
