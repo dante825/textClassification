@@ -12,8 +12,8 @@ pd.set_option('display.width', 320)
 np.set_printoptions(linewidth=320)
 
 start_time = time.time()
-x_train, y_train, x_test, y_test = generate_tfidf()
-# x_train, y_train, x_test, y_test = generate_tf()
+# x_train, y_train, x_test, y_test = generate_tfidf()
+x_train, y_train, x_test, y_test = generate_tf()
 print(x_train.shape)
 
 clf = LinearSVC(random_state=0, tol=1e-5)

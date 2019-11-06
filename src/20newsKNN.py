@@ -12,14 +12,15 @@ pd.set_option('display.width', 320)
 np.set_printoptions(linewidth=320)
 
 start_time = time.time()
-x_train, y_train, x_test, y_test = generate_tfidf()
-# x_train, y_train, x_test, y_test = generate_tf()
+# x_train, y_train, x_test, y_test = generate_tfidf()
+x_train, y_train, x_test, y_test = generate_tf()
 print(x_train.shape)
 # print(y_train.shape)
 # print(x_test.shape)
 # print(y_test.shape)
 
-classifier = KNeighborsClassifier(n_neighbors=123)
+# Rule of thumb for k is sqrt(sample size)
+classifier = KNeighborsClassifier(n_neighbors=127)
 classifier.fit(x_train, y_train)
 
 predicted = classifier.predict(x_test)

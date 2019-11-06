@@ -11,6 +11,7 @@ from numpy import ravel
 import pandas as pd
 import numpy as np
 import scipy
+from scipy.sparse import csr_matrix, csc_matrix
 import logging
 
 
@@ -47,9 +48,14 @@ def generate_tf():
     count_vect = CountVectorizer(analyzer='word', max_features=8000, stop_words='english', lowercase=True)
     x = count_vect.fit_transform(df.text)
     y = df['category_id']
-    # print(type(x)) scipy.sparse.csr.csr_matrix
-    # print(type(y)) pandas.core.series.Series
-    # print(count_vect.get_feature_names())
+
+    print(x.shape)
+    print(x.indptr)
+    # print(x[1,:])
+    # print(x.data)
+    # print(type(x)) # scipy.sparse.csr.csr_matrix
+    # print(type(y)) # pandas.core.series.Series
+    # print(len(count_vect.get_feature_names())) # 8000
     # print(x.toarray())
 
     # cx = scipy.sparse.coo_matrix(x)
@@ -62,10 +68,20 @@ def generate_tf():
     # logging.info('%d/%d train documents have enough features',
     #              sum(to_keep), len(y))
     # tr_matrix = x[to_keep, :]
-    cols_to_keep = ravel(x.sum(0) > 2)
-    x2 = x[:, cols_to_keep].A
-    print(x.shape)
+    # cols_to_keep = ravel(x.sum(0) > 2)
+    # x2 = x[:, cols_to_keep].A
+
+    # all_cols = np.arange(old_m.shape[1])
+    # cols_to_keep = np.where(np.logical_not(np.in1d(all_cols, cols_to_delete)))[0]
+    # m = old_m[:, cols_to_keep]
+    mat = x.tocsc()
+    greaterThanOne_cols = np.diff(mat.indptr) > 10
+    new_indptr = mat.indptr[np.append(True, greaterThanOne_cols)]
+    new_shape = (mat.shape[0], np.count_nonzero(greaterThanOne_cols))
+    x2 = csc_matrix((mat.data, mat.indices, new_indptr), shape=new_shape)
+    x2 = x2.tocsr()
     print(x2.shape)
+
     x_train, x_test, y_train, y_test = train_test_split(x2, y, test_size=0.2, random_state=42)
 
     return x_train, y_train, x_test, y_test
@@ -160,11 +176,3 @@ def tfidf_generator():
     # print(test)
 
     return train, train_df.category_id, test, test_df.category_id
-
-
-# def main():
-#     tfidf_generator()
-#
-#
-# if __name__ == '__main__':
-#     main()
