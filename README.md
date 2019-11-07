@@ -72,7 +72,27 @@ the information available for the classifier.
 
 Lemmatization does not have any improvement on the accuracy compared to stemming
 
-ways to explore to solve this problem:
-1. according to the KNN term reduction paper, seems like it is using term frequency rather than tf-idf, it deletes the term that appeared only once.
-2. with term frequency then dimension reduction should have an increase in accuracy.
-3. has problem to remove the columns of features with term frequency 1 
+Report outline
+1. changes in literature review
+    - include tf in feature extraction part
+    - in dimension reduction, find proof that SVD is better, PCA is not that suitable for sparse matrix
+2. in research methodology, more details on preprocessing and include more details on the
+   steps taken.
+3. results of the experiments
+4. discussion of the results
+5. conclusion
+
+The experiment:
+
+Since the KNN article used TF for feature extraction and performed vector space reduction on it, and
+accuracy increased after vector space reduction. The experiment would be to verify that and test it out
+with other machine learning algorithm. 
+Beside only using the TF mentioned, TF-IDF feature extraction method is explored and
+SVD dimension reduction is applied on the matrix
+1. With term frequency
+2. with term frequency and naive reduction
+3. with term frequency and SVD
+4. tfidf
+5. tfidf with SVD
+6 tfidf with naive reduction (not tested yet)
+ 
