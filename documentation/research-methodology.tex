@@ -1,37 +1,83 @@
 %!TEX ROOT = main.tex
+
+% Define the process flow charts style
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+text width=15em, text centered, rounded corners, minimum height=4em]
+
+
 \chapter{Research Methodology}
 \section{Introduction}
-This section would illustrate the process flow of how to carry out the experiments to fulfil the aforementioned objectives.
+This section would illustrate process flow to carry out the experiments to fulfill the aforementioned objectives of this research. The following flow charts would illustrates the steps taken in the several experiments.
 
-\section{Process Flow}
+\section{Text preprocessing process flow}
 \begin{tikzpicture}[node distance = 2cm, auto]
+
+% Place nodes
+
+\node [block] (init) {Raw text};
+\node [block, below of=init] (readDf) {Read the file into dataframe};
+\node [block, below of=readDf] (lineRemoval) {Remove some redundant lines};
+\node [block, below of=lineRemoval] (lower) {Change the text to lowercase};
+\node [block, below of=lower] (symRemoval) {Remove all the symbols and punctuation};
+\node [block, below of=symRemoval] (lemmatization) {Lemmatization};
+\node [block, below of=lemmatization] (output) {Output to CSV file};
+
+% Draw edges
+
+\path [line] (init) -- (readDf);
+\path [line] (readDf) -- (lineRemoval);
+\path [line] (lineRemoval) -- (lower);
+\path [line] (lower) -- (symRemoval);
+\path [line] (symRemoval) -- (lemmatization);
+\path [line] (lemmatization) -- (output);
+\end{tikzpicture}
+
+This flow chart above illustrates the preprocessing process. The news articles articles dataset would be in the form of raw text. There are some preprocessing to be done before feature can be extracted from the text to build the text classification models. First, the raw text would be read into a dataframe or a data structure for ease of access and processing.
+
+In the raw text files, there are some lines that are not relevant for text classification purpose, these lines would remove to reduce the noise in the dataset. All the text in the dataset would be converted to lowercase and all the symbols and punctuation in the text would be removed. \\
+
+After that, there is an important step, lemmatization. Lemmatization would convert most of the words in the text to their root form which is known as a lemma. This would reduce the noise in the data by transforming similar words into a single word. The alternative to lemmatization would be stemming. Stemming would be faster than and need less processing power than lemmatization but stemming has a drawback against lemmatization. The result of stemming may not be a real word because stemming just chop off the ends of the words thus the resulting words may not be a real words. On the other hand, lemmatization uses vocabulary and morphological analysis of words to remove the inflectional endings only and resulting the root form of words.
+(reference needed)
+
+
+\section{Overall Process Flow}
+\begin{tikzpicture}[node distance = 2cm, auto]
+% Place nodes
 \node [block] (init) {News articles};
 \node [block, below of=init] (preprocessing) {Preprocessing};
-\node [block, below of=preprocessing] (tfidf) {TF-IDF};
-\node [block, below of=tfidf] (dimred) {Dimension Reduction};
+\node [block, below of=preprocessing] (feaext) {Feature Extraction};
+\node [block, below of=feaext] (dimred) {Dimension Reduction (if needed)};
 \node [block, below of=dimred] (ml) {Train Machine Learning Models};
-\node [block, below of=ml] (validate) {Validate the models};
-\node [block, below of=validate] (test) {Test the models};
+\node [block, below of=ml] (test) {Test the models};
 \node [block, below of=test] (eval) {Evaluate the performance};
-% Draw the edges
+% Draw edges
 \path [line] (init) -- (preprocessing);
-\path [line] (preprocessing) -- (tfidf);
-\path [line] (tfidf) -- (dimred);
+\path [line] (preprocessing) -- (feaext);
+\path [line] (feaext) -- (dimred);
 \path [line] (dimred) -- (ml);
-\path [line] (ml) -- (validate);
-\path [line] (validate) -- (test);
 \path [line] (test) -- (eval);
 \end{tikzpicture}
 
-First, the news articles must undergo preprocessing. The preprocessing includes converting all the words to lowercase, numbers and punctuations removal, stop words removal, stemming and others. 
+The process flow chart above is the overall process for the few experiments. As mentioned above, the news articles dataset has to be preprocessed before it can undergo feature extraction and train machine learning models.
 
-After preprocessing, TF-IDF algorithm would be applied on the text to extract the features from the text. The resulting vector space from TF-IDF would be undergo a dimension reduction algorithm.
+After preprocessing, the resulting data would be used in several experiments with a few subtle differences.
+The differences in the experiments would be in the feature extraction stage and the dimension reduction stage. 
 
-After vector space model dimension is reduced, the vector space model is used to train a machine learning algorithm. The trained machine learning model is validated and tested and its performance is evaluated.
+\section{The experiments}
+\begin{enumerate}
+	\item Term frequency without dimension reduction
+	\item Term frequency with dimension reduction
+	\item TF-IDF without dimension reduction
+	\item TF-IDF with dimension reduction
+\end{enumerate}
+One of the experiments would be conducted with \textbf{term frequency} feature extraction method \textbf{without dimension reduction}. Another experiment would be using \textbf{term frequency with dimension reduction}.
 
-The vector space model of the news articles from TF-IDF can undergo different dimension reduction algorithm or none at all. The classification accuracy stemming from this differences would be compared. 
+\textbf{TF-IDF} would be the feature extraction method used in another experiment. Similar with the experiments above, it would also be tested with and without dimension reduction method.
 
-The machine learning algorithms use to train the models would be the few document classification machine learning algorithms chosen in chapter 2, namely SVM, kNN and Neural Network.
+The dimension reduction algorithm used in these 2 experiments would be different though. Experiments with TF would apply a naive method of dimension reduction which is removing the columns in the feature matrix that has low value, while the dimension reduction algorithm applied on the experiments with TF-IDF would be SVD.
+
+After feature extraction and dimension reduction (if needed) are applied, the resulting features would be used to train machine learning models. There are 3 machine learning algorithms chosen in these experiments namely k-nearest neighbour, support vector machine, and neural network. All 3 of the machine algorithms would be applied to all the different resulting features and the accuracy scores would be evaluated.
+
 
 \section{Conclusion}
 With the method mentioned above, the experiments would be carry out and the results would be recorded. The results would be compared and the differences would be analysed.
