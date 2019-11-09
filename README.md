@@ -31,40 +31,68 @@ using preprocessing label encoder
 |talk.religion.misc       |19            |628  |
 
 
-Accracy scores with lemmatization
+TF-IDF
 
-| ML algorithm  | 8000     | \> 8k   |
+| ML algorithm  | accuracy | time taken (s)  |
 |---------------|----------|---------|
-|KNN            | 0.76     |  0.76   |
-|SVM            | 0.88     |  0.91   |
-|NN             | 0.88     |  0.91   |
-|naiveBayes     | 0.84     |  0.84   |
-|KnnSvd (3)     | 0.35(3s) |  0.13   |
-|SvmSvd(4)      | 0.33(3s) |  0.13   |
-|NnSvd (3)      | 0.35(8s) |  0.13   |
+|KNN            | 0.76     | 3.90    |
+|SVM            | 0.87     | 3.04    |
+|NN             | 0.88     | 71.00   |
+|naiveBayes     | 0.85     | 1.66    |
 
-Accuray scores with term frequency
+TF-IDF SVD
 
-| ML algorithm  | 8000     | \> 8k    |
+| ML algorithm  | accuracy | time taken (s)  |
 |---------------|----------|---------|
-|KNN            | 0.28     | 0.24    |
-|SVM            | 0.81     | 0.83    |
-|NN             | 0.84     | 0.90    |
-|naiveBayes     | 0.81     | 0.83    |
-|KnnSvd         | 0.31     |  -   |
-|SvmSvd         | 0.80     |  -   |
-|NnSvd          | 0.80     |  -   |
+|KnnSvd(1000)   | 0.77     | 451.80  |
+|KnnSvd(2000)   | 0.63     | 244.79  |
+|SvmSvd(1000)   | 0.84     | 34.86   |
+|SvmSvd(2000)   | 0.86     | 93.79   |
+|NnSvd (2000)   | 0.85     | 95.01   |
+
+TF-IDF reduced
+
+| ML algorithm  | accuracy | time taken |
+|---------------|----------|------------|
+|KNN            | 0.76     |     |
+|SVM            | 0.87     |  |
+|NN             | 0.88     |   |
+|naiveBayes     | 0.85     |   |
+|KnnSvd         | 0.77     | 759.50  |
+|SvmSvd         | 0.87     |   |
+|NnSvd (3)      | 0.35(8s) |   |
+
+
+
+
+term frequency
+
+| ML algorithm  | accuracy | time taken  |
+|---------------|----------|---------|
+|KNN            | 0.28     | 4.13    |
+|SVM            | 0.81     | 5.57    |
+|NN             | 0.86     | 64.08   |
+|naiveBayes     | 0.81     | 1.75    |
+
+term frequency with SVD
+
+| ML algorithm  | accuracy | time taken  |
+|---------------|----------|--------|
+|KnnSvd(2000)   | 0.38     | 207.27 |
+|KnnSvd(2000)   | 0.38     | 232.90 |
+|SvmSvd(2000)   | 0.79     | 163.63 |
+|NnSvd (2000)   | 0.79     | 85.75  |
 
 * SVD cannot be executed with more than 8k features, out of memory error
 
-Accuracy scores with term frequency reduced
+term frequency reduced
 
-| ML algorithm  | \>8k     |
-|---------------|----------|
-|KNN            | 0.34 (1000)    |
-|SVM            | 0.83  (7)   |
-|NN             | 0.87  (10)  |
-|naiveBayes     | 0.84  (7)   |
+| ML algorithm  | accuracy    | time taken |
+|---------------|----------|------------|
+|KNN            | 0.34 (1000) |   |
+|SVM            | 0.83  (7)   |   |
+|NN             | 0.87  (10)  |   |
+|naiveBayes     | 0.84  (7)   |   |
 
 
 Dimension reduction would reduce the accuracy of the classification because it remove
