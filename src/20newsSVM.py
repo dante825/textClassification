@@ -4,7 +4,7 @@ https://scikit-learn.org/stable/modules/multiclass.html
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 from sklearn.svm import LinearSVC
 import time
-from GenTfIdf import generate_tfidf, generate_tf, generate_tf_reduced
+from GenTfIdf import generate_tfidf, generate_tf, generate_tf_reduced, generate_tfidf_reduced
 import pandas as pd
 import numpy as np
 
@@ -12,9 +12,10 @@ pd.set_option('display.width', 320)
 np.set_printoptions(linewidth=320)
 
 start_time = time.time()
-# x_train, y_train, x_test, y_test = generate_tfidf()
+x_train, y_train, x_test, y_test = generate_tfidf()
+# x_train, y_train, x_test, y_test = generate_tfidf_reduced(12)
 # x_train, y_train, x_test, y_test = generate_tf()
-x_train, y_train, x_test, y_test = generate_tf_reduced(7)
+# x_train, y_train, x_test, y_test = generate_tf_reduced(7)
 print(x_train.shape)
 
 clf = LinearSVC(random_state=0, tol=1e-5)
