@@ -30,13 +30,42 @@ def generate_tfidf():
     # print(df.groupby(['category', 'category_id']).count().sort_values('category_id'))
 
     # Limit the features
+    tfidf = TfidfVectorizer(analyzer='word', stop_words='english', token_pattern=r'\w+', max_features=8000, lowercase=True,
+                            use_idf=True, smooth_idf=True)
+    x = tfidf.fit_transform(df.text)
+    y = df['category_id']
+
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+    # To make space in memory
+    del df
+    return x_train, y_train, x_test, y_test
+
+
+def generate_tfidf_reduced(factor: int):
+    df = pd.read_csv(input_file)
+    label = preprocessing.LabelEncoder()
+    df['category_id'] = label.fit_transform(df.category)
+
+    # Some details about the data
+    # print(df.groupby(['category', 'category_id']).count().sort_values('category_id'))
+
+    # Limit the features
     tfidf = TfidfVectorizer(analyzer='word', stop_words='english', max_features=8000, lowercase=True,
                             use_idf=True, smooth_idf=True)
     # tokenizer=r'\w+'
     x = tfidf.fit_transform(df.text)
     y = df['category_id']
 
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+    print(x.shape)
+    mat = x.tocsc()
+    greaterThanOne_cols = np.diff(mat.indptr) > factor
+    new_indptr = mat.indptr[np.append(True, greaterThanOne_cols)]
+    new_shape = (mat.shape[0], np.count_nonzero(greaterThanOne_cols))
+    x2 = csc_matrix((mat.data, mat.indices, new_indptr), shape=new_shape)
+    x2 = x2.tocsr()
+    print(x2.shape)
+
+    x_train, x_test, y_train, y_test = train_test_split(x2, y, test_size=0.2, random_state=42)
     # To make space in memory
     del df
     return x_train, y_train, x_test, y_test
@@ -64,30 +93,6 @@ def generate_tf_reduced(factor: int):
     y = df['category_id']
 
     print(x.shape)
-    # print(x.indptr)
-    # print(x[1,:])
-    # print(x.data)
-    # print(type(x)) # scipy.sparse.csr.csr_matrix
-    # print(type(y)) # pandas.core.series.Series
-    # print(len(count_vect.get_feature_names())) # 8000
-    # print(x.toarray())
-
-    # cx = scipy.sparse.coo_matrix(x)
-    # for i, j, v in zip(cx.row, cx.col, cx.data):
-    #     print ("(%d, %d), %s" % (i, j, v))
-    # remove documents with too few features
-
-    # to_keep = x.sum(axis=1) >= config['min_train_features']
-    # to_keep = np.ravel(np.array(to_keep))
-    # logging.info('%d/%d train documents have enough features',
-    #              sum(to_keep), len(y))
-    # tr_matrix = x[to_keep, :]
-    # cols_to_keep = ravel(x.sum(0) > 2)
-    # x2 = x[:, cols_to_keep].A
-
-    # all_cols = np.arange(old_m.shape[1])
-    # cols_to_keep = np.where(np.logical_not(np.in1d(all_cols, cols_to_delete)))[0]
-    # m = old_m[:, cols_to_keep]
     mat = x.tocsc()
     greaterThanOne_cols = np.diff(mat.indptr) > factor
     new_indptr = mat.indptr[np.append(True, greaterThanOne_cols)]

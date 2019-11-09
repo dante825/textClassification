@@ -1,4 +1,4 @@
-from GenTfIdf import generate_tfidf, generate_tf
+from GenTfIdf import generate_tfidf, generate_tf, generate_tfidf_reduced
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 from sklearn.svm import LinearSVC
 from sklearn.decomposition import TruncatedSVD
@@ -12,10 +12,11 @@ np.set_printoptions(linewidth=320)
 
 start_time = time.time()
 # x_train, y_train, x_test, y_test = generate_tfidf()
+# x_train, y_train, x_test, y_test = generate_tfidf_reduced(10)
 x_train, y_train, x_test, y_test = generate_tf()
 print(x_train.shape)
 
-svd = TruncatedSVD(n_components=4000, n_iter=7, random_state=42, tol=0.0)
+svd = TruncatedSVD(n_components=2000, n_iter=7, random_state=42, tol=0.0)
 
 x_train_reduced = svd.fit_transform(x_train)
 x_test_reduced = svd.transform(x_test)
