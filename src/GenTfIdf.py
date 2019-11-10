@@ -83,7 +83,7 @@ def generate_tfidf_svd(no_of_features: int):
     x = tfidf.fit_transform(df.text)
     y = df['category_id']
 
-    svd = TruncatedSVD(n_components=2000, n_iter=7, random_state=42, tol=0.0)
+    svd = TruncatedSVD(n_components=no_of_features, n_iter=7, random_state=42, tol=0.0)
     x_reduced = svd.fit_transform(x)
 
     x_train, x_test, y_train, y_test = train_test_split(x_reduced, y, test_size=0.2, random_state=42)
@@ -122,5 +122,21 @@ def generate_tf_reduced(factor: int):
     print(x2.shape)
 
     x_train, x_test, y_train, y_test = train_test_split(x2, y, test_size=0.2, random_state=42)
+
+    return x_train, y_train, x_test, y_test
+
+
+def generate_tf_svd(no_of_features: int):
+    df = pd.read_csv(input_file)
+    label = preprocessing.LabelEncoder()
+    df['category_id'] = label.fit_transform(df.category)
+    count_vect = CountVectorizer(analyzer='word', stop_words='english', max_features=8000, lowercase=True)
+    x = count_vect.fit_transform(df.text)
+    y = df['category_id']
+
+    svd = TruncatedSVD(n_components=no_of_features, n_iter=7, random_state=42, tol=0.0)
+    x_reduced = svd.fit_transform(x)
+
+    x_train, x_test, y_train, y_test = train_test_split(x_reduced, y, test_size=0.2, random_state=42)
 
     return x_train, y_train, x_test, y_test

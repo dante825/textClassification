@@ -16,7 +16,7 @@ start_time = time.time()
 x_train, y_train, x_test, y_test = generate_tfidf()
 # x_train, y_train, x_test, y_test = generate_tfidf_reduced(15)
 # x_train, y_train, x_test, y_test = generate_tf()
-# x_train, y_train, x_test, y_test = generate_tf_reduced(7)
+# x_train, y_train, x_test, y_test = generate_tf_reduced(50)
 print(x_train.shape)
 
 clf = MultinomialNB().fit(x_train, y_train)
