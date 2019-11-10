@@ -64,19 +64,21 @@ After preprocessing, the resulting data would be used in several experiments wit
 The differences in the experiments would be in the feature extraction stage and the dimension reduction stage. 
 
 \section{The experiments}
+The experiments that has been conducted in this research is as follows:
 \begin{enumerate}
-	\item Term frequency without dimension reduction
-	\item Term frequency with dimension reduction
-	\item TF-IDF without dimension reduction
-	\item TF-IDF with dimension reduction
+	\item Term frequency
+	\item Term frequency with naive dimension reduction
+	\item Term frequency with SVD
+	\item TF-IDF
+	\item TF-IDF with naive dimension reduction
+	\item TF-IDF with SVD
 \end{enumerate}
-One of the experiments would be conducted with \textbf{term frequency} feature extraction method \textbf{without dimension reduction}. Another experiment would be using \textbf{term frequency with dimension reduction}.
 
-\textbf{TF-IDF} would be the feature extraction method used in another experiment. Similar with the experiments above, it would also be tested with and without dimension reduction method.
+Basically, there are 2 feature extraction method used in the experiments, namely term frequency and term frequency - inverse document frequency (TF-IDF). Each of the feature extraction method would be tested with and without dimension reduction algorithm.
 
-The dimension reduction algorithm used in these 2 experiments would be different though. Experiments with TF would apply a naive method of dimension reduction which is removing the columns in the feature matrix that has low value, while the dimension reduction algorithm applied on the experiments with TF-IDF would be SVD.
+There are 2 dimension algorithms involved, one is a naive method, which means that the features or columns lesser than a certain value would be removed. In other words, words or terms that do not appear much in the dataset would be removed. Another dimension reduction algorithm is single value decomposition (SVD). This method would retain the essence of the data, the part of the data with maximum variance. 
 
-After feature extraction and dimension reduction (if needed) are applied, the resulting features would be used to train machine learning models. There are 3 machine learning algorithms chosen in these experiments namely k-nearest neighbour, support vector machine, and neural network. All 3 of the machine algorithms would be applied to all the different resulting features and the accuracy scores would be evaluated.
+After feature extraction and dimension reduction (if needed) are applied, the resulting features would be used to train machine learning models. There are 3 machine learning algorithms chosen in these experiments namely k-nearest neighbour (kNN), support vector machine (SVM), and neural network (NN). All 3 of the machine algorithms would be applied to all the different resulting features and the accuracy scores would be evaluated.
 
 
 \section{Conclusion}
