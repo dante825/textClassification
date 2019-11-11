@@ -1,8 +1,14 @@
 %!TEX ROOT = main.tex
-\chapter{Results}
+
+\chapter{Results and Discussions}
+
+\section{Introduction}
+The results of the experiments are shown in this section. The differences in the accuracy and performance of each of the methods would be discussed and analysed. Hopefully, the results and discussions would be able to answer the research questions posted in the beginning of this research.
+
 \section{Term frequency}
 
-\begin{center}
+\begin{table}[ht]
+	\centering
 	\begin{tabular}{|| c | c | c | c||}
 		\hline
 		ML & no of features & accuracy & time taken (s) \\ [0.5ex]
@@ -14,11 +20,23 @@
 		NN & 8000 & 0.84 & 91.82 \\
 		\hline
 	\end{tabular}
-\end{center}
+\caption{Term frequency}
+\label{tbl:termFrequency}
+\end{table}
+
+Term frequency is one of most common feature extraction method. It convert all the words in the dataset into a matrix where each column is a word and the rows are the number of times each word appear in the text. Each row in the matrix is a document. This vector space model representation of the words would result in a sparse matrix since each of the documents only contains a subset of all the words in the whole dataset. 
+
+The number of features of the term frequency is limited to 8000, this is because of the memory constraint of the machine if it is unlimited the resulting matrix would be of bigger size and would have the probability of running out of memory while processing the matrix. 
+
+In the results shown above, NN achieved an accuracy of 0.84 which is the best accuracy out of the 3 classification algorithm but it is also the one that takes the longest to process. kNN took the least time to process but has the lowest accuracy score. Performance wise SVM is the best, it only took 5s to process, which is 80s less than NN and has comparable accuracy with NN. 
+
+reason of KNN accuracy low [reference] [https://arxiv.org/abs/1011.2807]
+kNN accuracy is low in this scenario is possibly due to the feature matrix is sparse. The data points are few and far in between. kNN classify a new data point based on the distance of the new data point with the nearby data points. Since the other data points are few and sparse, the classification of the new data points would be biased. kNN is designed for low dimensional data therefore it doesn't perform well in large and sparse data.
 
 \section{Term frequency with naive dimension reduction}
 
-\begin{center}
+\begin{table} [ht]
+	\centering
 	\begin{tabular}{|| c | c | c | c | c||}
 		\hline
 		ML & parameter value & no of features & accuracy & time taken (s) \\ [0.5ex]
@@ -42,14 +60,26 @@
 		NN & 500 & 478 & 0.65 & 61.87 \\
 		\hline\hline
 	\end{tabular}
-\end{center}
+\caption{Term frequency with naive dimension reduction}
+\label{tbl:termFrequencyNaive}
+\end{table}
 
-The parameter value is just a integer value in the function implemented. It has an inversely proportional relationship with the number of features. The larger the parameter value, the more columns would be removed and the number of features would decrease.
+The feature extraction method used in this experiment is same as the experiment above but dimension reduction method is applied to the resulting matrix before training. The dimension reduction algorithm used in this experiment is a naive one which means that the columns with the least occurrence of word are removed.
+
+The parameter value is just an integer value passed to the dimension reduction function implemented. It has an inversely proportional relationship with the number of features. The larger the parameter value, the more columns would be removed and the number of features would decrease.
+
+In the result table above, each of the classification algorithm has different parameter value, this is determined by trial and error and the results shown are the best.
+
+In this experiment, kNN still has the worst performance but its accuracy increases slightly as the number of features decreases and the time taken increases as well. SVM and NN have the same trend in this experiment, the accuracy and time taken decrease as the number of features decreases. This is because as the number of features decrease, there is less data to process thus the speedup and due to the decrease in training data, the model cannot correctly predict the test data.
+
+In the scenarios where SVM and NN have more features than the experiment with just term frequency, both of the classification algorithms have better accuracy. These 2 classification algorithms are efficient and able to process features in a large and sparse vector space.
+
 
 
 \section{Term frequency with SVD}
 
-\begin{center}
+\begin{table} [ht]
+	\centering
 	\begin{tabular}{|| c | c | c | c||}
 		\hline
 		ML & no of features & accuracy & time taken (s) \\ [0.5ex]
@@ -67,12 +97,24 @@ The parameter value is just a integer value in the function implemented. It has 
 		NN & 4000 & 0.8 & 220.76 \\
 		\hline\hline
 	\end{tabular}
-\end{center}
+\caption{Term frequency with SVD}
+\label{tbl:termFrequencySvd}
+\end{table}
 
+In this experiment, the feature extraction method used is still term frequency but the dimension reduction algorithm changed. Instead of reducing the dimension by the least term frequency, SVD is used. SVD would retrieve the features with maximum variance in the data.
+
+The number of features shown in the table above is the number of columns in the resulting matrix after applying SVD. 
+
+Similar with the trend in the previous experiment (term frequency with naive dimension reduction), the accuracy of kNN increases slightly when the features decreases but the resulting accuracy is still far from satisfactory. The accuracy of SVM and NN also have the same trend with the previous experiment, the accuracy decreases slightly when the number of features decreases. 
+
+As expected the time taken to process the features decreases as the number of features decreases. However, in comparison with the time taken in the previous experiments, the time taken in this experiment is astoundingly high. SVD would be the culprit, dimension reduction comes at a cost which is processing power. To reduce or compress the features into a small dimension, a lot of calculation would be involve, this would take both time and processing power.
+
+The resulting accuracy is not as good as just with term frequency. This is expected because the number of features decreased. The reduction in features may save some memory space but in order to achieve that more processing power and time would be needed.
 
 \section{TF-IDF}
 
-\begin{center}
+\begin{table} [ht]
+	\centering
 	\begin{tabular}{|| c | c | c | c||}
 		\hline
 		ML & no of features & accuracy & time taken (s) \\ [0.5ex]
@@ -84,11 +126,25 @@ The parameter value is just a integer value in the function implemented. It has 
 		NN & 8000 & 0.88 & 55.82 \\
 		\hline
 	\end{tabular}
-\end{center}
+\caption{TF-IDF}
+\label{tbl:tfidf}
+\end{table}
+
+A different approach in feature extraction is applied in this experiment. Instead of term frequency which only take the frequency of each word into account, the feature extraction method used here in TF-IDF. The main difference of this feature extraction method is that besides term frequency it also take the rarity of the words into account. If a term or word appear in high frequency but in many documents, this word may not be of importance or a meaningful feature. If a word appear rarely and only in a few documents, this word would have high importance and would be meaningful feature of the few documents.
+
+With TF-IDF, kNN can achieved a satisfactory accuracy score of 0.76 even though the number of features in the resulting matrix of TF-IDF is the same with term frequency which is 8000. The vector space model of TF-IDF would not be as sparse as that of term frequency which is kNN is more suitable to be applied.
+
+NN is still provide the highest accuracy score of 0.88 but the time taken also the longest at 55.82s.
+
+SVM achieved an accuracy of 0.87 which is just 0.01 shy of what achieved by NN and the time taken is the lowest among the 3 which is 2.39s.
+
+In comparison to the few experiments with term frequency, the accuracy and time taken of the 3 classification model improves. This prove that TF-IDF is a better feature extraction method for text.
+
 
 \section{TF-IDF with naive dimension reduction}
 
-\begin{center}
+\begin{table} [ht]
+	\centering
 	\begin{tabular}{|| c | c | c | c | c||}
 		\hline
 		ML & parameter value & no of features & accuracy & time taken (s) \\ [0.5ex]
@@ -112,11 +168,14 @@ The parameter value is just a integer value in the function implemented. It has 
 		NN & 500 & 478 & 0.64 & 77.12 \\
 		\hline\hline
 	\end{tabular}
-\end{center}
+\caption{TF-IDF with naive dimension reduction}
+\label{tbl:tfidfNaive}
+\end{table}
 
 \section{TF-IDF with SVD}
 
-\begin{center}
+\begin{table} [ht]
+	\centering
 	\begin{tabular}{|| c | c | c | c||}
 		\hline
 		ML & no of features & accuracy & time taken (s) \\ [0.5ex]
@@ -134,4 +193,6 @@ The parameter value is just a integer value in the function implemented. It has 
 		NN & 4000 & 0.85 & 215.73 \\
 		\hline\hline
 	\end{tabular}
-\end{center}
+\caption{TF-IDF with SVD}
+\label{tbl:tfidfSvd}
+\end{table}
