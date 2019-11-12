@@ -60,5 +60,8 @@ SVD dimension reduction is applied on the matrix
 3. with term frequency and SVD
 4. tfidf
 5. tfidf with SVD
-6 tfidf with naive reduction (not tested yet)
+6. tfidf with naive reduction
+
+maybe add some graphs or picture before results and discussion,
+pictures showing the categories distribution of the data
  
