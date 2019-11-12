@@ -10,10 +10,10 @@ text width=15em, text centered, rounded corners, minimum height=4em]
 This section would illustrate process flow to carry out the experiments to fulfill the aforementioned objectives of this research. The following flow charts would illustrates the steps taken in the several experiments.
 
 \section{Text preprocessing process flow}
+\begin{figure}
+\centering
 \begin{tikzpicture}[node distance = 2cm, auto]
-
 % Place nodes
-
 \node [block] (init) {Raw text};
 \node [block, below of=init] (readDf) {Read the file into dataframe};
 \node [block, below of=readDf] (lineRemoval) {Remove some redundant lines};
@@ -33,6 +33,9 @@ This section would illustrate process flow to carry out the experiments to fulfi
 \path [line] (symRemoval) -- (lemmatization);
 \path [line] (lemmatization) -- (output);
 \end{tikzpicture}
+\caption{Overall process flow}
+\label{fig: overallProcess}
+\end{figure}
 
 This flow chart above illustrates the preprocessing process. The news articles articles dataset would be in the form of raw text. There are some preprocessing to be done before features can be extracted from the text to build the text classification models. First, the raw text would be read into a dataframe or a data structure for ease of access and processing.
 
@@ -43,6 +46,8 @@ After that, there is an important step, lemmatization. Lemmatization would conve
 
 
 \section{Overall Process Flow}
+\begin{figure}
+\centering
 \begin{tikzpicture}[node distance = 2cm, auto]
 % Place nodes
 \node [block] (init) {News articles};
@@ -58,7 +63,11 @@ After that, there is an important step, lemmatization. Lemmatization would conve
 \path [line] (feaext) -- (dimred);
 \path [line] (dimred) -- (ml);
 \path [line] (test) -- (eval);
+
 \end{tikzpicture}
+\caption{Process flow of preprocessing the text dataset}
+\label{fig: preprocessText}
+\end{figure}
 
 The process flow chart above is the overall process for the few experiments. As mentioned above, the news articles dataset has to be preprocessed before it can undergo feature extraction and train machine learning models.
 

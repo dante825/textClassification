@@ -5,6 +5,17 @@
 \section{Introduction}
 The results of the experiments are shown in this section. The differences in the accuracy and performance of each of the methods would be discussed and analysed. Hopefully, the results and discussions would be able to answer the research questions posted in the beginning of this research.
 
+\section{The dataset}
+\graphicspath{{./images/}}
+
+\begin{figure} [ht]
+\centering
+\includegraphics[width=\textwidth]{count}
+\caption{The count of each category in the dataset}
+\label{fig:freqCount}
+\end{figure}
+details about the 20news dataset, the category distributions, a table, a chart
+
 \section{Term frequency}
 
 \begin{table}[ht]
@@ -172,6 +183,12 @@ In comparison to the few experiments with term frequency, the accuracy and time 
 \label{tbl:tfidfNaive}
 \end{table}
 
+Similar with the experiment with term frequency, naive dimension reduction is applied to the vector space model generated from TF-IDF. The trend over all the 3 machine learning models when the number of features decreases, the accuracy of the model decreases slightly and the time taken increases. The amount of information has become lesser, less information is available to train a comprehensive model, therefore the accuracy decreases.The dimension reduction even though is a naive one and less computing intensive still increases the time taken compared with just with TF-IDF. The more reduction is performed, the time taken would increase as well.
+
+The accuracy achieve with TF-IDF with naive dimension reduction is still passable with kNN at 0.74 when the features reduced from 8000 to 4221. However, when the number of features reduced to 478, the accuracy is just at a measly 0.49 which is not satisfactory. SVM and NN also achieved comparable accuracy at 0.86 and 0.85 respectively in comparison with TF-IDF when the number of features are almost halved.
+
+From the results of this experiment, it can be deduced that with naive dimension reduction, the number of features and memory needed to store the vector space model is reduced. With this reduced number of features, the classification models can still achieve comparable performance but would be at a slightly decreased capacity.
+
 \section{TF-IDF with SVD}
 
 \begin{table} [ht]
@@ -196,3 +213,11 @@ In comparison to the few experiments with term frequency, the accuracy and time 
 \caption{TF-IDF with SVD}
 \label{tbl:tfidfSvd}
 \end{table}
+
+Finally, the last experiment is TF-IDF with SVD dimension reduction. Similar with experiments above with SVD, each of the machine learning models would be tested with 2 set of vector space model, each with different number of features, namely 2000 and 4000. To put it in perspective, the number of features without reduction is 8000. 
+
+When the number of features are at 4000 which is halved, kNN still can produced an accuracy of 0.77 which is similar with what is achieved with TF-IDF without dimension reduction. Same goes to SVM and NN, at 4000 features, the accuracy are quite similar with TF-IDF without dimension reduction. When the dimension of the vector space model is reduced to 2000, the accuracy across 3 of the classification models dropped. kNN being the most drastic, its accuracy dropped to 0.58 while SVM and NN dropped to 0.86 and 0.84 respectively, which is slightly worse than before but it is still satisfactory. 
+
+There is an odd trend on the time taken for all 3 classification models though. The time taken in this experiment is much higher than the experiment of TF-IDF without dimension reduction and TF-IDF with naive dimension reduction which is expected. SVD reduction would take more time as more calculation is performed. However, the time taken decreased when the further reduction is done, kNN take 457s to reduce the vector space model from 8000 to 4000 but just 208s to reduce the vector space model from 8000 to 2000. Keep in mind that the time recorded here includes the time taken for the classification model to predict the test dataset as well. This trend appear in SVM and NN as well. SVM took 189s to reduce 8000 to 4000 but 69s to reduce 8000 to 2000 while NN took 215s to reduce 8000 to 4000 and 87s to reduce 8000 to 2000. 
+
+The decrement in time could be explained with the reduction of features, the time taken to process them also reduced therefore it provided a speedup. This speedup with the reduction of features came at a cost though, which is accuracy. For SVM and NN, the reduction in accuracy is meagre and would be logical to trade the slight accuracy with the speedup but in kNN the trade off would be lopsided.
