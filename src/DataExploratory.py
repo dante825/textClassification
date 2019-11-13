@@ -7,6 +7,7 @@ print(input_df.shape)
 
 fig, ax = plt.subplots(figsize=(17, 7))
 agg_df = input_df.groupby('category').count().sort_values('category')
+print(agg_df)
 fig_plot = agg_df.plot(kind='bar', ax=ax, title='The count of each category of the dataset',
             legend=False)
 fig_plot.set_xlabel('Categories')
