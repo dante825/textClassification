@@ -10,7 +10,7 @@ text width=15em, text centered, rounded corners, minimum height=4em]
 This section would illustrate process flow to carry out the experiments to fulfill the aforementioned objectives of this research. The following flow charts would illustrates the steps taken in the several experiments.
 
 \section{Text preprocessing process flow}
-\begin{figure}
+\begin{figure} [ht]
 \centering
 \begin{tikzpicture}[node distance = 2cm, auto]
 % Place nodes
@@ -44,11 +44,11 @@ In the raw text files, there are some lines that are not relevant for text class
 After that, there is an important step, lemmatization. Lemmatization would convert most of the words in the text to their root form which is known as a lemma. This would reduce the noise in the data by transforming similar words into a single word. The alternative to lemmatization would be stemming. Stemming would be faster than and need less processing power than lemmatization but stemming has a drawback against lemmatization. The result of stemming may not be a real word because stemming just chop off the ends of the words thus the resulting words may not be a real words. On the other hand, lemmatization uses vocabulary and morphological analysis of words to remove the inflectional endings only and resulting the root form of words.
 (reference needed)
 
-
+\clearpage
 \section{Overall Process Flow}
-\begin{figure}
+\begin{figure} [ht]
 \centering
-\begin{tikzpicture}[node distance = 2cm, auto]
+\begin{tikzpicture} [node distance = 2cm, auto]
 % Place nodes
 \node [block] (init) {News articles};
 \node [block, below of=init] (preprocessing) {Preprocessing};
@@ -74,6 +74,62 @@ The process flow chart above is the overall process for the few experiments. As 
 After preprocessing, the resulting data would be used in several experiments with a few subtle differences.
 The differences in the experiments would be in the feature extraction stage and the dimension reduction stage. 
 
+\clearpage
+\section{The dataset}
+\graphicspath{{./images/}}
+
+The dataset used in this research is the 20 news group dataset. It is freely available at \url{http://qwone.com/~jason/20Newsgroups/}. It is a collection of news articles that can be divided almost evenly to 20 groups. Some of the groups are closely related to one another and some are widely different. Categories with the same prefix for example comp, rec and talk would have high similarity with one another but also subtle differences. The categories with the different prefixes would be very different from one another.
+
+This criterion of the dataset make it a good dataset to test text classification. A good classification model should be able to differentiate the different groups of news article even the groups that are closely resembled one another.
+
+The table below show the number of count for each category. There is a total of 18790 articles and most of the categories have almost 1000 articles in them. 
+
+\begin{table} [ht]
+	\centering
+	\begin{tabular} {|| c | c ||}
+		\hline
+		Category & count \\ [0.5ex]
+		\hline\hline
+		alt.atheism & 798 \\
+		comp.graphics & 970 \\
+		comp.os.ms-windows.misc & 980 \\
+		comp.sys.ibm.pc.hardware & 978 \\
+		comp.sys.mac.hardware & 957 \\
+		comp.windows.x & 978 \\
+		misc.forsale & 962 \\
+		rec.autos & 988 \\
+		rec.motorcycles & 993 \\
+		rec.sport.baseball & 993 \\
+		rec.sport.hockey & 998 \\
+		sci.crypt & 991 \\
+		sci.electronics & 981 \\
+		sci.med & 988 \\
+		sci.space & 986 \\
+		soc.religion.christian & 997 \\
+		talk.politics.guns & 910 \\
+		talk.politics.mideast & 940 \\
+		talk.politics.misc & 774 \\
+		talk.religion.misc & 628 \\
+		\hline
+	\end{tabular}
+	\caption{The count of each category in the dataset}
+	\label{tbl:freqCount}
+\end{table}
+
+\clearpage
+The bar chart below visualized the data displayed on the table for ease of viewing. Most of categories have almost 1000 articles except alt.atheism, talk.politics.misc and talk.religion.misc.
+
+\begin{figure} [ht]
+	\centering
+	\includegraphics[width=\textwidth]{count}
+	\caption{The count of each category in the dataset}
+	\label{fig:freqCount}
+\end{figure}
+
+As mentioned there are 18790 articles in the data, the articles would be split at random into 8:2 ratio. 80\% of the data would be used as training data to train the classification model while 20\% of the data would be use as the test data. The training data would consist of 15032 articles while the test data would consist of 3758 articles.\\
+
+
+\clearpage
 \section{The experiments}
 The experiments that has been conducted in this research is as follows:
 \begin{enumerate}

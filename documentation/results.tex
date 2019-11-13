@@ -5,19 +5,6 @@
 \section{Introduction}
 The results of the experiments are shown in this section. The differences in the accuracy and performance of each of the methods would be discussed and analysed. Hopefully, the results and discussions would be able to answer the research questions posted in the beginning of this research.
 
-\section{The dataset}
-\graphicspath{{./images/}}
-
-\begin{figure} [ht]
-\centering
-\includegraphics[width=\textwidth]{count}
-\caption{The count of each category in the dataset}
-\label{fig:freqCount}
-\end{figure}
-
-18790 rows, 15032 for training 3758 for testing
-details about the 20news dataset, the category distributions, a table, a chart
-
 \section{Term frequency}
 
 \begin{table}[ht]
@@ -37,15 +24,20 @@ details about the 20news dataset, the category distributions, a table, a chart
 \label{tbl:termFrequency}
 \end{table}
 
-Term frequency is one of most common feature extraction method. It convert all the words in the dataset into a matrix where each column is a word and the rows are the number of times each word appear in the text. Each row in the matrix is a document. This vector space model representation of the words would result in a sparse matrix since each of the documents only contains a subset of all the words in the whole dataset. 
+Term frequency is one of most common feature extraction method in text. It convert all the words in the dataset into a matrix where each column is a word and the value in each of the columns are the number of times each word appear in the text. Each row in the matrix is a document. This vector space model representation of the words would result in a sparse matrix since each of the documents only contains a subset of all the words in the whole dataset. 
 
-The number of features of the term frequency is limited to 8000, this is because of the memory constraint of the machine if it is unlimited the resulting matrix would be of bigger size and would have the probability of running out of memory while processing the matrix. 
+In this experiment, the number of features of vector space model from term frequency extraction is limited to 8000, this is because of the memory constraint of the machine, if it is unlimited the resulting matrix would be of bigger size and would have the probability of running out of memory while processing the matrix. 
 
-In the results shown above, NN achieved an accuracy of 0.84 which is the best accuracy out of the 3 classification algorithm but it is also the one that takes the longest to process. kNN took the least time to process but has the lowest accuracy score. Performance wise SVM is the best, it only took 5s to process, which is 80s less than NN and has comparable accuracy with NN. 
+In the results shown above, NN achieved an accuracy of 0.84 which is the best accuracy out of the 3 classification algorithm but it is also the one that takes the longest to process which is 91.82s. kNN took the least time to process, 3.65s but has the lowest accuracy score, 0.28. Overall performance wise, SVM is the best, it only took 5s to process, which is 80s less than NN and has an accuracy of 0.81 which is comparable with NN. 
 
-reason of KNN accuracy low [reference] [https://arxiv.org/abs/1011.2807]
-kNN accuracy is low in this scenario is possibly due to the feature matrix is sparse. The data points are few and far in between. kNN classify a new data point based on the distance of the new data point with the nearby data points. Since the other data points are few and sparse, the classification of the new data points would be biased. kNN is designed for low dimensional data therefore it doesn't perform well in large and sparse data.
+reason of KNN accuracy low [reference] [https://arxiv.org/abs/1011.2807]\\
+kNN accuracy is low in this scenario is possibly due to the sparsity of the feature matrix or vector space model. The data points are few and far in between. kNN is designed for low dimensional data therefore it doesn't perform well in large and sparse data. The underlying reason would be due to kNN classify a new data point based on the distance of the new data point with the nearby data points. Since the other data points are few and sparse, the classification of the new data points would be biased to the few data points that are near. This bias would reduce the accuracy of the classification.
 
+NN took the longest time to process the features, this is due to the layers of neurons in NN. The vector space model even though sparse has high dimension, NN would need as much if not more neurons as the number of features to process the data. This processing would takes both time and computing power.
+
+SVM depends on the prominent features of the dataset, the support vectors to classify the dataset so it is relatively faster and as accurate.
+
+\clearpage
 \section{Term frequency with naive dimension reduction}
 
 \begin{table} [ht]
