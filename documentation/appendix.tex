@@ -1,2 +1,32 @@
 %!TEX ROOT = main.tex
 \chapter{Code}
+
+\section{Preprocessing data}
+The code in this section show how the 20 news group dataset is processed before it is used to train classification models.\\
+
+\lstinputlisting[language=python]{PreparingDataset.py}
+
+\section{Data Exploratory}
+The code below is used to check the distribution of the categories in the dataset.\\
+
+\lstinputlisting[language=python]{DataExploratory.py}
+
+\section{Feature extraction and dimension reduction}
+The code shown in this section is the code that used to generate the feature matrix and apply the dimension reduction to the feature matrix.\\
+
+\lstinputlisting[language=python]{GenTfIdf.py}
+
+\section{kNN classification model}
+The code for kNN classification model is shown below.\\
+
+\lstinputlisting[language=python]{20newsKNN.py}
+
+\section{SVM classification model}
+SVM classification implementation is shown as follows.\\
+
+\lstinputlisting[language=python]{20newsSVM.py}
+
+\section{NN classification model}
+NN classification implementation is shown as follows.\\
+
+\lstinputlisting[language=python]{20newsNN.py}
