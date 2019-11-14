@@ -1,23 +1,14 @@
 %!TEX ROOT = main.tex
 \chapter{Conclusion}
-It is known that TF-IDF should be better than term frequency but in the kNN article [reference], it is mentioned that term frequency is applied with naive dimension reduction and the accuracy of the model is satisfactory. Therefore, this research compare term frequency and TF-IDF and apply dimension reduction to both.
+It is known that TF-IDF should be better than term frequency but Moldagulova, Aiman and Sulaiman, Rosnafisah proposed that with term frequency and naive dimension reduction, kNN classification model would be able to achieve a satisfactory result. \cite{knnVectorSpaceReduction}. Therefore, this research compare term frequency and TF-IDF and apply different dimension reduction methods to both. The implementation of the kNN algorithm in this research might differ from that proposed by the authors. They divided the larger feature matrix into parts and train by part.
 
-From the results of the experiments it has been confirmed that TF-IDF is a better document representation method than term frequency. Even though, with term frequency as the document representation method, SVM and NN are able to achieve satisfactory accuracy, the accuracy achieved with TF-IDF is slightly higher. The advantage of TF-IDF is more obvious, with term frequency the accuracy is a meagre 0.31 but with TF-IDF, the accuracy is 0.76 which is close to 0.80.
+From the results of the experiments it is shown that TF-IDF is a better document representation method than term frequency. Classification models can achieved a better result with TF-IDF than term frequency.
+With term frequency as the document representation method, SVM and NN are able to achieve satisfactory accuracy but the accuracy achieved with TF-IDF is slightly higher. The advantage of TF-IDF is more obvious, with kNN, with term frequency the accuracy is a meagre 0.31 but with TF-IDF, the accuracy is 0.76 which is close to 0.80.
 
-By applying the 2 types of dimension reduction to both the document representation method, the effect of dimension reduction on the performance of the classification models would be discovered. The classification models accuracy from both naive dimension reduction and SVD are quite similar, with SVD has a slight edge.
+By applying the 2 types of dimension reduction to both the document representation method, the effect of dimension reduction on the performance of the classification models is analysed. The classification models accuracy from both naive dimension reduction and SVD are quite similar in most cases. SVD has a slight edge that can provide classification models with more prominent features and subsequently higher accuracy.
 
-As the dimension of the vector space model is reduced, the accuracy of the classification models would decreased due to the lack of features or information. This reduction of features would reduce the memory used to store the vector space model. However, the reduction process would need intensive computing power and time, especially in the case of SVD.
+As the dimension of the vector space model is reduced, the accuracy of the classification models would decreased due to the lack of features or information. This reduction of features would reduce the memory used to store the vector space model. However, the reduction process would need intensive computing power and time, especially in the case of SVD. This the trade off between dimension reduction and classification accuracy. Less memory to store the matrix would cause an increase in computing power consumed and time taken.
 
+Out of the 3 classification models tested in this research, SVM has the best overall performance. SVM can achieve a satisfactory accuracy in most scenarios and the time taken for SVM to predict the test data is among the shortest. Thus SVM would be the best classification models in text classification.\\
 
-
-answer the research questions and achieve the objectives of course\\
-
-objectives:\\
-1. to identify a document representation algorithm that is optimized\\
-2. to investigate ML and find the most suitable\\
-3. to evaluate the effect of dimension reduction has on document representation and document classification model performance\\
-
-questions:\\
-1. which dimension reduction algorithm is optimized\\
-2. how complexities of the features influence the accuracy\\
-3. the best ML\\
+For future works, ways to improve the accuracy of the classification models with TF-IDF should be explored. More document representation method, such as n-gram could be apply alongside TF-IDF and different dimension reduction could be applied. TF-IDF does not take the semantic of the term into account just the frequency and rarity, n-gram would be able to rectify part of the problem.
