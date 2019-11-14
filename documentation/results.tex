@@ -95,24 +95,34 @@ In the scenarios where SVM and NN have more features than the first experiment w
 		\hline
 		ML & no of features & accuracy & time taken (s) \\ [0.5ex]
 		\hline\hline
+		kNN & 4000 & 0.31 & 482.66 \\
+		\hline
 		kNN & 2000 & 0.38 & 216.59 \\ 
 		\hline
-		kNN & 4000 & 0.31 & 482.66 \\
+		kNN & 500 & 0.49 & 60.89 \\ 
+		\hline
+		kNN & 100 & 0.55 & 15.38 \\ 
+		\hline
+		kNN & 10 & 0.30 & 2.78 \\ 
 		\hline\hline
+		SVM & 4000 & 0.80 & 370.43 \\
+		\hline
 		SVM & 2000 & 0.78 & 172.58 \\
 		\hline
-		SVM & 4000 & 0.80 & 370.43 \\
+		SVM & 500 & 0.77 & 85.03 \\
 		\hline\hline
+		NN & 4000 & 0.80 & 220.76 \\
+		\hline
 		NN & 2000 & 0.79 & 91.13 \\
 		\hline
-		NN & 4000 & 0.80 & 220.76 \\
+		NN & 500 & 0.77 & 40.86 \\
 		\hline
 	\end{tabular}
 \caption{Term frequency with SVD}
 \label{tbl:termFrequencySvd}
 \end{table}
 
-In this experiment, the feature extraction or document representation method used is still term frequency but the dimension reduction algorithm is changed. Instead of reducing the dimension naively by removing the terms that has the lowest frequency, SVD is used. SVD would reduce the dimension of the vector space model by retrieving the features with maximum variance in the data.
+In this experiment, the feature extraction or document representation method used is still term frequency but the dimension reduction algorithm has been changed. Instead of reducing the dimension of the feature matrix naively by removing the terms that has the lowest frequency, SVD is used. SVD would reduce the dimension of the vector space model by retrieving the features with maximum variance in the data.
 
 The number of features shown in the table above is the number of columns in the resulting matrix after applying SVD.
 
@@ -120,9 +130,13 @@ Similar with the trend in the previous experiment (term frequency with naive dim
 
 The accuracy of SVM and NN also have the same trend with the previous experiment, the accuracy decreases slightly when the number of features decreases. Accuracy of SVM decreases from 0.80 to 0.78 and the accuracy of NN decreases from 0.80 to 0.79 as the number of features decreases from 4000 to 2000.
 
-As expected the time taken to process the features decreases as the number of features decreases. However, in comparison with the time taken in the previous experiments, the time taken in this experiment is astoundingly high, the time taken by SVM and NN increase by 365s and 130s respectively when SVD is applied. SVD would be the culprit, dimension reduction comes at a cost which is processing power. To reduce or compress the features into a small dimension, a lot of calculation would be involved, this would take both time and processing power.
+As expected, the time taken by the classification model to reduce the dimension and predict the result decreases as the number of features decreases. However, in comparison with the time taken in the previous experiments, the time taken in this experiment is astoundingly higher, the time taken by SVM and NN increase by 365s and 130s respectively when SVD is applied. SVD would be the culprit, dimension reduction comes at a cost which is processing power. To reduce or compress the features into a small dimension, a lot of calculation would be involved, this would take both time and processing power.
 
 The resulting accuracy is not as good as just with term frequency. This is expected because the number of features decreased. The reduction in features may save some memory space but in order to achieve that more processing power and time would be needed.
+
+Comparing the performance of the classification models in this experiment with the second experiment, term frequency with naive dimension reduction, the performance of the classification models are almost similar. This comparison is made on the scenarios where the same classification model has the almost the same number of features, namely 2530 on the second experiment and 2000 in this experiment. This is unexpected, the assumption before was SVD is a better dimension reduction algorithm than naive dimension reduction. The resulting vector space model from SVD should contains the maximum variance of the data, the classification models trained with this model should have a better performance than the models trained with naive dimension reduction.
+
+This experiment show that this is not the case. The different dimension reduction algorithm produces almost similar accuracy with term frequency document representation method. The underlying problem of this issue maybe is the document representation method rather than the dimension reduction. Therefore, the following experiments would apply a different document representation algorithm.\\
 
 \clearpage
 \section{TF-IDF}
@@ -144,15 +158,21 @@ The resulting accuracy is not as good as just with term frequency. This is expec
 \label{tbl:tfidf}
 \end{table}
 
-A different approach in feature extraction is applied in this experiment. Instead of term frequency which only take the frequency of each word into account, the feature extraction method used here in TF-IDF. The main difference of this feature extraction method is that besides term frequency it also take the rarity of the words into account. If a term or word appear in high frequency but in many documents, this word may not be of importance or a meaningful feature. If a word appear rarely and only in a few documents, this word would have high importance and would be meaningful feature of the few documents.
+The findings from the previous experiments show that the different reduction algorithms produce similar accuracy which is contradictory to the hypothesis or assumption that the SVD would obtain a better performance out of the classification models. To investigate this hypothesis further, a different document representation algorithm is applied.
+ 
+The document representation algorithm applied in this experiment and the following experiment is TF-IDF. In contrast with term frequency which only take the frequency of each word into account, TF-IDF takes both the frequency of each word and the rarity of it into account. If a term or word appear in high frequency but in many documents, this word may not be of importance and consequently is not a meaningful feature. If a word appear rarely and only in a few documents, this word would have high importance and would be meaningful feature of the few documents.
 
-With TF-IDF, kNN can achieved a satisfactory accuracy score of 0.76 even though the number of features in the resulting matrix of TF-IDF is the same with term frequency which is 8000. The vector space model of TF-IDF would not be as sparse as that of term frequency which is kNN is more suitable to be applied.
+With TF-IDF, kNN can achieved a satisfactory accuracy score of 0.76 even though the number of features in the resulting matrix of TF-IDF is the same with term frequency which is 8000. The vector space model of TF-IDF would not be as sparse as that of term frequency which is kNN is more suitable for kNN.
 
 NN is still provide the highest accuracy score of 0.88 but the time taken also the longest at 55.82s.
 
 SVM achieved an accuracy of 0.87 which is just 0.01 shy of what achieved by NN and the time taken is the lowest among the 3 which is 2.39s.
 
-In comparison to the few experiments with term frequency, the accuracy and time taken of the 3 classification model improves. This prove that TF-IDF is a better feature extraction method for text.
+In comparison with the first experiment that apply term frequency document representation without dimension reduction, the performance of the classification models significantly improve. kNN accuracy has more than doubled from 0.31 to 0.76. SVM accuracy increases from 0.81 to 0.87 while accuracy of NN increases from  0.84 to 0.88. Besides accuracy, the time taken also improved, time taken by SVM reduces from 5.27s to 2.39s while time taken by NN reduces from 91.82s to 55.82s. All these improvements are achieved with the same number of features in the vector space, which is 8000. 
+
+The performance of the classification models in this experiment is also better than the those in the 2 experiments above with dimension reduction. However this may not be a fair comparison because the different number of features are used and dimension reductions are not applied in this experiment. Dimension reduction algorithms would be applied to the vector space model resulting from TF-IDF in the following experiments in order to have a fair comparison.
+
+The performance increment from term frequency to TF-IDF seems to prove that TF-IDF is a better document representation method.\\
 
 \clearpage
 \section{TF-IDF with naive dimension reduction}
@@ -186,12 +206,21 @@ In comparison to the few experiments with term frequency, the accuracy and time 
 \label{tbl:tfidfNaive}
 \end{table}
 
-Similar with the experiment with term frequency, naive dimension reduction is applied to the vector space model generated from TF-IDF. The trend over all the 3 machine learning models when the number of features decreases, the accuracy of the model decreases slightly and the time taken increases. The amount of information has become lesser, less information is available to train a comprehensive model, therefore the accuracy decreases.The dimension reduction even though is a naive one and less computing intensive still increases the time taken compared with just with TF-IDF. The more reduction is performed, the time taken would increase as well.
+Similar with the experiment with term frequency, naive dimension reduction is applied to the vector space model generated from TF-IDF. The trend over all the 3 machine learning models when the number of features decreases are similar. The accuracy of the classification models decreases and the time taken increases. 
 
-The accuracy achieve with TF-IDF with naive dimension reduction is still passable with kNN at 0.74 when the features reduced from 8000 to 4221. However, when the number of features reduced to 478, the accuracy is just at a measly 0.49 which is not satisfactory. SVM and NN also achieved comparable accuracy at 0.86 and 0.85 respectively in comparison with TF-IDF when the number of features are almost halved.
+The accuracy achieved by kNN with TF-IDF plus naive dimension reduction is still passable at 0.74 when the features reduced from 8000 to 4221. kNN's accuracy dropped slightly to 0.71 when the number of features decreases to 2530. When the number of features decreases from 2530 to 478, as expectedly the accuracy of kNN dropped for quite a large margin, from 0.71 to 0.49. The time taken by kNN increases slightly from 4s to 5s as the features decreases.
 
-From the results of this experiment, it can be deduced that with naive dimension reduction, the number of features and memory needed to store the vector space model is reduced. With this reduced number of features, the classification models can still achieve comparable performance but would be at a slightly decreased capacity.
+SVM has the same behaviour with kNN in this experiment, its accuracy decreases from 0.86 to 0.83 and then to 0.66 when the number of features decreases from 4221 to 2503 to 478. The time taken increases slightly as well as the number of features decreases.
 
+NN also has the similar trend in accuracy as the number of features decreases. NN's accuracy decreases from 0.85 to 0.64 when the number of features decreases from 4221 to 478. The differences in NN is that the time taken almost doubled when the number of features is low compare to when the number of features is high. The time taken is 38s when there is 4221 features and when there is only 478 features, the time taken doubled to 77s.
+
+In the scenarios where the number of features are almost halved, from 8000 to 4221, the performance of the classification models are still comparable with the performance achieved with just TF-IDF without any dimension reduction. The accuracy are almost the same, the time taken is similar except NN which has quite a speedup when the number of features is reduced to 4221.
+
+It can be deduced that with naive dimension reduction, the number of features and memory needed to store the vector space model is reduced. With this reduced number of features, the classification models can still achieve comparable performance at a slightly decreased capacity.
+
+This is mainly because of the reduction in features. As the amount of information became lesser, less information is available to train a comprehensive model. Therefore, the accuracy of the models decrease. Even though the dimension reduction applied is a naive one and less computing intensive, it still increases the time taken compared with just with TF-IDF. The more reduction is performed, the time taken would increase as well.
+
+\clearpage
 \section{TF-IDF with SVD}
 
 \begin{table} [ht]
@@ -200,27 +229,50 @@ From the results of this experiment, it can be deduced that with naive dimension
 		\hline
 		ML & no of features & accuracy & time taken (s) \\ [0.5ex]
 		\hline\hline
+		kNN & 4000 & 0.77 & 457.16 \\
+		\hline
 		kNN & 2000 & 0.58 & 208.64 \\ 
 		\hline
-		kNN & 4000 & 0.77 & 457.16 \\
+		kNN & 500 & 0.55 & 58.58 \\ 
+		\hline
+		kNN & 100 & 0.69 & 15.09 \\
+		\hline
+		kNN & 50 & 0.69 & 7.58 \\ 
+		\hline
+		kNN & 10 & 0.55 & 2.54 \\ 
 		\hline\hline
+		SVM & 4000 & 0.87 & 189.32 \\
+		\hline
 		SVM & 2000 & 0.86 & 69.63 \\
 		\hline
-		SVM & 4000 & 0.87 & 189.32 \\
+		SVM & 500 & 0.83 & 19.59 \\
 		\hline\hline
+		NN & 4000 & 0.85 & 215.73 \\
+		\hline
 		NN & 2000 & 0.84 & 87.12 \\
 		\hline
-		NN & 4000 & 0.85 & 215.73 \\
+		NN & 500 & 0.81 & 56.60 \\
 		\hline
 	\end{tabular}
 \caption{TF-IDF with SVD}
 \label{tbl:tfidfSvd}
 \end{table}
 
-Finally, the last experiment is TF-IDF with SVD dimension reduction. Similar with experiments above with SVD, each of the machine learning models would be tested with 2 set of vector space model, each with different number of features, namely 2000 and 4000. To put it in perspective, the number of features without reduction is 8000. 
+Finally, this experiment is applying SVD dimension reduction to the resulting vector space model from TF-IDF. Similar with experiment before that apply SVD, each of the classification models would be tested with 2 set of vector space model, each with different number of features, namely 2000 and 4000. To put it in perspective, the number of features without reduction is 8000. 
 
-When the number of features are at 4000 which is halved, kNN still can produced an accuracy of 0.77 which is similar with what is achieved with TF-IDF without dimension reduction. Same goes to SVM and NN, at 4000 features, the accuracy are quite similar with TF-IDF without dimension reduction. When the dimension of the vector space model is reduced to 2000, the accuracy across 3 of the classification models dropped. kNN being the most drastic, its accuracy dropped to 0.58 while SVM and NN dropped to 0.86 and 0.84 respectively, which is slightly worse than before but it is still satisfactory. 
+When the number of features are at 4000 which is halved, kNN still can produced an accuracy of 0.77 which is similar with what is achieved with TF-IDF without dimension reduction. Same goes to SVM and NN, at 4000 features, the accuracy are quite similar with TF-IDF without dimension reduction. However, when the dimension of the vector space model is reduced to 2000, the accuracy across 3 of the classification models dropped. kNN being the most drastic, its accuracy dropped to 0.58 while SVM and NN dropped to 0.86 and 0.84 respectively, which is slightly worse than before but it is still satisfactory.
 
-There is an odd trend on the time taken for all 3 classification models though. The time taken in this experiment is much higher than the experiment of TF-IDF without dimension reduction and TF-IDF with naive dimension reduction which is expected. SVD reduction would take more time as more calculation is performed. However, the time taken decreased when the further reduction is done, kNN take 457s to reduce the vector space model from 8000 to 4000 but just 208s to reduce the vector space model from 8000 to 2000. Keep in mind that the time recorded here includes the time taken for the classification model to predict the test dataset as well. This trend appear in SVM and NN as well. SVM took 189s to reduce 8000 to 4000 but 69s to reduce 8000 to 2000 while NN took 215s to reduce 8000 to 4000 and 87s to reduce 8000 to 2000. 
+Comparing with the results of the experiment with TF-IDF and naive dimension reduction, this performance of the classification models with SVD has a slight advantage. The accuracy is slightly better with SVD rather than with naive dimension reduction. This would be due to the advantage of SVD obtaining the maximum variance of the features over naive dimension reduction, even though the increment over accuracy is slight.
 
-The decrement in time could be explained with the reduction of features, the time taken to process them also reduced therefore it provided a speedup. This speedup with the reduction of features came at a cost though, which is accuracy. For SVM and NN, the reduction in accuracy is meagre and would be logical to trade the slight accuracy with the speedup but in kNN the trade off would be lopsided.
+There is an odd trend on the time taken for all 3 classification models though. The time taken in this experiment is much higher than the experiment of TF-IDF without dimension reduction and TF-IDF with naive dimension reduction which is expected. This would be due to SVD reduction takes more time as more calculation is needed. However, the time taken decreased when the further reduction is done, kNN take 457s to reduce the vector space model from 8000 to 4000 but just 208s to reduce the vector space model from 8000 to 2000. Keep in mind that the time recorded here includes the time taken for the classification model to predict the test dataset as well. This trend appear in SVM and NN as well. SVM took 189s to reduce 8000 to 4000 but just 69s to reduce 8000 to 2000 while NN took 215s to reduce 8000 to 4000 and 87s to reduce 8000 to 2000. 
+
+The decrement in time could be explained with the reduction of features, the time taken to process them also reduced. Therefore it provided a speedup. This speedup that comes with the reduction of features, comes at a cost which is accuracy. For SVM and NN, the reduction in accuracy is meagre thus it would be logical to trade the slight accuracy with the speedup but in kNN the trade off would be lopsided in the favour of time taken.
+
+\clearpage
+\section{Conclusion}
+From the results of the 6 experiments above, it is found that TF-IDF is a better document representation algorithm than term frequency. The resulting vector space model from TF-IDF can achieve a higher accuracy than that of term frequency. 
+
+The effect of dimension reduction on the accuracy of the classification models is analysed. Dimension reduction, naive and otherwise, do reduce the dimension of the vector space model, reducing the memory needed to store the matrix. However, this reduction in features and information would result in a loss of accuracy. SVD would be a better dimension reduction algorithm compared to the naive method because the accuracy achieved with SVD is slightly higher than that of naive method.
+
+Out of the 3 classification models tested in the experiments, SVM is the most efficient and versatile. SVM can achieve high accuracy (> 0.80) in most scenarios. NN can also achieve high accuracy in most of the cases tested but NN took the longest time. SVM has an advantage over NN with the processing time. Therefore, SVM would be the most efficient text classification model among the 3 classification models.
+

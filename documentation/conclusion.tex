@@ -1,6 +1,12 @@
 %!TEX ROOT = main.tex
 \chapter{Conclusion}
-After conducting the experiments and analyse the results, the research find that...\\
+It is known that TF-IDF should be better than term frequency but in the kNN article [reference], it is mentioned that term frequency is applied with naive dimension reduction and the accuracy of the model is satisfactory. Therefore, this research compare term frequency and TF-IDF and apply dimension reduction to both.
+
+From the results of the experiments it has been confirmed that TF-IDF is a better document representation method than term frequency. Even though, with term frequency as the document representation method, SVM and NN are able to achieve satisfactory accuracy, the accuracy achieved with TF-IDF is slightly higher. The advantage of TF-IDF is more obvious, with term frequency the accuracy is a meagre 0.31 but with TF-IDF, the accuracy is 0.76 which is close to 0.80.
+
+By applying the 2 types of dimension reduction to both the document representation method, the effect of dimension reduction on the performance of the classification models would be discovered. The classification models accuracy from both naive dimension reduction and SVD are quite similar, with SVD has a slight edge.
+
+As the dimension of the vector space model is reduced, the accuracy of the classification models would decreased due to the lack of features or information. This reduction of features would reduce the memory used to store the vector space model. However, the reduction process would need intensive computing power and time, especially in the case of SVD.
 
 
 
