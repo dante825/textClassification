@@ -9,14 +9,19 @@ Term frequency is the simplest form of document representation method in BoW app
 
 The columns are all the words appear in the document, each column represent one word. Each of the rows represent each of the document. The value in the cells represent the number of times a word appear in a document, in other word, the value is the term frequency.
 
-Even though it is a simple document representation method, it do can achieve a satisfactory results with the right processing and methods. \cite{knnVectorSpaceReduction}. This document representation method would produce a big and sparse matrix which is exactly this study is focusing on. Therefore, term frequency would be a good candidate document representation algorithm to be used.\\
+Even though it is a simple document representation method, it is proven to be able to achieve a satisfactory results with the right processing and methods. \cite{knnVectorSpaceReduction}. In addition, term frequency would produce a big and sparse matrix which is exactly what this study is focusing on. Therefore, term frequency would be a suitable document representation algorithm to be applied in this study.\\
 
 \clearpage
 \subsection{Term Frequency - Inverse Document Freqeuncy (TF-IDF)}
-TF-IDF takes term frequency a step further as it also take the frequency of words in other documents into account. TF-IDF provide a measure of weight or importance to the words. The value of TF-IDF estimate the amount of information provided by each word in its document. \cite{tfidf} The value of TF-IDF increases proportionally to the number of times a word appears in a document but is offset by the frequency of the word in the corpus. The characteristic of TF-IDF can counter the high frequency of some common words, such as the stop words in a language. 
+Term frequency-Inverse document frequency (TF-IDF) is also a BoW approach. It is build on the concept of term frequency but take it a step further to overcome the setback of term frequency. 
 
-With term frequency, if a word has a high frequency over many documents it would be prominent features of the dataset. With TF-IDF however, with term frequencyalone
+Other than term frequency, TF-IDF also take into account the inverse document frequency which means that it also take the frequency of words in other documents into account. TF-IDF provide a measure of weight or importance to the words. The value of TF-IDF estimate the amount of information provided by each word in its document. The value of TF-IDF increases proportionally to the number of times a word appears in a document but is offset by the frequency of the word in the corpus. \cite{textMiningTfidf} The characteristic of TF-IDF can counter the high frequency of some common words, such as the stop words in a language. 
 
+The main differences between term frequency and TF-IDF is that in term frequency, if a word has a high frequency over many documents it would be prominent features of the data. In TF-IDF however, term frequency alone would not make a word a prominent feature. If a word has a high frequency in many documents, the inverse document frequency of TF-IDF would offset its high frequency and it would not be a prominent feature. A word with high TF-IDF would appear in high frequency in a document but not many times in other documents. 
+
+The vector space model resulting from TF-IDF would be in decimals as the values are assigned are scores or weights for each of the words. The resulting vector space model from term frequency on the other hand, consists of integers which represent the frequency of the words appear in the text.
+
+TF-IDF is a simple document representation method that has proven to be efficient and reliable. It has a few setbacks as it only take into account the term frequency and inverse document frequency and not the semantic of the words. \cite{tfidfDrawback}. However, the focus area of this study is on the sparse and huge vector space model which TF-IDF produces.\\
 
 Formula for TF-IDF is shown below:
 
@@ -35,11 +40,9 @@ where:
 \end{center}
 
 \subsection{Summary}
-For document representation the chosen method is term frequency vector and Term Frequency-Inverse Document Frequency (TF-IDF). Both of the document representation method are based on bag of words (BoW) approach.\\
+Both term frequency and TF-IDF are chosen as the document representation method in this study. Term frequency and TF-IDF are simple and relatively easy to implement. Both of the methods are efficient and tried and true over the years. Most importantly, the output of huge and sparse matrix are the topic of study.\\
 
-
-The remaining parts are dimension reduction and classification, the methods in these 2 parts would be evaluated and chosen.
-	
+\clearpage
 \section{Dimension Reduction}
 \subsection{Single Value Decomposition (SVD)}
 Single value decomposition is one of the most commonly used dimension reduction algorithms. It generalizes a complex matrix with many dimensions into a matrix of lower dimension via an extension of the polar decomposition. SVD detects the part of the data that contains the maximum variance in a set of orthogonal basis vectors. The data with the maximum variance would be the most prominent features of the data. \cite{svdDef}
