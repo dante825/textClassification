@@ -44,30 +44,39 @@ Both term frequency and TF-IDF are chosen as the document representation method 
 
 \clearpage
 \section{Dimension Reduction}
+\subsection{Principal Component Analysis (PCA)}
+Principal component analysis is one the state of the art dimension reduction algorithm. The main purpose of PCA is to project data samples from high dimensional space into low dimensional space by linear transformation while preserving the original data features as much as possible. \cite{pcaImage} In other words, PCA is used to emphasize the variations in the data, bring out the important features in the data.
+
+PCA is no stranger to the text classification field. It has been applied to different languages of text classification other than English. Label Induction Grouping (LINGO) a technique used in categorizing Indian Marathi language text document. PCA is applied in LINGO performed better than SVD as PCA extract the features better and has less loss of information. \cite{lingo}
+
+In another research on text classification on Arabic text and English text, it is also found that PCA outperformed SVD and NMF. The researchers found that PCA yields better result in terms of accuracy and normalized mutual information. The advantage of PCA is that after transforming the matrix, the important features vector are orthogonal to each other. PCA also has a whiting transform that reduce noises in the data which in turn boost the performance and the accuracy of the machine learning algorithm.\cite{dimReducArabic}
+
+A variant of PCA which is in the form of a tree structure has been applied on the dimension reduction on sentiment analysis. The technique is called tree-structured multi-linear principal component analysis (TMPCA). TMPCA can retain the sentence structure and word correlations. \cite{treePca}. However, this is a novel technique and PCA has been proven to be effective enough to handle the amount of data in this study.\\
+
+Have to show that PCA is not as good as SVD else can't justify the use of SVD in the experiments
+
+\clearpage
+\subsection{Nonnegative Matrix Factorization (NMF)}
+Nonnegative matrix factorization (NMF) is a multiplicative updating solution to decompose a nonnegative temporal-frequency data matrix into the sum of individual components. The sum of individual components are calculated from a nonnegative basis matrix. \cite{nmfBook}
+
+NMF and its variant have found to be applied in many fields such as feature extractions, segmentation and clustering, dimension reduction and others. However, the nonnegativity constraints of NMF proved to be problematic when the data matrix is not strictly non-negative. The semi-NMF relaxes the non-negativity constraint of NMF so that the resulting matrix has mixed signs. \cite{semiNmfPca}
+
+Researchers who performed experiments to compare the performance of SVD, NMF and PCA have found that NMF do not perform as well as PCA. SVD and NMF achieved a similar accuracy in the experiment. This might due to both SVD and NMF are dependent on matrix decomposition technique while PCA is dependent on eigenvalue decomposition. \cite{dimReducArabic}
+
+NMF might be more suitabled for clustering as it took the least amount of time in clustering the data compared with SVD and PCA. \cite{dimReducArabic}. This advantage of NMF over SVD and PCA is negligible in this study since this study would focus on classification rather than clustering.
+
+\clearpage
 \subsection{Single Value Decomposition (SVD)}
+SVD used is truncated SVD. a variant of SVD.
+
+Truncated Singular Value Decomposition (SVD) is a matrix factorization technique that factors a matrix M into the three matrices U, $\Sigma$, and V. This is very similar to PCA, excepting that the factorization for SVD is done on the data matrix, whereas for PCA, the factorization is done on the covariance matrix.
+
 Single value decomposition is one of the most commonly used dimension reduction algorithms. It generalizes a complex matrix with many dimensions into a matrix of lower dimension via an extension of the polar decomposition. SVD detects the part of the data that contains the maximum variance in a set of orthogonal basis vectors. The data with the maximum variance would be the most prominent features of the data. \cite{svdDef}
 	
 Latent Semantic Analysis (LSA) a technique applied in natural language processing that apply SVD in its process. SVD is applied in LSA to transform the features by dropping the least significant values in the matrix thus reducing the dimensions of the matrix. \cite{fuzzyLash}
 	
 Even though SVD has been applied in LSA and in other fields, it has been found that SVD is not as efficient as principal component analysis (PCA) and has a few drawbacks. SVD can extract the prominent features of the matrix but it does not help in reducing the sparsity of the matrix. 	In some of text clustering algorithms that used SVD for dimension reduction only find SVD useful when the features are redundant. \cite{lingo}
-		
-\subsection{Nonnegative Matrix Factorization (NMF)}
-Nonnegative matrix factorization (NMF) is a multiplicative updating solution to decompose a nonnegative temporal-frequency data matrix into the sum of individual components. The sum of individual components are calculated from a nonnegative basis matrix. \cite{nmfBook}
-	
-NMF and its variant have found to be applied in many fields such as feature extractions, segmentation and clustering, dimension reduction and others. However, the nonnegativity constraints of NMF proved to be problematic when the data matrix is not strictly non-negative. The semi-NMF relaxes the non-negativity constraint of NMF so that the resulting matrix has mixed signs. \cite{semiNmfPca}
-	
-Researchers who performed experiments to compare the performance of SVD, NMF and PCA have found that NMF do not perform as well as PCA. SVD and NMF achieved a similar accuracy in the experiment. This might due to both SVD and NMF are dependent on matrix decomposition technique while PCA is dependent on eigenvalue decomposition. \cite{dimReducArabic}
-	
-NMF might be more suitabled for clustering as it took the least amount of time in clustering the data compared with SVD and PCA. \cite{dimReducArabic}. This advantage of NMF over SVD and PCA is negligible in this study since this study would focus on classification rather than clustering.
-	
-\subsection{Principal Component Analysis (PCA)}
-Principal component analysis is one the state of the art dimension reduction algorithm. The main purpose of PCA is to project data samples from high dimensional space into low dimensional space by linear transformation while preserving the original data features as much as possible. \cite{pcaImage} In other words, PCA is used to emphasize the variations in the data, bring out the important features in the data.
-	
-PCA is no stranger to the text classification field. It has been applied to different languages of text classification other than English. Label Induction Grouping (LINGO) a technique used in categorizing Indian Marathi language text document. PCA is applied in LINGO performed better than SVD as PCA extract the features better and has less loss of information. \cite{lingo}
-	
-In another research on text classification on Arabic text and English text, it is also found that PCA outperformed SVD and NMF. The researchers found that PCA yields better result in terms of accuracy and normalized mutual information. The advantage of PCA is that after transforming the matrix, the important features vector are orthogonal to each other. PCA also has a whiting transform that reduce noises in the data which in turn boost the performance and the accuracy of the machine learning algorithm.\cite{dimReducArabic}
-	
-A variant of PCA which is in the form of a tree structure has been applied on the dimension reduction on sentiment analysis. The technique is called tree-structured multi-linear principal component analysis (TMPCA). TMPCA can retain the sentence structure and word correlations. \cite{treePca}. However, this is a novel technique and PCA has been proven to be effective enough to handle the amount of data in this study.
+
 	
 \subsection{Summary}
 The 3 dimension reduction or matrix decomposition algorithms above are considered blind source separation (BSS) methods, unsupervised learning algorithms. Its performance might not be as good as a deep learning algorithm such as Word2vec but deep learning algorithm's performance is dependent on the the scale of the data. Deep learning algorithm can only perform well when there is a lot of data. In our study, the data might not be sufficient to use a deep learning algorithm, thus the above methods are reviewed. Out of the 3 dimension reduction algorithms reviewed above, PCA seems to be the most promising in the field of text classification. Therefore, PCA would be chosen as the dimension reduction algorithm in this study.
