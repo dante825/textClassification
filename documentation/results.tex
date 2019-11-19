@@ -30,8 +30,7 @@ In this experiment, the number of features of vector space model from term frequ
 
 In the results shown above, NN achieved an accuracy of 0.84 which is the best accuracy out of the 3 classification algorithm but it is also the one that takes the longest to process which is 91.82s. kNN took the least time to process, 3.74s but has the lowest accuracy score, 0.31. Overall performance, SVM is the best, it only took 5s to process, which is 80s less than NN and has an accuracy of 0.81 which is comparable with NN. 
 
-reason of KNN accuracy low [reference] [https://arxiv.org/abs/1011.2807]\\
-kNN accuracy is low in this scenario is possibly due to the sparsity of the feature matrix or vector space model. The data points are few and far in between. kNN is designed for low dimensional data therefore it doesn't perform well in large and sparse data. The underlying reason would be due to kNN classify a new data point based on the distance of the new data point with the nearby data points. Since the other data points are few and sparse, the classification of the new data points would be biased to the few data points that are near. This bias would reduce the accuracy of the classification.
+kNN accuracy is low in this scenario is possibly due to the sparsity of the feature matrix or vector space model. The data points are few and far in between. kNN is designed for low dimensional data therefore it doesn't perform well in large and sparse data. The underlying reason would be due to kNN classify a new data point based on the distance of the new data point with the nearby data points. Since the other data points are few and sparse, the classification of the new data points would be biased to the few data points that are near. This bias would reduce the accuracy of the classification. \cite{knnDrawback}
 
 NN took the longest time to process the features, this is due to the layers of neurons in NN. The vector space model even though sparse has high dimension, NN would need as much if not more neurons as the number of features to process the data. This processing would takes both time and computing power.
 
@@ -164,7 +163,7 @@ With TF-IDF, kNN can achieved a satisfactory accuracy score of 0.76 even though 
 
 NN is still provide the highest accuracy score of 0.88 but the time taken also the longest at 55.82s.
 
-SVM achieved an accuracy of 0.87 which is just 0.01 shy of what achieved by NN and the time taken is the lowest among the 3 which is 2.39s.
+SVM achieved an accuracy of 0.87 which is just 0.01 shy of what achieved by NN and the time taken is the lowest among the 3 which is 2.39s. SVM can achieve high accuracy even with high dimension data, because SVM uses the prominent features or support vectors from the data to perform classification, SVM's computational complexity is independent of the dimension of the data. \cite{dimRedCat}
 
 In comparison with the first experiment that apply term frequency document representation without dimension reduction, the performance of the classification models significantly improve. kNN accuracy has more than doubled from 0.31 to 0.76. SVM accuracy increases from 0.81 to 0.87 while accuracy of NN increases from  0.84 to 0.88. Besides accuracy, the time taken also improved, time taken by SVM reduces from 5.27s to 2.39s while time taken by NN reduces from 91.82s to 55.82s. All these improvements are achieved with the same number of features in the vector space, which is 8000. 
 

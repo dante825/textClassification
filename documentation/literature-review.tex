@@ -93,36 +93,51 @@ The 3 dimension reduction algorithms above are considered to be blind source sep
 \clearpage	
 \section{Document Classification}
 \subsection{Support Vector Machine}
-Support vector machine is a machine learning algorithm that construct a hyper plane to separate the examples into different classes. It has been proven to be very effective in dealing with high dimensional data. \cite{webSvm}. It is also proven to produce dramatically best results for topic modelling in experiments with the Reuters dataset. \cite{inductiveText}. Various issues need to be considered when applying SVM in document classification, the processing of the data, which kernel to use, and the parameters of SVM. A variant of SVM, called one-class SVM which is trained only with positive information has been used in document classification. \cite{oneSvm}.  The authors experimented with different kernels of SVM (linear, sigmoid, polynomial, and radial basis) with different type of document representation method (binary representation, frequency representation, TF-IDF representation, and Hadamard representation). The best result (F1 score of 0.507) is achieved with binary representation, feature length 10 and with linear kernel function.  
+Support vector machine is a machine learning algorithm that construct a hyperplane to separate the examples into different classes. It has been proven to be very effective in dealing with high dimensional data. \cite{webSvm}. It is also proven to produce dramatically better results in topic modeling shown in experiments with the Reuters dataset. \cite{inductiveText}. Various issues need to be considered when applying SVM in text classification, the processing of the data, which kernel to use, and the parameters of SVM. A variant of SVM, called one-class SVM which is trained only with positive information has been used in text classification. \cite{oneSvm}.  The authors experimented with different kernels of SVM (linear, sigmoid, polynomial, and radial basis) with different type of document representation method (binary representation, frequency representation, TF-IDF representation, and Hadamard representation). The best result, F1 score of 0.507 is achieved with binary representation, feature length 10 and with linear kernel function.  
 	
 In another research, the researchers apply SVM in the classification on web document instead of news or ordinary text document. The document representation method used in this research is vector space model, just the nouns term in the web pages. The researchers experimented with different SVM kernels and varying the size of the training sets. Expectedly, the precision, recall and accuracy increased as the size of the training set increase. Linear kernel achieved the best result out of the various SVM kernels, a classification accuracy of 80\% is achieved. \cite{webSvm}.
 	
-SVM is relatively new compare to others algorithm in the field of document representation. It is not very efficient with large number of observations and it can be tricky to find an appropriate kernel for the problem.
+SVM is proven to be effective in many fields including text classification. The only drawback with SVM is that it can be tricky to find an appropriate kernel for the problem.
 
 
 \clearpage
 \subsection{k-Nearest Neighbours (kNN)}
-kNN is a classification machine learning algorithm that classify objects based on the closest training examples in the feature space based on a similarity measure. It is a simple and effective classification, as it only need 3 prerequisites. The 3 prerequisites are training dataset, similarity measure and the value of k which is the number of closest neighbours to be considered. 
+kNN is a classification machine learning algorithm that classify objects based on Euclidean distance between the new data point with the existing data points in the feature space. It is a simple and effective classification, as it only need 3 prerequisites. The 3 prerequisites are training dataset, similarity measure and the value of k which is the number of closest neighbours to be considered. 
+
+The mathematical formula for Euclidean distance used by kNN:
+\begin{equation}
+p = \sqrt{(x_{1} - x_{2})^{2} + (y_{1} - y_{2})^{2}}
+\end{equation}
+
+where:
+\begin{center}
+	\begin{tabular}{l @{ $=$ } l}
+		$p$ & the distance between 2 data point\\
+		$x_{1}$ & the x-coordinate of a data point A\\
+		$x_{2}$ & the x-coordinate of data point B\\
+		$y_{1}$ & the y-coordinate of data point A\\
+		$y_{2}$ & the y-coordinate of data point B\\
+	\end{tabular}
+\end{center}
 	
-kNN needs minimal training, it only needs to plot the training examples into a feature space.  
-kNN has been applied in document classification before, it is found that kNN take significant 
-longer time to classify a document into a topic. This is because kNN uses all the features of the data to compute the distance. Since the authors are using term vector space document 
-representation method, the dimension of the feature space is high, thus the more time is needed for kNN to compute all the distance between the test object with the training objects. Other than the time taken to compute the distance, the k value is another obstacle in kNN algorithm. In a high dimensionality feature space and the points are not evenly distributed, the k value is hard to be determined.
-	
+
+kNN needs minimal training, it only needs to plot the training examples into a feature space. kNN has been applied in text classification before, it is found that kNN take significant longer time to classify a document into a topic. This is because kNN need to compute the distance between the new data point with the existing data points and find the nearest data points. Since the authors are using term vector space document representation method, the dimension of the feature space is high, thus the more time is needed for kNN to compute all the distance between the test object with the training objects. Other than the time taken to compute the distance, the k value is another obstacle in kNN algorithm. In a high dimensionality feature space and the points are not evenly distributed, the k value is hard to be determined.
+
 To overcome the problems mentioned above, the authors applied term vector space reduction method, divide the document feature matrix into parts. Term vector space reduction reduces 
 the sparsity of the document term matrix by removing the features less appeared in the corpus. By reducing the term vector space, a slight deterioration in the classification accuracy but the time cost is dramatically reduced. kNN still achieved an accuracy of 92.7\% but the time taken reduced from 53 minutes to 11 minutes. \cite{knnVectorSpaceReduction}
 
 \clearpage
 \subsection{Neural Network}
-Neural network has a resurgence in recent years as there is a breakthrough in the neural network as Geofrey Hinton (et al.) discovered a technique called Contrastive Divergence that could quickly model inputs in a Restricted Boltzmann Machine (RBM). RBM is a 2-layer neural network that model the input by bouncing it through the network. This process is less computationally complex than backpropagation. \cite{nnHinton}.
+Neural network has a resurgence in recent years as there is a breakthrough in the neural network since Geofrey Hinton (et al.) discovered a technique called Contrastive Divergence that could quickly model inputs in a Restricted Boltzmann Machine (RBM). RBM is a 2-layer neural network that model the input by bouncing it through the network. This process is less computationally complex than backpropagation. \cite{nnHinton}.
 	
-Currently, neural network is applied in deep learning to solve various problems, document representation is one of them. Ranjan (et al.) applied Lion Fuzzy Neural Network on document 
-classification. The researchers used WordNet ontology to retrieve the semantic of the words, 
-and then added the context information onto it, thus the features obtained are semantic-context features. The classification part is performed by Lion Fuzzy Neural Network, which is a variant of Back Propagation Lion (BPLion) Neural Network that includes fuzzy bounding and Lion Algorithm. The neural network model used is trained incrementally. It achieves a higher accuracy than Naïve Bayes and some variant of the Lion Neural Network. \cite{lionNn}
+Currently, neural network is applied in deep learning to solve various problems, text classification being one of them. Ranjan (et al.) applied Lion Fuzzy Neural Network on text classification. The researchers used WordNet ontology to retrieve the semantic of the words, and then added the context information onto it, thus the features obtained are semantic-context features. The classification part is performed by Lion Fuzzy Neural Network, which is a variant of Back Propagation Lion (BPLion) Neural Network that includes fuzzy bounding and Lion Algorithm. The neural network model used is trained incrementally. It achieves a higher accuracy than Naïve Bayes and other variant of the Lion Neural Network. \cite{lionNn}
 	
-Other than the modified neural network shown above, a simple feed-forward neural network is also efficient in document classification. By using the Hadamard product as document representation method, a simple neural network also can achieve a good classification accuracy in document classification compare to Naïve Bayes, kNN, and SVM. \cite{oneNn}
+Other than the modified neural network shown above, a simple feed-forward neural network is also efficient in text classification. By using the Hadamard product as document representation method, a simple neural network also can achieve a good classification accuracy in document classification compare to Naïve Bayes, kNN, and SVM. \cite{oneNn}\\
 	
+\clearpage
 \section{Conclusion}
-From the review of dimension reduction algorithms, PCA performed best compared to SVD and NMF. In addition, PCA performed well in text classification field. 
+In the document representation algorithm, both term frequency and TF-IDF would be applied in this study. Both of the document representation algorithm would produce matrix with high dimension. This is the purpose of this study and it would be interesting to observe how different document representation algorithm affect the result.
+
+For dimension reduction algorithm, SVD is chosen as the dimension reduction algorithm to be used in this study. SVD has proven to be efficient and achieve satisfactory result from past researched.
 	
 In machine learning algorithms for text classification, all 3 machine learning algorithms reviewed above would be applied. One of the objectives of this study is to investigate the performance of different machine learning algorithms in text classification. The same dataset would be used to train 3 models and the performance would be evaluated.
