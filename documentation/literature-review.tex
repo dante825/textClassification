@@ -74,16 +74,16 @@ X = USV^{T}
 where:
 \begin{center}
 	\begin{tabular}{l @{ $=$ } l}
-		$U$ & an m $\times$ n matrix, columns are left singular vectors \\
-		$S$ & an n $\times$ n non-zero diagonal matrix, the singular values \\
-		$V^{T}$ & an n $\times$ n matrix, rows are right singular vectors \\
+		$U$ & an $m \times n$ matrix, columns are left singular vectors \\
+		$S$ & an $n \times n$ non-zero diagonal matrix, the singular values \\
+		$V^{T}$ & an $n \times n$ matrix, rows are right singular vectors \\
 	\end{tabular}
 \end{center}
 
 	
 Latent Semantic Analysis (LSA) a technique applied in natural language processing that apply SVD in its process. SVD is applied in LSA to transform the features by dropping the least significant values in the matrix thus reducing the dimensions of the matrix. \cite{fuzzyLash}
 
-Truncated SVD is a variant of SVD. Similar to PCA, truncated SVD is a matrix factorization technique that factors matrix M into 3 matrices namely, U, $\Sigma$ and V. There is a slight difference that differ truncated SVD from PCA, PCA performed the factorization on the covariance matrix while truncated SVD performed the factorization onto the data matrix directly. Truncated SVD differ slightly from SVD in the way of that SVD would always produce matrices of n columns if given n $\times$ n matrix but truncated SVD given the same matrix can produce matrices with specified number of columns. \cite{truncatedSVD}
+Truncated SVD is a variant of SVD. Similar to PCA, truncated SVD is a matrix factorization technique that factors matrix M into 3 matrices namely, $U$, $\Sigma$ and $V$. There is a slight difference that differ truncated SVD from PCA, PCA performed the factorization on the covariance matrix while truncated SVD performed the factorization onto the data matrix directly. Truncated SVD differ slightly from SVD in the way of that SVD would always produce matrices of n columns if given $n \times n$ matrix but truncated SVD given the same matrix can produce matrices with specified number of columns. \cite{truncatedSVD}
 
 Truncated SVD can reduced the dimension of the data into lesser dimension when compare to other dimension reduction algorithms such as LDA and PCA. The classification model trained with the output of SVD is also higher than that of LDA and PCA. \cite{dimRedCat}. Thus, SVD would be a great choice for the dimension reduction algorithm in this study.\\
 	
