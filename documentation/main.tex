@@ -70,20 +70,20 @@
 
 
 \author{Ng Kang Wei}
-\title{Text Classification on News Articles}
+\title{Text Classification with Dimension Reduction on News Articles}
 
 %% If \othertitle is given, then the second abstract will display it
 %% (i.e. if your thesis is "english" then this is printed on top of the Malay abstract
 %% and if your thesis is "bahasam" then this is printed on top of the English abstract)
 %% If no \othertitle is given then the second abstract will not have any translated thesis title
-\othertitle{Tajuk dalam Bahasa Lain untuk Abstrak Kedua}
+%\othertitle{Tajuk dalam Bahasa Lain untuk Abstrak Kedua}
 
 \faculty{Department of Computer Science and Information Technology}
 \submissionyear{2019}
 \degree{Master of Data Science}
 
 % load acronym definitions from separate file
-\loadglsentries{myacronyms}
+%\loadglsentries{myacronyms}
 
 \begin{document}
 \frontmatter
@@ -98,9 +98,15 @@
 % \makecoverandtitlepage{\doctoralmixedmode}
 
 \declarationpage
-\abstractfromfile{sample-abstract}
-\msabstractfromfile{sample-msabstract}
-\acknowledgements{Thanks guys. I owe you many.}
+\abstractfromfile{abstract}
+\msabstractfromfile{abstractms}
+\acknowledgements{
+	I would like to take this opportunity to appreciate the helps and guidance given freely by my supervisor, Dr Hoo. Without his guidance and encouragement, this study would not see the light of day.
+	
+	I am thankful and indebted to the lecturers who persevered and pour their hearts out to educate fellow students like me. It is through their hardwork and sacrifices that I have gain knowledges that are crucial to this work.
+	
+	I am also grateful to my fellow friends who are by my side as we work on our own projects. It is comforting to have someone working by your side towards the same goal.\\
+}
 
 {\clearpage
 \tableofcontents\clearpage
@@ -116,7 +122,7 @@
 % \renewcommand{\glsskip}{1.1}
 
 %\listofacronyms\clearpage
-\listofappendices\clearpage}
+\listofappendices\clearpage
 
 \mainmatter
 
@@ -146,7 +152,6 @@
 
 \begin{appendices}
 \input{appendix}
-%\input{sample-appen-try}
 \end{appendices}
 
 %% Comment out this line if you do not have a separate glossary.

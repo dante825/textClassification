@@ -7,7 +7,7 @@ text width=15em, text centered, rounded corners, minimum height=4em]
 
 \chapter{Research Methodology}
 \section{Introduction}
-This section would illustrate process flow to carry out the experiments to fulfill the aforementioned objectives of this research. The following flow charts would illustrates the steps taken in the several experiments.
+This section would illustrate the process flow to carry out the experiments and fulfill the aforementioned objectives of this study. The following flow charts would illustrates the steps taken to conduct the several experiments.
 
 \section{Text preprocessing process flow}
 \begin{figure} [ht]
@@ -17,7 +17,7 @@ This section would illustrate process flow to carry out the experiments to fulfi
 \node [block] (init) {Raw text};
 \node [block, below of=init] (readDf) {Read the file into dataframe};
 \node [block, below of=readDf] (lineRemoval) {Remove some redundant lines};
-\node [block, below of=lineRemoval] (lower) {Change the text to lowercase};
+\node [block, below of=lineRemoval] (lower) {Convert the text to lowercase};
 \node [block, below of=lower] (stopwordRemoval) {Stop words removal};
 \node [block, below of=stopwordRemoval] (symRemoval) {Punctuation removal};
 \node [block, below of=symRemoval] (lemmatization) {Lemmatization};
@@ -37,11 +37,11 @@ This section would illustrate process flow to carry out the experiments to fulfi
 \label{fig: overallProcess}
 \end{figure}
 
-This flow chart above illustrates the preprocessing process. The news articles articles dataset would be in the form of raw text. There are some preprocessing to be done before features can be extracted from the text to build the text classification models. First, the raw text would be read into a dataframe or a data structure for ease of access and processing.
+This flow chart above illustrates the preprocessing process. The news articles dataset is in the form of raw text. Some preprocessing need to be done before the features can be extracted from the text to build the text classification models. First, the raw text would be read into a dataframe or a data structure for ease of access and processing.
 
-In the raw text files, there are some lines that are not relevant for text classification purpose, these lines would be removed to reduce the noise in the dataset. All the text in the dataset would be converted to lowercase for ease of processing. There are some words in the text that are useful in human speech but do not convey meanings in text analysis. These words are stop words, these words have to be removed as well. After stop words removal, the text should contain only the words that are vital to text analysis but there would be some punctuations and symbols in the text. These punctuations and symbols have to be removed as well to make the text cleaner and less noisy.\\
+In the raw text files, there are some lines that are irrelevant to text classification, these lines would be removed to reduce the noise in the dataset. All the text in the dataset would be converted to lowercase for uniformity and ease of processing. There are some words in the text that are useful in human speech but do not convey meanings in text analysis. These words are stop words, these words have to be removed as well. After stop words removal, the text should contain only the words that are vital to text analysis but there would be some punctuations and symbols in the text. These punctuations and symbols would be removed as well so that the text is cleaner and less noisy.
 
-After that, there is an important step, lemmatization. Lemmatization would convert most of the words in the text to their root form which is known as a lemma. This would reduce the noise in the data by transforming similar words into a single word. The alternative to lemmatization would be stemming. Stemming would be faster than and need less processing power than lemmatization but stemming has a drawback against lemmatization. The result of stemming may not be a real word because stemming just chop off the ends of the words thus the resulting words may not be a real words. On the other hand, lemmatization uses vocabulary and morphological analysis of words to remove the inflectional endings only and resulting the root form of words. \cite{stemLemma}
+After that, there is an important step, lemmatization. Lemmatization would transform most of the words in the text to their root form which is known as a lemma. This would reduce the noise in the data by transforming similar words into a single word. The alternative to lemmatization would be stemming. Stemming would be faster and need less processing power than lemmatization but stemming has a drawback. The result of stemming may not be a real word because stemming just chop off the end of the words thus the resulting words may not be a real words. On the other hand, lemmatization uses vocabulary and morphological analysis of words to remove the inflectional endings only and resulting the root form of words. \cite{stemLemma} Therefore, the output of lemmatization would be better than stemming.
 
 \clearpage
 \section{Overall Process Flow}
@@ -51,9 +51,9 @@ After that, there is an important step, lemmatization. Lemmatization would conve
 % Place nodes
 \node [block] (init) {News articles};
 \node [block, below of=init] (preprocessing) {Preprocessing};
-\node [block, below of=preprocessing] (feaext) {Feature Extraction};
-\node [block, below of=feaext] (dimred) {Dimension Reduction (if needed)};
-\node [block, below of=dimred] (ml) {Train Machine Learning Models};
+\node [block, below of=preprocessing] (feaext) {Feature extraction};
+\node [block, below of=feaext] (dimred) {Dimension reduction (if needed)};
+\node [block, below of=dimred] (ml) {Train machine learning models};
 \node [block, below of=ml] (test) {Test the models};
 \node [block, below of=test] (eval) {Evaluate the performance};
 % Draw edges
@@ -68,7 +68,7 @@ After that, there is an important step, lemmatization. Lemmatization would conve
 \label{fig: preprocessText}
 \end{figure}
 
-The process flow chart above is the overall process for the few experiments. As mentioned above, the news articles dataset has to be preprocessed before it can undergo feature extraction and train machine learning models.
+The process flow chart above is the overall process for the few experiments. As mentioned above, the news articles dataset has to be preprocessed before it can undergo feature extraction and being used to train machine learning models.
 
 After preprocessing, the resulting data would be used in several experiments with a few subtle differences.
 The differences in the experiments would be in the feature extraction stage and the dimension reduction stage. 
@@ -77,7 +77,7 @@ The differences in the experiments would be in the feature extraction stage and 
 \section{The dataset}
 \graphicspath{{./images/}}
 
-The dataset used in this research is the 20 news group dataset. It is freely available at \url{http://qwone.com/~jason/20Newsgroups/}. It is a collection of news articles that can be divided almost evenly to 20 groups. Some of the groups are closely related to one another and some are widely different. Categories with the same prefix for example comp, rec and talk would have high similarity with one another but also subtle differences. The categories with the different prefixes would be very different from one another.
+The dataset used in this research is the 20 news group dataset. It is freely available at \url{http://qwone.com/~jason/20Newsgroups/}. It is a collection of news articles that can be divided almost evenly to 20 groups. Some of the groups are closely related to one another and some are widely different. Categories with the same prefix for example \textit{comp} would have high similarity with one another but also subtle differences. The categories with the different prefixes, for example \textit{rec} and \textit{talk} would be very different from one another.
 
 This characteristic of the dataset make it a good dataset to test text classification. A good classification model should be able to differentiate the different groups of news article even the groups that are closely resembled one another.
 
@@ -134,15 +134,15 @@ The experiments that has been conducted in this research is as follows:
 \begin{enumerate}
 	\item Term frequency
 	\item Term frequency with naive dimension reduction
-	\item Term frequency with SVD
+	\item Term frequency with truncated SVD
 	\item TF-IDF
 	\item TF-IDF with naive dimension reduction
-	\item TF-IDF with SVD
+	\item TF-IDF with truncated SVD
 \end{enumerate}
 
 Basically, there are 2 feature extraction method used in the experiments, namely term frequency and term frequency - inverse document frequency (TF-IDF). Each of the feature extraction method would be tested with and without dimension reduction algorithm.
 
-There are 2 dimension algorithms involved, one is a naive method, which means that the features or columns lesser than a certain value would be removed. In other words, words or terms that do not appear much in the dataset would be removed. Another dimension reduction algorithm is single value decomposition (SVD). This method would retain the essence of the data, the part of the data with maximum variance. 
+There are 2 dimension reduction algorithms involved, one is a naive method, which means that the features or columns lesser than a certain value would be removed. In other words, words or terms that do not appear much in the dataset would be removed. Another dimension reduction algorithm is single value decomposition (SVD). This method would retain the essence of the data, the part of the data with maximum variance. 
 
 After feature extraction and dimension reduction (if needed) are applied, the resulting features would be used to train machine learning models. There are 3 machine learning algorithms chosen in these experiments namely k-nearest neighbour (kNN), support vector machine (SVM), and neural network (NN). All 3 of the machine algorithms would be applied to all the different resulting features and the accuracy scores would be evaluated.
 
