@@ -1,46 +1,46 @@
 %!TEX ROOT = main.tex
 \chapter{Introduction}
 \section{Introduction}
-In this digital age, data is being generated rapidly and in huge trove. Much of the data generated is unstructured data which includes text messages, scientific articles, news articles, blog posts and others. \cite{bigData} The amount generated is too much for human to analyse each one of them. Thankfully, as the data generation capacity increases so do the artificial intelligence or machine learning ability. A branch of artificial intelligence is created specifically automate the process with text and speech which is Natural Language Processing (NLP).
+In this digital age, data is being generated rapidly and in large quantity. Much of the data generated is unstructured data which includes text messages, scientific articles, news articles, blog posts and others. \cite{bigData} The amount generated is too much for human to analyse each one of them. Thankfully, as the data generation capacity increases so do the artificial capability. A branch of artificial intelligence is created specifically to automate the process with text and speech. The branch of artificial intelligence is Natural Language Processing (NLP).
 
-The objective of NLP is to allow computer to understand human natural languages. If the objective is achieved NLP would be able to read and understand all form of human natural language including text  and speech or as well as any human if not better. In the meantime, NLP may not reach the ideal yet but it has improved over the years. NLP would be able to analyse the sentiment of text, sentiment analysis, recognized named entity, named entity recognition, classify text into different groups, text classification among others.
+The objective of NLP is to allow computer to understand human natural languages. If the objective is achieved, NLP would be able to read and understand all form of human natural languages including text  and speech as well as any human, if not better. In the meantime, NLP has not reach the ideal yet but it has improved over the years. NLP would be able to analyse the sentiment of text, sentiment analysis; recognized named entity, named entity recognition; classify text into different groups, text classification among others.
 
-Text classification is the main topic in this research. It is one of the NLP method that categorize text into different topics or categories. This classification would be helpful for users to narrow down a search quickly, or to know the main topic of the text in a short time.
+Text classification is the main topic in this research. It is one of the NLP method that group text into different topics or categories. This classification would be helpful for users to narrow down a search quickly, or to know the main topic of the text in a short time.
 
 The technology breakthrough in recent years, machine learning algorithms, processing power of processors have been a boost in NLP field. With the breakthroughs, there has been an advancement of the methods used in NLP with artificial intelligence without the need of intervention of domain experts.
 
-There are several approaches to the text classification problem, multi-label where each document can belong to several categories or classification, where each document can only belong to one category. In machine learning methods, there is clustering which is an unsupervised learning method or the supervised learning approach. This research shall focus in the the direction of classification rather than multi-label and clustering.
+There are several approaches to the text classification problem, multi-label where each document can belong to several categories or classification, where each document can only belong to one category. In machine learning methods, there is clustering which is an unsupervised learning method. In clustering, the data is not labeled and is grouped by similarities. This research shall focus on classification rather than multi-label and clustering.
 
-In text classification, most of the algorithms used vector space model to represent the unstructured textual data. \cite{vectorSpaceModelText}. This vector space model represent the sequence of the textual features and their weight, it is easy to implement and provide uniform representation for documents. However, it has a drawback, it represent all the words in the documents, the dimension of the vector would be huge. This huge vector space model would impact the performance of the machine learning tasks. \cite{knnVectorSpaceReduction}. Therefore, this study would focus on the dimension reduction on vector space model on document classification.\\
+In text classification, most of the algorithms used vector space model to represent the unstructured textual data. \cite{vectorSpaceModelText}. This vector space model represent the sequence of the textual features and their weight, it is easy to implement and provide uniform representation for documents. However, it has a drawback, it represent all the words in the documents, the dimension of the vector would be huge. This huge vector space model would impact the performance of the machine learning tasks. \cite{knnVectorSpaceReduction}. Therefore, this study would explore the effect of dimension reduction on vector space model has on text classification.\\
 
 \subsection{Problem Statement}
-Vector space model is one of the most commonly used document representation algorithms, but dimension of the feature space can too large and the vectors can be too sparse. \cite{knnVectorSpaceReduction}\\
+Vector space model is one of the most commonly used document representation algorithms, but dimension of the feature space can be too large and the vectors can be too sparse which might the accuracy of classification models.\\
 
 \clearpage
 \subsection{Research Objectives}
 \begin{enumerate}
 	\item To identify a document representation algorithm that is optimized to extract features from news articles.
-	\item To investigate the performance of machine learning (ML) algorithm on sparse matrix representation of text.
-	\item To evaluate the performance of dimension reduction has on document classification algorithms.
+	\item To investigate the effect of dimension reduction on high dimensional and sparse vector space has on the performance of text classification algorithms.
+	\item To evaluate the performance of the several text classification algorithms and identify the best one.
 \end{enumerate}
 
 
 \subsection{Research Questions}
 \begin{enumerate}
+	\item Which document representation and dimension reduction algorithm is optimized for news article?
 	\item How do complexities of the features influence the performance and accuracy of classification algorithm?
 	\item Which classification models perform best in text classification?
-	\item Which dimension reduction algorithm is optimized for news article?
 \end{enumerate}
 
 \clearpage
 \subsection{Research Motivation}
-In the age of big data, the amount of data generated and collected is growing at an explosive rate. Much of the data generated and collected is in the form of unstructured text. The value contained within the text cannot be extracted and be useful to us without natural language processing (NLP). Text classification is one of the pillars in natural language processing.
+In the age of big data, the amount of data generated and collected is growing at an explosive rate. Much of the data generated and collected is in the form of unstructured text. The value contained within the text need to be extracted so that it can be useful to us. Natural Language Processing (NLP) would be able to do so. Text classification is one of the pillars in Natural Language Processing.
 
-In text classification, the unstructured text would be given a label or multiple label dependent on the method used. These labels would make the data more meaningful and searchable. Users can search for a topic just by selecting text with the particular label rather than performing a manual key word search on all the text document. In another scenario, users could use know what is the topic of the text if they feed the text through the text classification model.
+In text classification, the unstructured text would be given a label or multiple labels depend on the method used. These labels would make the data more meaningful and searchable. Users can search for a topic just by selecting the text with the particular label rather than performing a manual key word search on all the text document. In another scenario, users could use know what is the topic of a text if they feed the text through a text classification model.
 
-Bag of words is the most commonly used document representation method in text classification. Bag of words would produce a vector space model of the textual data representation. The dimension of this vector space model would be huge because of the amount of words in the documents. This huge dimension of vector space model would be a problem to text classification models as the models need a large amount of memory to store this huge and sparse matrix. To process this sparse matrix in order to learn from its pattern and be able to classify another text correctly would need an immense amount of computing power.
+Bag of words is the most commonly used document representation method in text classification. Bag of words would produce a vector space model of the textual data representation. The dimension of this vector space model would be huge because the amount of words in the documents is large. This huge dimension of vector space model would be a problem to text classification models as the models need a large amount of memory to store this huge and sparse matrix. Furthermore, in order to learn from the patterns and to be able to classify another text correctly would need an immense amount of computing power to process the huge and sparse matrix.
 
-With the emergence of dimension reduction algorithms, the dimension of the vector space would be decreased, less memory would be needed to store and less computing power would be needed to process them. Compressing or transforming the huge matrix into a matrix with lesser dimension would need some computing power as well. This is the cost to reduce the dimension. Would this cost incurred increase the performance of the text classification models? Or the performance of the classification models would deteriorate?
+With the emergence of dimension reduction algorithms, the dimension of the vector space could be decreased, less memory would be needed to store and less computing power would be needed to process them. Compressing or transforming the huge matrix into a matrix with lesser dimension would need some computing power as well. This is the cost to reduce the dimension. Would this cost incurred increase the performance of the text classification models? Or the performance of the classification models would deteriorate?
 
 This study would investigate the effect of the dimension reduction algorithms on different document representation method and subsequently the performance of the text classification models.\\
 
@@ -49,14 +49,14 @@ This research would classify news articles into different categories. In order t
 
 Bag of words (BoW) approach is the most commonly used document representation method. In this approach, the documents are converted into vector space models. Due to the large amount of words in the documents, the vector space would be large and sparse, this is known as the curse of dimensionality problem. This large and sparse vector space would be an obstacle to document classification, machine learning models accuracy would be impacted due to the large vector space.
 
-By applying dimension reduction algorithms to the vector space model, the vector space and sparsity of the vector could be reduced. With the reduced vector, the classification models would need to process less dimension of the vector. The performance of the classification models would certainly be influenced by this reduction in dimension. Different dimension reduction algorithms would result in different vector space. The initial matrix from different bag of words or term vector approach also would be different.
+By applying dimension reduction algorithms to the vector space model, the vector space and sparsity of the vector would be reduced. With this reduced vector, the classification models would need to process less information. The performance of the classification models would certainly be influenced by this reduction in dimension. Different dimension reduction algorithms would result in different reduced vector space. The initial matrix from different bag of words or term vector approach also would be different.
 
 This study is trying to answer these few questions on which combination of document representation method, dimension reduction and classification model would have the best performance. The way to get to the bottom on these is to apply the few methods to a dataset and evaluate and analyse the result.\\
 
 
 \subsection{Expected Outcome}
 \begin{enumerate}
-	\item A prototype document classification model that has at least 80\% accuracy
+	\item A prototype document classification model that can achieve at least 80\% accuracy in optimum scenario
 	\item A working pipeline of converting raw text to vector space model or features to be processed by classification models
 	\item A suitable text classification algorithm is applied on the text classification application
 	\item A performance evaluation on the text classification models when dimension reduction algorithms are applied
