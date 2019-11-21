@@ -83,7 +83,8 @@
 \degree{Master of Data Science}
 
 % load acronym definitions from separate file
-%\loadglsentries{myacronyms}
+\loadglsentries[acronym]{myacronyms}
+
 
 \begin{document}
 \frontmatter
@@ -99,30 +100,22 @@
 
 \declarationpage
 \abstractfromfile{abstract}
-\msabstractfromfile{abstractms}
+%\msabstractfromfile{abstractms}
 \acknowledgements{
 	I would like to take this opportunity to appreciate the helps and guidance given freely by my supervisor, Dr Hoo. Without his guidance and encouragement, this study would not see the light of day.
 	
 	I am thankful and indebted to the lecturers who persevered and pour their hearts out to educate fellow students like me. It is through their hardwork and sacrifices that I have gain knowledges that are crucial to this work.
 	
-	I am also grateful to my fellow friends who are by my side as we work on our own projects. It is comforting to have someone working by your side towards the same goal.\\
+	I am also grateful to my fellow friends who are by my side as we work on our own projects. It is comforting to have someone working by your side towards the same goal.
 }
 
-{\clearpage
+{\clearpage\singlespacing
 \tableofcontents\clearpage
 \listoffigures\clearpage
 \listoftables\clearpage
+\listofacronyms\clearpage
+\listofappendices\clearpage}
 
-%% Uncomment the following and modify the width for the description,
-%% if necessary.
-%\setlength{\glsdescwidth}{.7\textwidth}
-
-%% Uncomment the following and modify separation between glossary entries,
-%% if necessary.
-% \renewcommand{\glsskip}{1.1}
-
-%\listofacronyms\clearpage
-\listofappendices\clearpage
 
 \mainmatter
 
@@ -130,15 +123,13 @@
 \input{literature-review}
 \input{research-methodology}
 \input{results}
-%\input{discussion}
 \input{conclusion}
 
-\bibliography{myrefs}
 
 %% Use these lines, if you need a single list of own publications
 % Make sure you have defined your own papers in the .bib file!
 %\nociteown{Lim:2009,Bond:etal:WordNetBahasa:2014}
-\bibliographyown{myrefs}
+%\bibliographyown{myrefs}
 
 %% Use these lines, if your list of own publications needs to be split
 %% into "Journal articles" and "Conference proceedings"
@@ -150,11 +141,14 @@
 %   \bibliographyownconf{myrefs}
 % \end{splitpubs}
 
+\bibliography{myrefs}
+
 \begin{appendices}
 \input{appendix}
 \end{appendices}
 
 %% Comment out this line if you do not have a separate glossary.
-% \printglossary
+%\printglossaries
+%\printglossary[title={Abbreviations},type=acronym,style=long]
 
 \end{document}
