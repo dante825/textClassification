@@ -45,6 +45,7 @@
 \usepackage{caption}
 \usepackage[dvipsnames,x11names]{xcolor}
 \usepackage{listings}
+\usepackage{glossaries}
 
 % For the process flow diagram in chapter 3
 \usepackage{tikz}
@@ -83,6 +84,7 @@
 \degree{Master of Data Science}
 
 % load acronym definitions from separate file
+\makeglossaries
 \loadglsentries[acronym]{myacronyms}
 
 
@@ -102,7 +104,7 @@
 \abstractfromfile{abstract}
 %\msabstractfromfile{abstractms}
 \acknowledgements{
-	I would like to take this opportunity to appreciate the helps and guidance given freely by my supervisor, Dr Hoo. Without his guidance and encouragement, this study would not see the light of day.
+	I would like to take this opportunity to appreciate the helps and guidance given freely by my supervisor, Dr Hoo. Without his guidance and encouragement, this study would not has seen the light of day.
 	
 	I am thankful and indebted to the lecturers who persevered and pour their hearts out to educate fellow students like me. It is through their hardwork and sacrifices that I have gain knowledges that are crucial to this work.
 	
@@ -125,30 +127,10 @@
 \input{results}
 \input{conclusion}
 
-
-%% Use these lines, if you need a single list of own publications
-% Make sure you have defined your own papers in the .bib file!
-%\nociteown{Lim:2009,Bond:etal:WordNetBahasa:2014}
-%\bibliographyown{myrefs}
-
-%% Use these lines, if your list of own publications needs to be split
-%% into "Journal articles" and "Conference proceedings"
-% Make sure you have defined your own papers in the .bib file!
-% \begin{splitpubs}
-%   \nociteownjour{Bond:etal:WordNetBahasa:2014}
-%   \nociteownconf{Lim:2009}
-%   \bibliographyownjour{myrefs}
-%   \bibliographyownconf{myrefs}
-% \end{splitpubs}
-
 \bibliography{myrefs}
 
 \begin{appendices}
 \input{appendix}
 \end{appendices}
-
-%% Comment out this line if you do not have a separate glossary.
-%\printglossaries
-%\printglossary[title={Abbreviations},type=acronym,style=long]
 
 \end{document}

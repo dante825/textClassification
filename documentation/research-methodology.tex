@@ -140,11 +140,11 @@ The experiments that has been conducted in this research is as follows:
 	\item TF-IDF with truncated SVD
 \end{enumerate}
 
-Basically, there are 2 feature extraction method used in the experiments, namely term frequency and term frequency - inverse document frequency (TF-IDF). Each of the feature extraction method would be tested with and without dimension reduction algorithm.
+Basically, there are 2 feature extraction method used in the experiments, namely term frequency and term frequency - inverse document frequency (\ac{tfidf}). Each of the feature extraction method would be tested with and without dimension reduction algorithm.
 
-There are 2 dimension reduction algorithms involved, one is a naive method, which means that the features or columns lesser than a certain value would be removed. In other words, words or terms that do not appear much in the dataset would be removed. Another dimension reduction algorithm is single value decomposition (SVD). This method would retain the essence of the data, the part of the data with maximum variance. 
+There are 2 dimension reduction algorithms involved, one is a naive method, which means that the features or columns lesser than a certain value would be removed. In other words, words or terms that do not appear much in the dataset would be removed. Another dimension reduction algorithm is single value decomposition (\ac{svd}). This method would retain the essence of the data, the part of the data with maximum variance. 
 
-After feature extraction and dimension reduction (if needed) are applied, the resulting features would be used to train machine learning models. There are 3 machine learning algorithms chosen in these experiments namely k-nearest neighbour (kNN), support vector machine (SVM), and neural network (NN). All 3 of the machine algorithms would be applied to all the different resulting features and the accuracy scores would be evaluated.
+After feature extraction and dimension reduction (if needed) are applied, the resulting features would be used to train machine learning models. There are 3 machine learning algorithms chosen in these experiments namely k-nearest neighbour (\ac{knn}), support vector machine (\ac{svm}), and neural network (\ac{nn}). All 3 of the machine algorithms would be applied to all the different resulting features and the accuracy scores would be evaluated.
 
 
 \section{Conclusion}
