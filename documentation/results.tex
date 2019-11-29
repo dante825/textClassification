@@ -266,6 +266,40 @@ The time taken in this experiment is much higher than the experiment of \ac{tfid
 The decrement in time could be explained by the reduction of features, as the amount of features decreases, the time taken to process them also reduced. Therefore there is a speedup. This speedup that comes with the reduction of features, comes at a cost which is accuracy. For \ac{svm} and \ac{nn}, the reduction in accuracy is meagre thus it would be logical to trade the slight accuracy with the speedup but in \ac{knn}, the trade off would be lopsided in the favour of time taken.\\
 
 \clearpage
+\section{Accuracy VS dimension of term frequency matrix}
+\begin{figure} [ht]
+	\centering
+	\includegraphics[width=\textwidth]{tfsvd}
+	\caption{The effect of dimension reduction on accuracy with term frequency matrix}
+	\label{fig:freqCount}
+\end{figure}
+
+This figure illustrates the effect of dimension reduction has on the accuracy of the classification models. The feature extraction algorithm used here is term frequency and the dimension reduction algorithm used is truncated \ac{svd}.
+
+\Ac{knn} accuracy increases from 0.3 to 0.55 as the dimension of the feature matrix decreases from 8000 to 100. After that point, further decrease in dimension does not increase the accuracy of \ac{knn} further but decrease its accuracy back to 0.3.
+
+\Ac{svm} and \ac{nn} have the similar trend as the dimension of the feature matrix reduces. Both of them were at high accuracy, around 0.8 when the dimension of the matrix is at 8000. Both \ac{svm} and \ac{nn} accuracy decrease slightly as the dimension decreases. When the dimension of the matrix is reduced to an extreme, 10, both \ac{svm} and \ac{nn} accuracy dropped to around 0.3.
+
+This showed that \ac{knn} is a classification model that is sensitive to dimension changes and is more efficient at lower dimension. \ac{svm} and \ac{nn}, however, are more resilient to the feature matrix dimension changes. Both of \ac{svm} and \ac{nn} accuracy remain stable as the dimension decreases.\\
+
+\clearpage
+\section{Accuracy VS dimension of TF-IDF matrix}
+\begin{figure} [ht]
+	\centering
+	\includegraphics[width=\textwidth]{tfidfsvd}
+	\caption{The effect of dimension reduction on accuracy with TF-IDF matrix}
+	\label{fig:freqCount}
+\end{figure}
+
+This figure show the fluctuations of the accuracy of the classification models as the dimension decreases. The feature extraction method used here is \ac{tfidf} and the dimension reduction algorithm used is truncated \ac{svd}.
+
+\Ac{knn} accuracy remain stable at around 0.77 as the dimension decrease from 8000 to 4000. After 4000, further decrement in dimension resulting in a decrease in accuracy. The accuracy of \ac{knn} deflected and increase from 0.55 to 0.69 when the dimension reduce from 500 to 10.
+
+Similar to previous result, \ac{svm} and \ac{nn} accuracy remain stable around 0.8 as the dimension reduces from 8000 to 500. When the dimension of the feature matrix is reduced to an extreme of 10 then the accuracy of both \ac{svm} and \ac{nn} deteriorated to around 0.5.
+
+\Ac{svm} is the best classification model out of the 3, it has slightly better performance than \ac{nn} in most of the scenarios. It is most resilient to the changes in dimension. This is because \ac{svm} depend on the prominent features of the data to classify the data into different classes, the dimension of the data do not has much influence on \ac{svm} computational complexity. \cite{dimRedCat}. \Ac{nn} has comparable accuracy with \ac{svm} but it would take longer time than \ac{svm} to produce the similar result.
+
+\clearpage
 \section{Conclusion}
 From the results of the 6 experiments above, it is found that \ac{tfidf} is a better document representation algorithm than term frequency. The resulting vector space model from \ac{tfidf} can achieve a higher accuracy than that of term frequency. 
 
