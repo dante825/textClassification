@@ -26,7 +26,7 @@ The results of the experiments are shown in this section. The differences in the
 
 Term frequency is one of most common feature extraction method in text. It convert all the words in the dataset into a matrix where each column is a word and the value in each of the cells are the number of times each word appear in the text. Each row in the matrix is a document. This vector space model representation of the words would result in a sparse matrix since each of the documents only contains a subset of all the words in the whole dataset. 
 
-In this experiment, the number of features of vector space model from term frequency extraction is limited to 8000, this is because of the memory constraint of the machine, if it is unlimited, the resulting matrix would be of bigger size and would have the probability of running out of memory while processing the matrix. 
+In this experiment, the number of features of vector space model from term frequency extraction is limited to 8000, this is because of the memory constraint of the machine, if it is unlimited, the resulting matrix would be of bigger size and would have the risk of running out of memory while processing the matrix. 
 
 In the results shown above, \ac{nn} achieved an accuracy of 0.84 which is the best accuracy out of the 3 classification algorithm but it is also the one that takes the longest to process which is 91.82s. \Ac{knn} took the least time to process, 3.74s but has the lowest accuracy score, 0.31. Overall performance, \ac{svm} is the best, it only took 5s to process, which is 80s less than \ac{nn} and has an accuracy of 0.81 which is comparable with \ac{nn}. 
 
@@ -72,7 +72,7 @@ The feature extraction method used in this experiment is same as the experiment 
 
 The parameter value is just an integer value passed to the dimension reduction function implemented. It has an inversely proportional relationship with the number of features. The larger the parameter value, the more columns would be removed and the number of features would decrease.
 
-In this experiment, \ac{knn} still has the worst performance among the 3 which is at 0.34 with 2530 number of features. As the number of features decreases to 173, the accuracy increases slightly to 0.41. As the number of features decreases, the time taken for \ac{knn} to produce the result increases from 3.946s to 5.17s.
+In this experiment, \ac{knn} still has the worst performance among the 3 which is at 0.34 with 2530 number of features. As the number of features decreases to 173, the accuracy increases slightly to 0.41. As the number of features decreases, the time taken for \ac{knn} to produce the result increases from 3.94s to 5.17s.
 
 \Ac{svm} and \ac{nn} have the same trend in this experiment, the accuracy decreases as the number of features decreases. Accuracy of \ac{svm} decreases from 0.83 to 0.63 as the number of features decreases from 12705 to 478. The time taken by \ac{svm} fluctuates as the amount of features decreases, it decrease from 6s to 5s when the amount of features decreases from 12705 to 2530, but the time taken increases from 5s to 20s, as the number of features decreases further to 478. The decrement in accuracy in \ac{svm} is slight in relative to the decrement in the number of features. Accuracy decreased by 0.20 while the number features has decreased by 12227.
 
@@ -115,7 +115,7 @@ In the scenarios where \ac{svm} and \ac{nn} have more features than the first ex
 		NN & 500 & 0.77 & 40.86 \\
 		\hline
 	\end{tabular}
-\caption{Term frequency with SVD}
+\caption{Term frequency with truncated SVD}
 \label{tbl:termFrequencySvd}
 \end{table}
 
@@ -157,9 +157,9 @@ The next experiments would apply different document representation algorithm to 
 
 The previous experiments found that \ac{svd} has a slight edge over naive dimension reduction when the number of features decreased to a certain extend. In this and the next experiments, the effect on dimension reduction is further explored. A different document representation algorithm is applied in this and the next 2 experiments.
  
-The document representation algorithm applied is \ac{tfidf}. In contrast with term frequency which only take the frequency of each word into account, \ac{tfidf} takes both the frequency of each word and the rarity of it into account. If a term or word appear in high frequency but in many documents, this word may not be of importance and consequently is not a meaningful feature. If a word appear rarely and only in a few documents, this word would have high importance and would be meaningful feature of the few documents.
+The document representation algorithm applied in this experiment is \ac{tfidf}. In contrast with term frequency which only take the frequency of each word into account, \ac{tfidf} takes both the frequency of each word and the rarity of it into account. If a term or word appear in high frequency but in many documents, this word may not be of importance and consequently is not a meaningful feature. If a word appear rarely and only in a few documents, this word would have high importance and would be a meaningful feature of the few documents.
 
-With \ac{tfidf}, \ac{knn} can achieved a satisfactory accuracy score of 0.76 even though the number of features in the resulting matrix of \ac{tfidf} is the same with term frequency which is 8000. The vector space model of \ac{tfidf} would not be as sparse as that of term frequency which is \ac{knn} is more suitable for \ac{knn}.
+With \ac{tfidf}, \ac{knn} can achieved a satisfactory accuracy score of 0.76 even though the number of features in the resulting matrix of \ac{tfidf} is the same with term frequency which is 8000. The vector space model of \ac{tfidf} would not be as sparse as that of term frequency which is more suitable for \ac{knn}.
 
 \Ac{nn} is still provide the highest accuracy score of 0.88 but the time taken also the longest at 55.82s.
 
@@ -251,7 +251,7 @@ This is mainly because of the reduction in features. As the amount of informatio
 		NN & 500 & 0.81 & 39.93 \\
 		\hline
 	\end{tabular}
-\caption{TF-IDF with SVD}
+\caption{TF-IDF with truncated SVD}
 \label{tbl:tfidfSvd}
 \end{table}
 
@@ -266,12 +266,12 @@ The time taken in this experiment is much higher than the experiment of \ac{tfid
 The decrement in time could be explained by the reduction of features, as the amount of features decreases, the time taken to process them also reduced. Therefore there is a speedup. This speedup that comes with the reduction of features, comes at a cost which is accuracy. For \ac{svm} and \ac{nn}, the reduction in accuracy is meagre thus it would be logical to trade the slight accuracy with the speedup but in \ac{knn}, the trade off would be lopsided in the favour of time taken.\\
 
 \clearpage
-\section{Accuracy VS dimension of term frequency matrix}
+\section{Accuracy vs Dimension of term frequency matrix}
 \begin{figure} [ht]
 	\centering
 	\includegraphics[width=\textwidth]{tfsvd}
-	\caption{The effect of dimension reduction on accuracy with term frequency matrix}
-	\label{fig:freqCount}
+	\caption{The effect of dimension reduction on accuracy with term frequency}
+	\label{fig:tfAcc}
 \end{figure}
 
 This figure illustrates the effect of dimension reduction has on the accuracy of the classification models. The feature extraction algorithm used here is term frequency and the dimension reduction algorithm used is truncated \ac{svd}.
@@ -283,12 +283,12 @@ This figure illustrates the effect of dimension reduction has on the accuracy of
 This showed that \ac{knn} is a classification model that is sensitive to dimension changes and is more efficient at lower dimension. \ac{svm} and \ac{nn}, however, are more resilient to the feature matrix dimension changes. Both of \ac{svm} and \ac{nn} accuracy remain stable as the dimension decreases.\\
 
 \clearpage
-\section{Accuracy VS dimension of TF-IDF matrix}
+\section{Accuracy vs Dimension of TF-IDF matrix}
 \begin{figure} [ht]
 	\centering
 	\includegraphics[width=\textwidth]{tfidfsvd}
-	\caption{The effect of dimension reduction on accuracy with TF-IDF matrix}
-	\label{fig:freqCount}
+	\caption{The effect of dimension reduction on accuracy with TF-IDF}
+	\label{fig:tfidfAcc}
 \end{figure}
 
 This figure show the fluctuations of the accuracy of the classification models as the dimension decreases. The feature extraction method used here is \ac{tfidf} and the dimension reduction algorithm used is truncated \ac{svd}.
