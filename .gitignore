@@ -1,0 +1,24 @@
+# Don't track files in these folders
+.idea/
+src/__pycache__/
+
+# Compiled from Latex
+*.acn
+*.acr
+*.alg
+*.apx
+*.aux
+*.bbl
+*.blg
+*.glg
+*.glo
+*.gls
+*.ist
+*.out
+*.lof
+*.log
+*.lot
+*.synctex.gz
+*.toc
+*.bib.bak
+*.aux
