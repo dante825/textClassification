@@ -43,7 +43,7 @@ In the raw text files, there are some lines that are irrelevant to text classifi
 
 After that, there is an important step, lemmatization. Lemmatization would transform most of the words in the text to their root form which is known as a lemma. This would reduce the noise in the data by transforming similar words into a single word. The alternative to lemmatization would be stemming. Stemming would be faster and need less processing power than lemmatization but stemming has a drawback. The result of stemming may not be a real word because stemming just chop off the end of the words thus the resulting words may not be a real words. On the other hand, lemmatization uses vocabulary and morphological analysis of words to remove the inflectional endings only and resulting the root form of words. \cite{stemLemma} Therefore, the output of lemmatization would be better than stemming.
 
-\clearpage
+
 \section{Overall Process Flow}
 \begin{figure} [ht]
 \centering
@@ -73,7 +73,6 @@ The process flow chart above is the overall process for the few experiments. As 
 After preprocessing, the resulting data would be used in several experiments with a few subtle differences.
 The differences in the experiments would be in the feature extraction stage and the dimension reduction stage. 
 
-\clearpage
 \section{The dataset}
 \graphicspath{{./images/}}
 
@@ -115,7 +114,7 @@ The table below show the number of count for each category. There is a total of 
 	\label{tbl:freqCount}
 \end{table}
 
-\clearpage
+
 The bar chart below visualized the data displayed on the table for ease of viewing. Most of categories have almost 1000 articles except alt.atheism, talk.politics.misc and talk.religion.misc.
 
 \begin{figure} [ht]
@@ -128,7 +127,6 @@ The bar chart below visualized the data displayed on the table for ease of viewi
 As mentioned there are 18790 articles in the data, the articles would be split at random into 8:2 ratio. 80\% of the data would be used as training data to train the classification model while 20\% of the data would be use as the test data. The training data would consist of 15032 articles while the test data would consist of 3758 articles.\\
 
 
-\clearpage
 \section{The experiments}
 The experiments that has been conducted in this research is as follows:
 \begin{enumerate}

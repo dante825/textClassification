@@ -11,7 +11,7 @@ The columns are all the words appear in the document, each column represent one 
 
 Even though it is a simple document representation method, it is proven to be able to achieve a satisfactory results with the right processing and methods. \cite{knnVectorSpaceReduction}. In addition, term frequency would produce a big and sparse matrix which is exactly what this study is focusing on. Therefore, term frequency would be a suitable document representation algorithm to be applied in this study.\\
 
-\clearpage
+
 \subsection{Term Frequency - Inverse Document Freqeuncy (TF-IDF)}
 Term frequency-Inverse document frequency (\ac{tfidf}) is also a \ac{bow} approach. It is build on the concept of term frequency but take it a step further to overcome the setback of term frequency. 
 
@@ -42,7 +42,7 @@ where:
 \subsection{Summary}
 Both term frequency and \ac{tfidf} are chosen as the document representation method in this study. Term frequency and \ac{tfidf} are simple and relatively easy to implement. Both of the methods are efficient and tried and true over the years. Most importantly, the output of huge and sparse matrix from term frequency and TF-IDF is the topic of interest in this study.\\
 
-\clearpage
+
 \section{Dimension Reduction}
 \subsection{Principal Component Analysis (PCA)}
 \Ac{pca} is probably one of the most popular multivariate statistical technique in dimension reduction. \Ac{pca} would transform a data table with values from inter-related variables into new orthogonal variables. The variables would be the principal components of the data. In other words, \ac{pca} transform data from high dimensional space into low dimensional space with linear transformation while preserving the original data features as much as possible. \cite{pcaImage} The output from \ac{pca} is the principal components of the data which hold 80\% to 90\% of the information of the original data.
@@ -62,7 +62,7 @@ Both term frequency and \ac{tfidf} are chosen as the document representation met
 
 \Ac{nmf} might be more suitable for clustering as it took the least amount of time in clustering the data compared to \ac{svd} and \ac{pca}. \cite{nmfClustering}. This advantage of \ac{nmf} over \ac{svd} and \ac{pca} is negligible since this study would focus on classification rather than clustering.\\
 
-\clearpage
+
 \subsection{Truncated Single Value Decomposition (SVD)}
 Single value decomposition (\ac{svd}) is one of the most commonly used dimension reduction algorithms. It generalizes a complex matrix with many dimensions into a matrix of lower dimension via an extension of the polar decomposition. \Ac{svd} detects the part of the data that contains the maximum variance in a set of orthogonal basis vectors. The data with the maximum variance would be the most prominent features of the data. \cite{svdDef}
 
@@ -90,7 +90,6 @@ Truncated \ac{svd} can reduced the dimension of the data into lesser dimension w
 \subsection{Summary}
 The 3 dimension reduction algorithms above are considered to be \ac{bss} methods, unsupervised learning algorithms. Out of the 3 dimension reduction algorithms, truncated \ac{svd} is the most suitable to be applied in this study. This is because \ac{pca} is not efficient in reducing high dimensional and sparse data and \ac{nmf} is only efficient in clustering algorithm. Most importantly, truncated \ac{svd} overcome the drawback of \ac{pca} and has been proven to be effective and achieve better result than \ac{pca} and others. Thus, truncated \ac{svd} is chosen to be the dimension reduction algorithm to be applied on the feature matrix extracted from the text.\\
 
-\clearpage	
 \section{Document Classification}
 \subsection{Support Vector Machine}
 Support Vector Machine (\ac{svm}) is a machine learning algorithm that construct a hyperplane to separate the data points into different classes. It has been proven to be very effective in dealing with high dimensional data. \cite{webSvm}. It is also proven to produce dramatically better results in text classification shown in experiments with the Reuters dataset. \cite{inductiveText}. However, various issues need to be considered when applying \ac{svm} in text classification, the processing of the data, which kernel to use, and the parameters of \ac{svm}. A variant of \ac{svm}, called one-class \ac{svm} which is trained only with positive information has been used in text classification. \cite{oneSvm}.  The authors experimented with different kernels of \ac{svm} with different type of document representation method. The kernels tested include linear, sigmoid, polynomial, and radial basis. The document representation methods applied are binary representation, frequency representation, \ac{tfidf}, and Hadamard representation. The best result, F1 score of 0.507 is achieved with binary representation, feature length 10 and with linear kernel function.  
@@ -125,7 +124,7 @@ where:
 To overcome the problems mentioned above, the authors applied naive term vector space reduction method, divide the document feature matrix into parts. Term vector space reduction reduces 
 the sparsity of the document term matrix by removing the features less appeared in the corpus. By reducing the term vector space, a slight deterioration in the classification accuracy but the time cost is dramatically reduced. \ac{knn} still achieved an accuracy of 92.7\% but the time taken reduced from 53 minutes to 11 minutes. \cite{knnVectorSpaceReduction}
 
-\clearpage
+
 \subsection{Neural Network}
 Neural network (\ac{nn}) has a resurgence in recent years as there is a breakthrough in the neural network since Geofrey Hinton (et al.) discovered a technique called Contrastive Divergence that could quickly model inputs in a \ac{rbm}. \Ac{rbm} is a 2-layer neural network that model the input by bouncing it through the network. This process is less computationally complex than backpropagation. \cite{nnHinton}.
 	
@@ -133,7 +132,7 @@ Currently, neural network is applied in deep learning to solve various problems,
 	
 Besides the modified neural network shown above, a simple feed-forward neural network is also proven to be efficient in text classification. By using the Hadamard product as document representation method, a simple neural network also can achieve a good classification accuracy in text classification compare to Naïve Bayes, \ac{knn}, and \ac{svm}. \cite{oneNn}\\
 	
-\clearpage
+
 \section{Conclusion}
 In the document representation algorithm, both term frequency and \ac{tfidf} would be applied in this study. Both of the document representation algorithm would produce matrix with high dimension. This is the purpose of this study and it would be interesting to observe how different document representation algorithm affect the result.
 

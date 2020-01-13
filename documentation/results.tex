@@ -36,7 +36,6 @@ Neural Network (\ac{nn}) took the longest time to process the features, this is 
 
 \Ac{svm} depends on the prominent features of the dataset, the support vectors to classify the dataset so it is relatively faster and as accurate.
 
-\clearpage
 \section{Term frequency with naive dimension reduction}
 
 \begin{table} [ht]
@@ -83,7 +82,6 @@ On the other hand, the accuracy of \ac{nn} decreases from 0.87 to 0.65 as the nu
 In the scenarios where \ac{svm} and \ac{nn} have more features than the first experiment with just term frequency, both of the classification algorithms have better accuracy. These 2 classification algorithms are efficient and able to process features in a large and sparse vector space.
 
 
-\clearpage
 \section{Term frequency with truncated SVD}
 
 \begin{table} [ht]
@@ -135,7 +133,6 @@ Comparing the performance of the classification models in this experiment with t
 
 The next experiments would apply different document representation algorithm to investigate further the effect of dimension reduction has on classification model performance and compare the performance of different document representation method.\\
 
-\clearpage
 \section{TF-IDF}
 
 \begin{table} [ht]
@@ -171,7 +168,6 @@ The performance of the classification models in this experiment is also better t
 
 The performance increment from term frequency to \ac{tfidf} seems to prove that \ac{tfidf} is a better document representation method.\\
 
-\clearpage
 \section{TF-IDF with naive dimension reduction}
 
 \begin{table} [ht]
@@ -217,7 +213,6 @@ It can be deduced that with naive dimension reduction, the number of features an
 
 This is mainly because of the reduction in features. As the amount of information became lesser, less information is available to train a comprehensive model. Therefore, the accuracy of the models decrease. Even though the dimension reduction applied is a naive one and less computing intensive, it still increases the time taken compared with just with \ac{tfidf}. The more reduction is performed, the time taken would increase as well.
 
-\clearpage
 \section{TF-IDF with truncated SVD}
 
 \begin{table} [ht]
@@ -265,7 +260,6 @@ The time taken in this experiment is much higher than the experiment of \ac{tfid
 
 The decrement in time could be explained by the reduction of features, as the amount of features decreases, the time taken to process them also reduced. Therefore there is a speedup. This speedup that comes with the reduction of features, comes at a cost which is accuracy. For \ac{svm} and \ac{nn}, the reduction in accuracy is meagre thus it would be logical to trade the slight accuracy with the speedup but in \ac{knn}, the trade off would be lopsided in the favour of time taken.\\
 
-\clearpage
 \section{Accuracy vs Dimension of term frequency matrix}
 \begin{figure} [ht]
 	\centering
@@ -282,7 +276,7 @@ This figure illustrates the effect of dimension reduction has on the accuracy of
 
 This showed that \ac{knn} is a classification model that is sensitive to dimension changes and is more efficient at lower dimension. \ac{svm} and \ac{nn}, however, are more resilient to the feature matrix dimension changes. Both of \ac{svm} and \ac{nn} accuracy remain stable as the dimension decreases.\\
 
-\clearpage
+
 \section{Accuracy vs Dimension of TF-IDF matrix}
 \begin{figure} [ht]
 	\centering
@@ -299,7 +293,7 @@ Similar to previous result, \ac{svm} and \ac{nn} accuracy remain stable around 0
 
 \Ac{svm} is the best classification model out of the 3, it has slightly better performance than \ac{nn} in most of the scenarios. It is most resilient to the changes in dimension. This is because \ac{svm} depend on the prominent features of the data to classify the data into different classes, the dimension of the data do not has much influence on \ac{svm} computational complexity. \cite{dimRedCat}. \Ac{nn} has comparable accuracy with \ac{svm} but it would take longer time than \ac{svm} to produce the similar result.
 
-\clearpage
+
 \section{Conclusion}
 From the results of the 6 experiments above, it is found that \ac{tfidf} is a better document representation algorithm than term frequency. The resulting vector space model from \ac{tfidf} can achieve a higher accuracy than that of term frequency. 
 
