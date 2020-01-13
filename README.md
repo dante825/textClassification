@@ -48,7 +48,7 @@ Report outline
 4. discussion of the results
 5. conclusion
 
-The experiment:
+The experiments:
 
 Since the KNN article used TF for feature extraction and performed vector space reduction on it, and
 accuracy increased after vector space reduction. The experiment would be to verify that and test it out
