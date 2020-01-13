@@ -64,4 +64,4 @@ SVD dimension reduction is applied on the matrix
 
 maybe add some graphs or picture before results and discussion,
 pictures showing the categories distribution of the data
- 
+add comparable number of features in the result 
