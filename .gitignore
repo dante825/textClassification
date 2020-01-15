@@ -22,3 +22,4 @@ src/__pycache__/
 *.toc
 *.bib.bak
 *.aux
+*.ods#
