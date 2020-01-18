@@ -14,7 +14,7 @@ There are several approaches to the text classification problem, multi-label whe
 In text classification, most of the algorithms used vector space model to represent the unstructured textual data. \cite{vectorSpaceModelText}. This vector space model represent the sequence of the textual features and their weight, it is easy to implement and provide uniform representation for documents. However, it has a drawback, since it represent all the words in the documents, the dimension of the vector would be huge. This huge vector space model would impact the performance of the machine learning tasks. \cite{knnVectorSpaceReduction}. Therefore, this study would explore the effect of dimension reduction on vector space model has on text classification.\\
 
 \subsection{Problem Statement}
-Vector space model is one of the most commonly used document representation algorithms, but dimension of the feature space can be too large and the vectors can be too sparse which would affect the accuracy of classification models.\\
+Vector space model is one of the most commonly used document representation algorithms in most of the fields, news article text classification included. However, dimension of the feature space from vector space model can be too large and the vectors can be too sparse. This large and sparse vector space would present difficulties to the classification models. Dimension reduction could reduce the dimension of the vector space model so that the vector space is not that large and sparse but this reduction would certainly affect the performance of the classification models. Different document representation method would produce different vector space model on the same news article. Different dimension reduction method applied on the same vector space model also produces different outcomes. With the same reduced vector space model, different classification models would produced varied result. This research would attempt to provide an insight into which combination of the document representation, dimension reduction and classification models would produce a satisfactory result.\\
 
 \subsection{Research Objectives}
 \begin{enumerate}
@@ -26,7 +26,7 @@ Vector space model is one of the most commonly used document representation algo
 
 \subsection{Research Questions}
 \begin{enumerate}
-	\item Which document representation method is optimum to extract the features from news articles?
+	\item Which document representation method is optimized to extract the features from news articles?
 	\item How would dimension reduction influence the accuracy and performance of text classification models?
 	\item Which of the combination of document representation method, dimension reduction method and text classification model has the better performance?
 \end{enumerate}
@@ -54,7 +54,7 @@ This study is trying to answer these few questions on which combination of docum
 
 \subsection{Expected Outcome}
 \begin{enumerate}
-	\item A prototype document classification model that can achieve at least 80\% accuracy in optimum condition
+	\item A prototype text classification model that can achieve a satisfactory accuracy in optimum condition
 	\item A working pipeline of converting raw text to vector space model or features to be processed by classification models
 	\item A suitable text classification algorithm is applied on the text classification application
 	\item A performance evaluation on the text classification models when dimension reduction algorithms are applied
