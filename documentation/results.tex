@@ -7,8 +7,10 @@ The results of the experiments are shown in this section. The differences in the
 
 \section{Term frequency}
 
-\begin{table}[ht]
+\begin{table}[H]
 	\centering
+	\caption{Term frequency}
+	\label{tbl:termFrequency}
 	\begin{tabular}{|| c | c | c | c||}
 		\hline
 		ML & no of features & accuracy & time taken (s) \\ [0.5ex]
@@ -20,123 +22,192 @@ The results of the experiments are shown in this section. The differences in the
 		NN & 8000 & 0.84 & 91.82 \\
 		\hline
 	\end{tabular}
-\caption{Term frequency}
-\label{tbl:termFrequency}
 \end{table}
 
 Term frequency is one of most common feature extraction method in text. It convert all the words in the dataset into a matrix where each column is a word and the value in each of the cells are the number of times each word appear in the text. Each row in the matrix is a document. This vector space model representation of the words would result in a sparse matrix since each of the documents only contains a subset of all the words in the whole dataset. 
 
 In this experiment, the number of features of vector space model from term frequency extraction is limited to 8000, this is because of the memory constraint of the machine, if it is unlimited, the resulting matrix would be of bigger size and would have the risk of running out of memory while processing the matrix. 
 
-In the results shown above, \ac{nn} achieved an accuracy of 0.84 which is the best accuracy out of the 3 classification algorithm but it is also the one that takes the longest to process which is 91.82s. \Ac{knn} took the least time to process, 3.74s but has the lowest accuracy score, 0.31. Overall performance, \ac{svm} is the best, it only took 5s to process, which is 80s less than \ac{nn} and has an accuracy of 0.81 which is comparable with \ac{nn}. 
+In the results shown above, \ac{nn} achieved an accuracy of 0.84 which is the best accuracy out of the 3 classification algorithms but it is also the one that takes the longest to process which is 91.82s. \Ac{knn} took the least time to process, 3.74s but has the lowest accuracy score, 0.31. Overall performance, \ac{svm} is the best, it only took 5s to process, which is 80s less than \ac{nn} and has an accuracy of 0.81 which is comparable with \ac{nn}. 
 
 \Ac{knn} accuracy is low in this scenario is possibly due to the sparsity of the feature matrix or vector space model. The data points are few and far in between. \Ac{knn} is designed for low dimensional data therefore it doesn't perform well in large and sparse data. The underlying reason would be due to \ac{knn} classify a new data point based on the distance of the new data point with the nearby data points. Since the other data points are few and sparse, the classification of the new data points would be biased to the few data points that are near. This bias would reduce the accuracy of the classification. \cite{knnDrawback}
 
-Neural Network (\ac{nn}) took the longest time to process the features, this is due to the layers of neurons in \ac{nn}. The vector space model even though sparse has high dimension, \ac{nn} would need as much if not more neurons as the number of features to process the data. This processing would takes both time and computing power.
+Neural Network (\ac{nn}) took the longest time to process the features, this is due to the number of hidden layers in \ac{nn}. The vector space model even though sparse has high dimension, \ac{nn} would need as much if not more neurons as the number of features to process the data. This processing would takes both time and computing power.
 
 \Ac{svm} depends on the prominent features of the dataset, the support vectors to classify the dataset so it is relatively faster and as accurate.
 
 \section{Term frequency with naive dimension reduction}
 
-\begin{table} [ht]
+\begin{table} [h]
 	\centering
-	\begin{tabular}{|| c | c | c | c | c||}
+	\caption{Term frequency with naive dimension reduction}
+	\label{tbl:termFrequencyNaive}
+	\begin{tabular}{|| c | c | c | c ||}
 		\hline
-		ML & parameter value & no of features & accuracy & time taken (s) \\ [0.5ex]
+		ML & no of features & accuracy & time taken (s) \\ [0.5ex]
 		\hline\hline
-		kNN & 100 & 2530 & 0.34 & 3.94 \\ 
+		kNN & 6026 & 0.25 & 4.16 \\ 
 		\hline
-		kNN & 500 & 478 & 0.42 & 4.66 \\ 
+		kNN & 4058 & 0.26 & 4.22 \\ 
 		\hline
-		kNN & 1000 & 173 & 0.41 & 5.17 \\ 
+		kNN & 2020 & 0.27 & 4.52 \\ 
+		\hline
+		kNN & 1030 & 0.30 & 5.08 \\ 
+		\hline
+		kNN & 508 & 0.32 & 5.14 \\ 
+		\hline
+		kNN & 108 & 0.30 & 5.10 \\ 
+		\hline
+		kNN & 54 & 0.26 & 4.77 \\ 
 		\hline\hline
-		SVM & 10 & 12705 & 0.83 & 6.10 \\
+		SVM & 6026 & 0.81 & 6.57 \\
 		\hline
-		SVM & 100 & 2530 & 0.76 & 5.67 \\
+		SVM & 4058 & 0.76 & 6.63 \\
 		\hline
-		SVM & 500 & 478 & 0.63 & 20.20 \\
+		SVM & 2020 & 0.74 & 7.85 \\
+		\hline
+		SVM & 1030 & 0.68 & 9.52 \\
+		\hline
+		SVM & 508 & 0.64 & 20.86 \\
+		\hline
+		SVM & 108 & 0.42 & 37.48 \\
+		\hline
+		SVM & 54 & 0.31 & 39.71 \\
 		\hline\hline
-		NN & 10 & 12705 & 0.87 & 116.78 \\
+		NN & 6026 & 0.85 & 67.65 \\
 		\hline
-		NN & 100 & 2530 & 0.80 & 48.08 \\
+		NN & 4058 & 0.83 & 63.72 \\
 		\hline
-		NN & 500 & 478 & 0.65 & 61.87 \\
+		NN & 2020 & 0.78 & 43.38 \\
+		\hline
+		NN & 1030 & 0.73 & 42.89 \\
+		\hline
+		NN & 508 & 0.65 & 50.37 \\
+		\hline
+		NN & 108 & 0.41 & 82.84 \\
+		\hline
+		NN & 54 & 0.34 & 82.39 \\
 		\hline
 	\end{tabular}
-\caption{Term frequency with naive dimension reduction}
-\label{tbl:termFrequencyNaive}
 \end{table}
 
 The feature extraction method used in this experiment is same as the experiment above but dimension reduction method is applied to the resulting matrix before training. The dimension reduction algorithm used in this experiment is a naive one which means that the columns with the least occurrence of word are removed assuming those words are unimportant and would not have much influence on the accuracy.
 
-The parameter value is just an integer value passed to the dimension reduction function implemented. It has an inversely proportional relationship with the number of features. The larger the parameter value, the more columns would be removed and the number of features would decrease.
+In this experiment, \ac{knn} still has the worst performance among the 3 which is at 0.25 with 6026 number of features. As the number of features decreases to 508, the accuracy increases slightly to 0.32. As the number of features decreases, the time taken for \ac{knn} to produce the result increases from 4.16s to 4.77s.
 
-In this experiment, \ac{knn} still has the worst performance among the 3 which is at 0.34 with 2530 number of features. As the number of features decreases to 173, the accuracy increases slightly to 0.41. As the number of features decreases, the time taken for \ac{knn} to produce the result increases from 3.94s to 5.17s.
+\Ac{svm} and \ac{nn} have the same trend in this experiment, the accuracy decreases as the number of features decreases. Accuracy of \ac{svm} decreases from 0.81 to 0.31 as the number of features decreases from 6026 to 54. The time taken by \ac{svm} increases as the amount of features decreases, it increases from 6.57s to 39.71s.
 
-\Ac{svm} and \ac{nn} have the same trend in this experiment, the accuracy decreases as the number of features decreases. Accuracy of \ac{svm} decreases from 0.83 to 0.63 as the number of features decreases from 12705 to 478. The time taken by \ac{svm} fluctuates as the amount of features decreases, it decrease from 6s to 5s when the amount of features decreases from 12705 to 2530, but the time taken increases from 5s to 20s, as the number of features decreases further to 478. The decrement in accuracy in \ac{svm} is slight in relative to the decrement in the number of features. Accuracy decreased by 0.20 while the number features has decreased by 12227.
+The time taken by \ac{svm} increases quite drastically when the number of features decreased. Since the dimension reduction method used is a naive dimension reduction, no high computational cost functions are involved, the reduction would not take much time. The bulk of the time taken is for \ac{svm} to classify the text. The number of features in the matrix decreases thus the sparsity of the vector space model decreases, resulting in a denser vector space model. In this case, \ac{svm} need to take into account more data points to calculate an optimum hyperplane to separate the data points into different classes. Therefore, more time is taken to compute the optimum hyperplane.
 
-The time taken by \ac{svm} increases quite drastically when the number of features decreased. The sparsity of the vector space model decreases, resulting in a denser vector space model. \Ac{svm} need to take into account more data points to calculate an effective hyperplane to separate the data points into different classes.
+On the other hand, the accuracy of \ac{nn} decreases from 0.85 to 0.34 as the number of features decreases from 6026 to 54. However, the time taken by NN fluctuates from 67.65s to 42.29s and then to 82.39s when the amount of features decreases from 6026 to 1030 then to 54. The overall decrement in time taken is possibly due to the reduction of features, less neurons are needed to process the data and thus the speedup.
 
-On the other hand, the accuracy of \ac{nn} decreases from 0.87 to 0.65 as the number of features decreases from 12705 to 478. However, the time taken by NN fluctuates from 116.78s to 48.08s and then to 61.87s when the amount of features decreases from 12705 to 2530 then to 478. The overall decrement in time taken is possibly due to the reduction of features, less neurons are needed to process the data and thus the speedup.
+\Ac{svm} and \ac{nn} performs better when there are more features, the time taken would be relatively lesser and the accuracy would be higher than in the scenarios with lesser number of features. This show that these 2 classification algorithms are able to process features in a large and sparse vector space effectively.
 
-In the scenarios where \ac{svm} and \ac{nn} have more features than the first experiment with just term frequency, both of the classification algorithms have better accuracy. These 2 classification algorithms are efficient and able to process features in a large and sparse vector space.
+\subsection{Graph of Term Frequency with Naive Dimension Reduction}
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=\textwidth]{tfnaive}
+	\caption{Term Frequency with Naive Dimension Reduction}
+	\label{fig:tfnaive}
+\end{figure}
 
+The figure above illustrates more clearly the results shown in this section. The graph shows the change in accuracy of the classification models as the number of features decreases.
+
+In this graph, it is clearly shown that \ac{knn} is not as efficient as \ac{svm} and \ac{nn}, its accuracy is much lower than that of \ac{svm} and \ac{nn} across the spectrum of dimension. The accuracy of \ac{knn} increases slightly as the number of features decreases.
+
+\Ac{nn} has a slightly higher accuracy than \ac{svm} all the scenarios when the number of features is greater than 1000. When the number of features is lesser than 1000, both \ac{nn} and \ac{svm} has similar performance. The accuracy of these classification models decreases as the number of features decreases, which is expected. When the number of features decreases, the classification models would have less information to classify a document, thus the result is more error prone.\\
 
 \section{Term frequency with truncated SVD}
 
-\begin{table} [ht]
+\begin{table} [H]
 	\centering
+	\caption{Term frequency with truncated SVD}
+	\label{tbl:termFrequencySvd}
 	\begin{tabular}{|| c | c | c | c||}
 		\hline
 		ML & no of features & accuracy & time taken (s) \\ [0.5ex]
 		\hline\hline
-		kNN & 4000 & 0.31 & 482.66 \\
+		kNN & 6026 & 0.29 & 809.33 \\
 		\hline
-		kNN & 2000 & 0.38 & 216.59 \\ 
+		kNN & 4058 & 0.31 & 489.86 \\ 
 		\hline
-		kNN & 500 & 0.49 & 60.89 \\ 
+		kNN & 2020 & 0.39 & 222.31 \\ 
 		\hline
-		kNN & 100 & 0.55 & 15.38 \\ 
+		kNN & 1030 & 0.45 & 112.66 \\ 
 		\hline
-		kNN & 10 & 0.30 & 2.78 \\ 
+		kNN & 508 & 0.48 & 58.00 \\ 
+		\hline
+		kNN & 108 & 0.55 & 15.52 \\ 
+		\hline
+		kNN & 54 & 0.53 & 7.76 \\ 
 		\hline\hline
-		SVM & 4000 & 0.80 & 370.43 \\
+		SVM & 6026 & 0.81 & 669.01 \\
 		\hline
-		SVM & 2000 & 0.78 & 172.58 \\
+		SVM & 4058 & 0.79 & 391.88 \\
 		\hline
-		SVM & 500 & 0.77 & 85.03 \\
+		SVM & 2020 & 0.79 & 165.82 \\
+		\hline
+		SVM & 1030 & 0.78 & 93.1 \\
+		\hline
+		SVM & 508 & 0.77 & 78.48 \\
+		\hline
+		SVM & 108 & 0.65 & 54.03 \\
+		\hline
+		SVM & 54 & 0.57 & 41.11 \\
 		\hline\hline
-		NN & 4000 & 0.80 & 220.76 \\
+		NN & 6026 & 0.81 & 370.22 \\
 		\hline
-		NN & 2000 & 0.79 & 91.13 \\
+		NN & 4058 & 0.80 & 213.13 \\
 		\hline
-		NN & 500 & 0.77 & 40.86 \\
+		NN & 2020 & 0.79 & 82.52 \\
+		\hline
+		NN & 1030 & 0.79 & 54.10 \\
+		\hline
+		NN & 508 & 0.77 & 35.85 \\
+		\hline
+		NN & 108 & 0.69 & 25.51 \\
+		\hline
+		NN & 54 & 0.64 & 23.01 \\
 		\hline
 	\end{tabular}
-\caption{Term frequency with truncated SVD}
-\label{tbl:termFrequencySvd}
 \end{table}
 
-In this experiment, the feature extraction or document representation method used is still term frequency but the dimension reduction algorithm has been changed. Instead of reducing the dimension of the feature matrix naively by removing the terms that has the lowest frequency, truncated \ac{svd} is used. Truncated \ac{svd} would reduce the dimension of the vector space model by retrieving the features with maximum variance in the data.
+In this experiment, the feature extraction or document representation method used is still term frequency but the dimension reduction algorithm has changed. Instead of reducing the dimension of the feature matrix naively by removing the terms that has the lowest frequency, truncated \ac{svd} is used. Truncated \ac{svd} would reduce the dimension of the vector space model by retrieving the features with maximum variance in the data.
 
 The number of features shown in the table above is the number of columns in the resulting matrix after truncated \ac{svd} is applied.
 
-Similar with the trend in the previous experiment (term frequency with naive dimension reduction), the accuracy of \ac{knn} increases slightly, from 0.31 to 0.55 when the features decreases from 4000 to 100, but the resulting accuracy is still far from satisfactory. The time taken by \ac{knn} decreases from 482s to 15s as the number of features decreases. The trend of accuracy increment as the number of features decrease cease when the number of features is reduced to 10. \Ac{knn} accuracy decrease from 0.55 to 0.30 at that point. The fluctuation of the accuracy would be due to \ac{knn} dependency on Euclidean distance between the data points to classify a new data. As the amount of features decrease, the feature matrix becomes less sparse, \ac{knn} would need to process less data points thus the speedup. A less sparse matrix resulting from the decrement of features also make \ac{knn} classification more accurate and less biased but when the features decrease to an extent where there is no sufficient data to classify a data point correctly, the accuracy dropped.
+Similar with the trend in the previous experiment (term frequency with naive dimension reduction), the accuracy of \ac{knn} increases slightly, from 0.29 to 0.55 when the features decreases from 6026 to 108, but the resulting accuracy is still far from satisfactory. The time taken by \ac{knn} decreases from 809.33s to 7.76s as the number of features decreases. The trend of accuracy increment as the number of features decrease cease when the number of features is reduced to 54. \Ac{knn} accuracy decrease from 0.55 to 0.53 at that point. The fluctuation of the accuracy would be due to \ac{knn} dependency on Euclidean distance between the data points to classify a new data. As the amount of features decrease, the feature matrix becomes less sparse, \ac{knn} would need to process less data points thus the speedup. A less sparse matrix resulting from the decrement of features also make \ac{knn} classification more accurate and less biased but when the features decrease to an extent where there is no sufficient data to classify a data point correctly, the accuracy dropped.
 
-The accuracy of \ac{svm} and \ac{nn} also have the same trend with the previous experiment, the accuracy decreases slightly when the number of features decreases. Accuracy of \ac{svm} decreases from 0.80 to 0.78 then to 0.77 and the accuracy of \ac{nn} decreases from 0.80 to 0.79 then further to 0.77 as the number of features decreases from 4000 to 2000 and 500.
+The accuracy of \ac{svm} and \ac{nn} also have the same trend with the previous experiment, the accuracy decreases slightly when the number of features decreases. Accuracy of \ac{svm} decreases from 0.81 to 0.57 and the accuracy of \ac{nn} decreases from 0.81 to 0.64 as the number of features decreases from 6026 to 54.
 
-As expected, the time taken by the classification model to reduce the dimension and predict the result decreases as the number of features decreases. However, when compare with previous experiments, the time taken in this experiment is astoundingly higher in the case where the features amount to 4000 and 2000. \Ac{svd} would be the culprit, dimension reduction comes at a cost which is processing power. To calculate the maximum variance of the features and transform the feature matrix into a smaller dimension would require no small feats of calculation, this would consume both time and processing power.
+As expected, the time taken by the classification model to reduce the dimension and predict the result decreases as the number of features decreases. However, when compare with previous experiments, the time taken in this experiment is astoundingly higher in the case where the features amount to 6026. \Ac{svd} would be the culprit, dimension reduction comes at a cost which is processing power. To calculate the maximum variance of the features and transform the feature matrix into a smaller dimension would require no small feats of calculation, this would consume both time and processing power.
 
-However, the resulting accuracy is not as good as just with term frequency. This is expected because the number of features decreased, the classification would have lesser information to classify a new data point correctly. The reduction in features may save some memory space but in order to achieve that more processing power and time would be needed.
+However, the resulting accuracy is not as good as the experiment with term frequency without any dimension reduction. This is expected because the number of features decreased, the classification would have lesser information to classify a new document correctly. Therefore, it is shown that the reduction in features could reduce the memory space needed to store the feature matrix but it came at the cost of more processing power, longer processing time and most importantly a less accurate result.
 
-Comparing the performance of the classification models in this experiment with the second experiment, term frequency with naive dimension reduction, the performance of the classification models are almost similar when the amount of features are around 2000. In the scenarios where the amount of features is around 500, \ac{svd} has a better performance. The classification models with \ac{svd} achieved a higher accuracy than that of naive dimension reduction. At this stage, the advantage of \ac{svd} over naive dimension reduction is shown. \Ac{svd} transformed the feature matrix into smaller dimension but retaining the maximum variance or the most prominent feature of the data. Therefore, models trained with \ac{svd} should have a better performance than those that trained with naive dimension reduction.
 
-The next experiments would apply different document representation algorithm to investigate further the effect of dimension reduction has on classification model performance and compare the performance of different document representation method.\\
+Comparing the performance of the classification models in this experiment with the second experiment, term frequency with naive dimension reduction, the performance of the classification models are slightly better with \ac{svd}. All the 3 classification models has a slightly higher accuracy across the dimension size when compare with the results of the second experiment. This shows the advantage of \ac{svd} over naive dimension reduction. \Ac{svd} transformed the feature matrix into smaller dimension but retaining the maximum variance or the most prominent feature of the data. Therefore, models trained with \ac{svd} should have a better performance than those that trained with naive dimension reduction.
+
+This experiment shows that SVD is a better dimension reduction algorithm than naive dimension reduction method. In this and the previous two experiments, term frequency is applied, it might be too simplistic and the features obtain are not optimum. The next experiments would apply a different document representation algorithm to investigate further the effect of dimension reduction has on classification model performance and compare the performance of different document representation method.\\
+
+\subsection{Graph of Term Frequency with SVD}
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=\textwidth]{tfsvd}
+	\caption{Term Frequency with SVD}
+	\label{fig:tfsvd}
+\end{figure}
+
+The figure illustrates what have been described above. This graph show the advantage of SVD has over naive dimension reduction. The accuracy of \ac{knn} increases further when the dimension decreases when compare to the experiment of term frequency with naive dimension reduction. At the extreme point, \ac{knn} has an accuracy of 0.53 while in the previous experiment, \ac{knn} achieve a meager 0.26 with same number of features.
+
+The accuracy of \ac{svm} and \ac{nn} are more stable when SVD is applied. The accuracy of both classification models does not decrease as much when the dimension decreases. Even at the extreme decrement, the accuracy achieved is better.
+
+By comparing the result of these 2 experiments, it is seems that SVD is a better dimension reduction method. The next few experiments would explore another document representation method and determine which of the document representation methods is more efficient and optimised in extracting features from news articles.\\
 
 \section{TF-IDF}
-
-\begin{table} [ht]
+\begin{table} [H]
 	\centering
+	\caption{TF-IDF}
+	\label{tbl:tfidf}
 	\begin{tabular}{|| c | c | c | c||}
 		\hline
 		ML & no of features & accuracy & time taken (s) \\ [0.5ex]
@@ -148,148 +219,184 @@ The next experiments would apply different document representation algorithm to 
 		NN & 8000 & 0.88 & 55.82 \\
 		\hline
 	\end{tabular}
-\caption{TF-IDF}
-\label{tbl:tfidf}
 \end{table}
 
-The previous experiments found that \ac{svd} has a slight edge over naive dimension reduction when the number of features decreased to a certain extend. In this and the next experiments, the effect on dimension reduction is further explored. A different document representation algorithm is applied in this and the next 2 experiments.
+The previous experiments found that \ac{svd} has a slight edge over naive dimension reduction. In this and the next experiments, the effect on dimension reduction is further explored. The performance of the classification models in the previous experiments might be limited by the document representation method used, namely term frequency. It is a simple algorithm and the vector space model generated may not contain enough prominent features for the classification models to classify the documents accurately. Therefore, in this and the next few experiments, a different document representation method is used.
  
-The document representation algorithm applied in this experiment is \ac{tfidf}. In contrast with term frequency which only take the frequency of each word into account, \ac{tfidf} takes both the frequency of each word and the rarity of it into account. If a term or word appear in high frequency but in many documents, this word may not be of importance and consequently is not a meaningful feature. If a word appear rarely and only in a few documents, this word would have high importance and would be a meaningful feature of the few documents.
+The document representation algorithm applied in this experiment is \ac{tfidf}. In contrast with term frequency which only take the frequency of each word into account, \ac{tfidf} takes both the frequency of each word and its rarity into account. If a term or word appear in high frequency but in many documents, this word may not be of importance and consequently is not a meaningful feature. If a word appear rarely and only in a few documents, this word would have high importance and would be a meaningful feature of the few documents.
 
 With \ac{tfidf}, \ac{knn} can achieved a satisfactory accuracy score of 0.76 even though the number of features in the resulting matrix of \ac{tfidf} is the same with term frequency which is 8000. The vector space model of \ac{tfidf} would not be as sparse as that of term frequency which is more suitable for \ac{knn}.
 
 \Ac{nn} is still provide the highest accuracy score of 0.88 but the time taken also the longest at 55.82s.
+\Ac{nn} take the longest time to compute the result in most of the scenarios. This would be due to the number of hidden layers and the number of neurons in the \ac{nn}. In the experiments, the \ac{nn} applied has at least 1 hidden layer and the hidden layers would consist of 100 neutrons. Each of these neutron is a processing unit to compute the input feature. Due to the large size of the hidden layer and large size of the feature matrix, \ac{nn} would take a long time to feed each of the feature through the hidden layers and each of the neutron. The structure of \ac{nn} caused the long time taken, unless special hardware such as graphic processors or higher power processor is used, the time taken by \ac{nn} would be higher than other classification models.
 
-\Ac{svm} achieved an accuracy of 0.87 which is just 0.01 shy of what achieved by \ac{nn} and the time taken is the lowest among the 3 which is 2.39s. \Ac{svm} can achieve high accuracy even with high dimension data, because \ac{svm} uses the prominent features or support vectors from the data to perform classification, \ac{svm}'s computational complexity is independent of the dimension of the data. \cite{dimRedCat}
+\Ac{svm} achieved an accuracy of 0.87 which is just 0.01 shy of what achieved by \ac{nn} and the time taken is the lowest among the 3 which is 2.39s. \Ac{svm} can achieve high accuracy even with high dimension data, because \ac{svm} uses the prominent features or support vectors from the data to perform classification, \ac{svm}'s computational complexity is independent of the dimension of the data. \cite{dimRedCat}.
 
 In comparison with the first experiment that apply term frequency document representation without dimension reduction, the performance of the classification models significantly improve. \Ac{knn} accuracy has more than doubled from 0.31 to 0.76. \Ac{svm} accuracy increases from 0.81 to 0.87 while accuracy of \ac{nn} increases from  0.84 to 0.88. Besides accuracy, the time taken also improved, time taken by \ac{svm} reduces from 5.27s to 2.39s while time taken by \ac{nn} reduces from 91.82s to 55.82s. All these improvements are achieved with the same number of features in the vector space, which is 8000. 
 
 The performance of the classification models in this experiment is also better than those in the 2 experiments above with dimension reduction. However this may not be a fair comparison because the different number of features are used and dimension reductions are not applied in this experiment. Dimension reduction algorithms would be applied to the vector space model from \ac{tfidf} in the following experiments in order to have a fair comparison.
 
-The performance increment from term frequency to \ac{tfidf} seems to prove that \ac{tfidf} is a better document representation method.\\
+The performance increment from term frequency to \ac{tfidf} seems to prove that \ac{tfidf} is a better document representation method and more optimised to extract features from news articles.\\
 
 \section{TF-IDF with naive dimension reduction}
 
 \begin{table} [ht]
 	\centering
-	\begin{tabular}{|| c | c | c | c | c||}
-		\hline
-		ML & parameter value & no of features & accuracy & time taken (s) \\ [0.5ex]
-		\hline\hline
-		kNN & 50 & 4221 & 0.74 & 4.00 \\ 
-		\hline
-		kNN & 100 & 2530 & 0.71 & 4.11 \\ 
-		\hline
-		kNN & 500 & 478 & 0.49 & 5.15 \\ 
-		\hline\hline
-		SVM & 50 & 4221 & 0.86 & 2.58 \\
-		\hline
-		SVM & 100 & 2503 & 0.83 & 2.63 \\
-		\hline
-		SVM & 500 & 478 & 0.66 & 2.94 \\
-		\hline\hline
-		NN & 50 & 4221 & 0.85 & 38.80 \\
-		\hline
-		NN & 100 & 2530 & 0.83 & 34.28 \\
-		\hline
-		NN & 500 & 478 & 0.64 & 77.12 \\
-		\hline
-	\end{tabular}
-\caption{TF-IDF with naive dimension reduction}
-\label{tbl:tfidfNaive}
-\end{table}
-
-Similar with the experiment with term frequency, naive dimension reduction is applied to the vector space model generated from \ac{tfidf}. The trend over all the 3 machine learning models when the number of features decreases are similar. The accuracy of the classification models decreases and the time taken increases. 
-
-The accuracy achieved by \ac{knn} with \ac{tfidf} plus naive dimension reduction is still passable at 0.74 when the features reduced from 8000 to 4221. \Ac{knn}'s accuracy dropped slightly to 0.71 when the number of features decreases to 2530. When the number of features decreases from 2530 to 478, as expectedly the accuracy of \ac{knn} dropped for quite a large margin, from 0.71 to 0.49. The time taken by \ac{knn} increases slightly from 4s to 5s as the features decreases.
-
-\Ac{svm} has the same behaviour with \ac{knn} in this experiment, its accuracy decreases from 0.86 to 0.83 and then to 0.66 when the number of features decreases from 4221 to 2503 to 478. The time taken increases slightly as well as the number of features decreases.
-
-\Ac{nn} also has the similar trend in accuracy as the number of features decreases. \Ac{nn}'s accuracy decreases from 0.85 to 0.64 when the number of features decreases from 4221 to 478. The differences in \ac{nn} is that the time taken almost doubled when the number of features is low compare to when the number of features is high. The time taken is 38s when there is 4221 features and when there is only 478 features, the time taken doubled to 77s.
-
-In the scenarios where the number of features are almost halved, from 8000 to 4221, the performance of the classification models are still comparable with the performance achieved with just \ac{tfidf} without any dimension reduction. The accuracy are almost the same, the time taken is similar except \ac{nn} which has quite a speedup when the number of features is reduced to 4221.
-
-It can be deduced that with naive dimension reduction, the number of features and memory needed to store the vector space model is reduced. With this reduced number of features, the classification models can still achieve comparable performance at a slightly decreased capacity.
-
-This is mainly because of the reduction in features. As the amount of information became lesser, less information is available to train a comprehensive model. Therefore, the accuracy of the models decrease. Even though the dimension reduction applied is a naive one and less computing intensive, it still increases the time taken compared with just with \ac{tfidf}. The more reduction is performed, the time taken would increase as well.
-
-\section{TF-IDF with truncated SVD}
-
-\begin{table} [ht]
-	\centering
+	\caption{TF-IDF with naive dimension reduction}
+	\label{tbl:tfidfNaive}
 	\begin{tabular}{|| c | c | c | c||}
 		\hline
 		ML & no of features & accuracy & time taken (s) \\ [0.5ex]
 		\hline\hline
-		kNN & 4000 & 0.77 & 457.16 \\
+		kNN & 6026 & 0.76 & 3.76 \\ 
 		\hline
-		kNN & 2000 & 0.58 & 208.64 \\ 
+		kNN & 4058 & 0.74 & 3.89 \\ 
 		\hline
-		kNN & 500 & 0.55 & 58.58 \\ 
+		kNN & 2020 & 0.69 & 4.00 \\ 
 		\hline
-		kNN & 100 & 0.69 & 15.09 \\
+		kNN & 1030 & 0.59 & 4.35 \\ 
 		\hline
-		kNN & 50 & 0.69 & 7.58 \\ 
+		kNN & 508 & 0.49 & 4.98 \\ 
 		\hline
-		kNN & 10 & 0.55 & 2.54 \\ 
+		kNN & 108 & 0.08 & 12.28 \\ 
+		\hline
+		kNN & 54 & 0.06 & 21.20 \\ 
 		\hline\hline
-		SVM & 4000 & 0.87 & 189.32 \\
+		SVM & 6026 & 0.87 & 2.49 \\
 		\hline
-		SVM & 2000 & 0.86 & 69.63 \\
+		SVM & 4058 & 0.85 & 2.45 \\
 		\hline
-		SVM & 500 & 0.83 & 17.54 \\
+		SVM & 2020 & 0.82 & 2.50 \\
+		\hline
+		SVM & 1030 & 0.75 & 2.64 \\
+		\hline
+		SVM & 508 & 0.68 & 2.98 \\
+		\hline
+		SVM & 108 & 0.41 & 4.43 \\
+		\hline
+		SVM & 54 & 0.32 & 11.63 \\
 		\hline\hline
-		NN & 4000 & 0.85 & 215.73 \\
+		NN & 6026 & 0.87 & 48.32 \\
 		\hline
-		NN & 2000 & 0.84 & 87.12 \\
+		NN & 4058 & 0.85 & 42.75 \\
 		\hline
-		NN & 500 & 0.81 & 39.93 \\
+		NN & 2020 & 0.81 & 37.77 \\
+		\hline
+		NN & 1030 & 0.74 & 48.2 \\
+		\hline
+		NN & 508 & 0.65 & 80.45 \\
+		\hline
+		NN & 108 & 0.45 & 76.17 \\
+		\hline
+		NN & 54 & 0.35 & 73.92 \\
 		\hline
 	\end{tabular}
-\caption{TF-IDF with truncated SVD}
-\label{tbl:tfidfSvd}
+\end{table}
+
+Similar with the experiment with term frequency, naive dimension reduction is applied to the vector space model generated from \ac{tfidf}. The trend over all the 3 machine learning models when the number of features decreases are similar. The accuracy of the classification models decreases and the time taken increases. 
+
+The accuracy achieved by \ac{knn} with \ac{tfidf} plus naive dimension reduction is still passable at 0.76 when the features reduced from 8000 to 6026. \Ac{knn}'s accuracy dropped slightly to 0.69 when the number of features decreases to 20200. When the number of features decreases from 2020 to 54, the accuracy of \ac{knn} dropped for quite a large margin, from 0.69 to 0.06. The time taken by \ac{knn} increases from 3.76s to 21.20s as the features decreases.
+
+\Ac{svm} has the same behaviour with \ac{knn} in this experiment, its accuracy decreases from 0.87 to 0.75 and then to 0.32 when the number of features decreases from 6026 to 1030 to 54. The time taken increases from 2.49s to 11.63s as the number of features decreases.
+
+\Ac{nn} also has the similar trend in accuracy as the number of features decreases. \Ac{nn}'s accuracy decreases from 0.87 to 0.74 when the number of features decreases from 6026 to 1030. The time taken increases from 48.32s to 73.92s.
+
+In the scenarios where the number of features are almost halved, from 8000 to 4058, the performance of the classification models are still comparable with the performance achieved with just \ac{tfidf} without any dimension reduction. The accuracy are almost the same, the time taken is similar except \ac{nn} which has quite a speedup when the number of features is reduced to 4058. This might a sweet spot between dimension reduction and accuracy. At this point, the accuracy is still satisfactory and the time taken is lesser. If \ac{nn} and dimension reduction is applied in the real world, the dimension of the news articles would have to be at this level. At this level, the classification model is best positioned to reap the reward of dimension reduction, less memory to store the feature matrix, less time is used to compute the result and a comparable accuracy is achieved.
+
+It can be deduced that with naive dimension reduction, the number of features and memory needed to store the vector space model is reduced. With this reduced number of features, the classification models can still achieve comparable performance at a slightly decreased capacity.
+
+The slight reduction in performance is mainly because of the reduction in dimension. As the amount of information became lesser, less information is available to train a comprehensive model. Therefore, the accuracy of the models decrease. Even though the dimension reduction applied is a naive one and less computing intensive, it still increases the time taken compared with just with \ac{tfidf}. The more reduction is performed, the time taken would increase as well.
+
+\subsection{Graph of TFIDF with Naive Dimension Reduction}
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=\textwidth]{tfidfnaive}
+	\caption{TFIDF with Naive Dimension Reduction}
+	\label{fig:tfidfnaive}
+\end{figure}
+
+The graph above illustrates the results of this experiments. All three classification models have the same decreasing trend in their accuracy as the dimension decreases. 
+
+\Ac{svm} and \ac{nn} have similar performance with each other. \Ac{knn} performs much better with tfidf than with term frequency document representation method but its accuracy is still lesser than that of \ac{svm} and \ac{nn}.
+
+\section{TF-IDF with truncated SVD}
+
+\begin{table} [h]
+	\centering
+	\caption{TF-IDF with truncated SVD}
+	\label{tbl:tfidfSvd}
+	\begin{tabular}{|| c | c | c | c||}
+		\hline
+		ML & no of features & accuracy & time taken (s) \\ [0.5ex]
+		\hline\hline
+		kNN & 6026 & 0.77 & 833.65 \\
+		\hline
+		kNN & 4058 & 0.77 & 487.82 \\ 
+		\hline
+		kNN & 2020 & 0.58 & 221.26 \\ 
+		\hline
+		kNN & 1030 & 0.56 & 111.36 \\
+		\hline
+		kNN & 508 & 0.54 & 57.40 \\ 
+		\hline
+		kNN & 108 & 0.69 & 15.48 \\ 
+		\hline
+		kNN & 54 & 0.70 & 8.04 \\ 
+		\hline\hline
+		SVM & 6026 & 0.87 & 374.90 \\
+		\hline
+		SVM & 4058 & 0.87 & 194.99 \\
+		\hline
+		SVM & 2020 & 0.86 & 72.16 \\
+		\hline
+		SVM & 1030 & 0.85 & 35.19 \\
+		\hline
+		SVM & 508 & 0.83 & 18.41 \\
+		\hline
+		SVM & 108 & 0.77 & 6.40 \\
+		\hline
+		SVM & 54 & 0.74 & 4.68 \\
+		\hline\hline
+		NN & 6026 & 0.86 & 384.91 \\
+		\hline
+		NN & 4058 & 0.86 & 203.26 \\
+		\hline
+		NN & 2020 & 0.84 & 86.47 \\
+		\hline
+		NN & 1030 & 0.82 & 52.29 \\
+		\hline
+		NN & 508 & 0.81 & 46.11 \\
+		\hline
+		NN & 108 & 0.79 & 27.63 \\
+		\hline
+		NN & 54 & 0.78 & 25.36 \\
+		\hline
+	\end{tabular}
 \end{table}
 
 In this last experiment, truncated \ac{svd} dimension reduction is applied to the resulting vector space model from \ac{tfidf}. Similar with experiment before, each of the classification models would be tested with several set of vector space model, each with different number of features. To put it in perspective, the number of features without reduction is 8000. 
 
-When the number of features are at 4000 which is halved, \ac{knn} still can produced an accuracy of 0.77 which is similar with what is achieved with \ac{tfidf} without dimension reduction. Same goes to \ac{svm} and \ac{nn}, at 4000 features, the accuracy are quite similar with \ac{tfidf} without dimension reduction. However, when the dimension of the vector space model is reduced to 2000, the accuracy across the 3 classification models dropped. \Ac{knn} being the most drastic, its accuracy dropped to 0.58 while \ac{svm} and \ac{nn} dropped to 0.86 and 0.84 respectively, which is slightly worse than before but it is still satisfactory.
+When the number of features are at 4058 which is about halved, \ac{knn} still can produced an accuracy of 0.77 which is similar with what is achieved with \ac{tfidf} without dimension reduction. The same goes to \ac{svm} and \ac{nn}, at 4058 features, the accuracy are quite similar with \ac{tfidf} without dimension reduction. However, when the dimension of the vector space model is reduced to 2020, the accuracy across the 3 classification models dropped. \Ac{knn} being the most drastic, its accuracy dropped to 0.58 while \ac{svm} and \ac{nn} dropped to 0.86 and 0.84 respectively, which is slightly worse than before but it is still satisfactory.
 
 Comparing with the results of the experiment with \ac{tfidf} and naive dimension reduction, this performance of the classification models with truncated \ac{svd} has a slight advantage. The accuracy is slightly better with truncated \ac{svd} than that with naive dimension reduction. This would be due to the advantage of truncated \ac{svd} obtaining the maximum variance of the features over naive dimension reduction.
 
-The time taken in this experiment is much higher than the experiment of \ac{tfidf} without dimension reduction and \ac{tfidf} with naive dimension reduction which is expected. This would be due to \ac{svd} reduction takes more time as more calculation is needed to transform the data. However, the time taken decreased when the further reduction is done, \ac{knn} take 457s to reduce the vector space model from 8000 to 4000 but just 2s to reduce the vector space model from 8000 to 10. Keep in mind that the time recorded here includes the time taken for the classification model to predict the test dataset as well as the dimension reduction time. This trend appear in \ac{svm} and \ac{nn} as well. \Ac{svm} took 189s to reduce 8000 to 4000 but just 18s to reduce 8000 to 500 while \ac{nn} took 215s to reduce 8000 to 4000 and 40s to reduce 8000 to 500. 
+The time taken in this experiment is much higher than the experiment of \ac{tfidf} without dimension reduction and \ac{tfidf} with naive dimension reduction, which is expected. This would be due to \ac{svd} reduction takes more time, as more calculations are needed to transform the data. However, the time taken decreased when further reduction is done, \ac{knn} take 833.65s to reduce the vector space model from 8000 to 6026 but just 8s to reduce the vector space model from 8000 to 54. Keep in mind that the time recorded here includes the time taken for the classification model to predict the test set as well as the dimension reduction time. This trend appear in \ac{svm} and \ac{nn} as well. \Ac{svm} took 374.90s to reduce 8000 to 6026 but just 4.64s to reduce 8000 to 54 while \ac{nn} took 384.91s to reduce 8000 to 6026 and 25.36s to reduce 8000 to 54. 
 
-The decrement in time could be explained by the reduction of features, as the amount of features decreases, the time taken to process them also reduced. Therefore there is a speedup. This speedup that comes with the reduction of features, comes at a cost which is accuracy. For \ac{svm} and \ac{nn}, the reduction in accuracy is meagre thus it would be logical to trade the slight accuracy with the speedup but in \ac{knn}, the trade off would be lopsided in the favour of time taken.\\
+The decrement in time could be due to SVD reduced the features and only return the most prominent features of the news articles. These prominent features would make the differences between the categories of news articles more obvious to the classification models. Thus, the time taken to process the features is also reduced, a speedup. This speedup comes at a cost which is accuracy. For \ac{svm} and \ac{nn}, the reduction in accuracy is slight thus it would be logical to trade the slight accuracy with the speedup but in \ac{knn}, the trade off would be lopsided in the favour of time taken.\\
 
-\section{Accuracy vs Dimension of term frequency matrix}
-\begin{figure} [ht]
-	\centering
-	\includegraphics[width=\textwidth]{tfsvd}
-	\caption{The effect of dimension reduction on accuracy with term frequency}
-	\label{fig:tfAcc}
-\end{figure}
-
-This figure illustrates the effect of dimension reduction has on the accuracy of the classification models. The feature extraction algorithm used here is term frequency and the dimension reduction algorithm used is truncated \ac{svd}.
-
-\Ac{knn} accuracy increases from 0.3 to 0.55 as the dimension of the feature matrix decreases from 8000 to 100. After that point, further decrease in dimension does not increase the accuracy of \ac{knn} further but decrease its accuracy back to 0.3.
-
-\Ac{svm} and \ac{nn} have the similar trend as the dimension of the feature matrix reduces. Both of them were at high accuracy, around 0.8 when the dimension of the matrix is at 8000. Both \ac{svm} and \ac{nn} accuracy decrease slightly as the dimension decreases. When the dimension of the matrix is reduced to an extreme, 10, both \ac{svm} and \ac{nn} accuracy dropped to around 0.3.
-
-This showed that \ac{knn} is a classification model that is sensitive to dimension changes and is more efficient at lower dimension. \ac{svm} and \ac{nn}, however, are more resilient to the feature matrix dimension changes. Both of \ac{svm} and \ac{nn} accuracy remain stable as the dimension decreases.\\
-
-
-\section{Accuracy vs Dimension of TF-IDF matrix}
+\subsection{TFIDF with SVD}
 \begin{figure} [ht]
 	\centering
 	\includegraphics[width=\textwidth]{tfidfsvd}
-	\caption{The effect of dimension reduction on accuracy with TF-IDF}
-	\label{fig:tfidfAcc}
+	\caption{TFIDF with SVD}
+	\label{fig:tfidfSVD}
 \end{figure}
 
 This figure show the fluctuations of the accuracy of the classification models as the dimension decreases. The feature extraction method used here is \ac{tfidf} and the dimension reduction algorithm used is truncated \ac{svd}.
 
-\Ac{knn} accuracy remain stable at around 0.77 as the dimension decrease from 8000 to 4000. After 4000, further decrement in dimension resulting in a decrease in accuracy. The accuracy of \ac{knn} deflected and increase from 0.55 to 0.69 when the dimension reduce from 500 to 10.
+\Ac{knn} accuracy remain stable at around 0.77 as the dimension decrease from 8000 to around 4000. After 4000, further decrement in dimension resulting in a decrease in accuracy. The accuracy of \ac{knn} deflected and increase from 0.54 to 0.70 when the dimension reduce from 508 to 54.
 
-Similar to previous result, \ac{svm} and \ac{nn} accuracy remain stable around 0.8 as the dimension reduces from 8000 to 500. When the dimension of the feature matrix is reduced to an extreme of 10 then the accuracy of both \ac{svm} and \ac{nn} deteriorated to around 0.5.
+Similar to previous result, \ac{svm} and \ac{nn} accuracy remain stable around 0.8 as the dimension reduces from 8000 to 508. When the dimension of the feature matrix is reduced to an extreme of 54 then the accuracy of both \ac{svm} and \ac{nn} deteriorated to around 0.7.
 
 \Ac{svm} is the best classification model out of the 3, it has slightly better performance than \ac{nn} in most of the scenarios. It is most resilient to the changes in dimension. This is because \ac{svm} depend on the prominent features of the data to classify the data into different classes, the dimension of the data do not has much influence on \ac{svm} computational complexity. \cite{dimRedCat}. \Ac{nn} has comparable accuracy with \ac{svm} but it would take longer time than \ac{svm} to produce the similar result.
 
