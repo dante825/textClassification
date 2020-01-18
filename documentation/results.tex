@@ -307,7 +307,7 @@ It can be deduced that with naive dimension reduction, the number of features an
 
 The slight reduction in performance is mainly because of the reduction in dimension. As the amount of information became lesser, less information is available to train a comprehensive model. Therefore, the accuracy of the models decrease. Even though the dimension reduction applied is a naive one and less computing intensive, it still increases the time taken compared with just with \ac{tfidf}. The more reduction is performed, the time taken would increase as well.
 
-\subsection{Graph of TFIDF with Naive Dimension Reduction}
+\subsection{Graph of TF-IDF with Naive Dimension Reduction}
 \begin{figure} [H]
 	\centering
 	\includegraphics[width=\textwidth]{tfidfnaive}
@@ -384,7 +384,7 @@ The time taken in this experiment is much higher than the experiment of \ac{tfid
 
 The decrement in time could be due to SVD reduced the features and only return the most prominent features of the news articles. These prominent features would make the differences between the categories of news articles more obvious to the classification models. Thus, the time taken to process the features is also reduced, a speedup. This speedup comes at a cost which is accuracy. For \ac{svm} and \ac{nn}, the reduction in accuracy is slight thus it would be logical to trade the slight accuracy with the speedup but in \ac{knn}, the trade off would be lopsided in the favour of time taken.\\
 
-\subsection{TFIDF with SVD}
+\subsection{Graph of TF-IDF with SVD}
 \begin{figure} [ht]
 	\centering
 	\includegraphics[width=\textwidth]{tfidfsvd}
