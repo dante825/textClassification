@@ -43,6 +43,8 @@ There are some lines in the raw text files that are irrelevant to text classific
 
 After that, there is an important step, lemmatization. Lemmatization would transform most of the words in the text to their root form which is known as a lemma. This would reduce the noise in the data by transforming similar words into a single word. The alternative to lemmatization would be stemming. Stemming would be faster and need less processing power than lemmatization but stemming has a drawback. The result of stemming may not be a real word because stemming just chop off the end of the words thus the resulting words may not be a real words. On the other hand, lemmatization uses vocabulary and morphological analysis of words to remove the inflectional endings only and resulting the root form of words. \cite{stemLemma} Therefore, the output of lemmatization would be better than stemming.
 
+The purpose of lemmatization is to reduced the number of distinct words in the document. The words, "good", "better", and "best" might appear in a news articles dataset. Without lemmatization, these words would be 3 distinct words. With lemmatization, all 3 of these words would be transformed to their root word which is "good". Therefore, by using lemmatization, the number of distinct words in the text would be reduced and the noise in the data would be minimized.
+
 After all the words in the text file are lemmatized, the dataframe that contains the text is written to a CSV file. The training process would be able to read the CSV file easily and train the classification models with the method chosen.\\
 
 
