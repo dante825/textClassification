@@ -3,9 +3,9 @@
 \chapter{Results and Discussions}
 
 \section{Introduction}
-The results of the experiments are shown in this section. The differences in the accuracy and performance of each of the methods would be discussed and analysed. Hopefully, the results and discussions would be able to answer the research questions posted in the beginning of this research.
+The results of the experiments are shown in this section. The differences in the accuracy and performance of each of the methods would be discussed and analysed. Hopefully, the results and discussions would be able to answer the research questions posted in the beginning of this research.\\
 
-\section{Term frequency}
+\section{Term Frequency}
 
 \begin{table}[H]
 	\centering
@@ -34,9 +34,9 @@ In the results shown above, \ac{nn} achieved an accuracy of 0.84 which is the be
 
 Neural Network (\ac{nn}) took the longest time to process the features, this is due to the number of hidden layers in \ac{nn}. The vector space model even though sparse has high dimension, \ac{nn} would need as much if not more neurons as the number of features to process the data. This processing would takes both time and computing power.
 
-\Ac{svm} depends on the prominent features of the dataset, the support vectors to classify the dataset so it is relatively faster and as accurate.
+\Ac{svm} depends on the prominent features of the dataset, the support vectors to classify the dataset so it is relatively faster and as accurate.\\
 
-\section{Term frequency with naive dimension reduction}
+\section{Term Frequency with Naive Dimension Reduction}
 
 \begin{table} [h]
 	\centering
@@ -101,7 +101,7 @@ The time taken by \ac{svm} increases quite drastically when the number of featur
 
 On the other hand, the accuracy of \ac{nn} decreases from 0.85 to 0.34 as the number of features decreases from 6026 to 54. However, the time taken by NN fluctuates from 67.65s to 42.29s and then to 82.39s when the amount of features decreases from 6026 to 1030 then to 54. The overall decrement in time taken is possibly due to the reduction of features, less neurons are needed to process the data and thus the speedup.
 
-\Ac{svm} and \ac{nn} performs better when there are more features, the time taken would be relatively lesser and the accuracy would be higher than in the scenarios with lesser number of features. This show that these 2 classification algorithms are able to process features in a large and sparse vector space effectively.
+\Ac{svm} and \ac{nn} performs better when there are more features, the time taken would be relatively lesser and the accuracy would be higher than in the scenarios with lesser number of features. This show that these 2 classification algorithms are able to process features in a large and sparse vector space effectively.\\
 
 \subsection{Graph of Term Frequency with Naive Dimension Reduction}
 \begin{figure} [H]
@@ -117,9 +117,9 @@ In this graph, it is clearly shown that \ac{knn} is not as efficient as \ac{svm}
 
 \Ac{nn} has a slightly higher accuracy than \ac{svm} all the scenarios when the number of features is greater than 1000. When the number of features is lesser than 1000, both \ac{nn} and \ac{svm} has similar performance. The accuracy of these classification models decreases as the number of features decreases, which is expected. When the number of features decreases, the classification models would have less information to classify a document, thus the result is more error prone.\\
 
-\section{Term frequency with truncated SVD}
+\section{Term Frequency with Truncated SVD}
 
-\begin{table} [H]
+\begin{table} [h]
 	\centering
 	\caption{Term frequency with truncated SVD}
 	\label{tbl:termFrequencySvd}
@@ -238,7 +238,7 @@ The performance of the classification models in this experiment is also better t
 
 The performance increment from term frequency to \ac{tfidf} seems to prove that \ac{tfidf} is a better document representation method and more optimised to extract features from news articles.\\
 
-\section{TF-IDF with naive dimension reduction}
+\section{TF-IDF with Naive Dimension Reduction}
 
 \begin{table} [ht]
 	\centering
@@ -305,7 +305,7 @@ In the scenarios where the number of features are almost halved, from 8000 to 40
 
 It can be deduced that with naive dimension reduction, the number of features and memory needed to store the vector space model is reduced. With this reduced number of features, the classification models can still achieve comparable performance at a slightly decreased capacity.
 
-The slight reduction in performance is mainly because of the reduction in dimension. As the amount of information became lesser, less information is available to train a comprehensive model. Therefore, the accuracy of the models decrease. Even though the dimension reduction applied is a naive one and less computing intensive, it still increases the time taken compared with just with \ac{tfidf}. The more reduction is performed, the time taken would increase as well.
+The slight reduction in performance is mainly because of the reduction in dimension. As the amount of information became lesser, less information is available to train a comprehensive model. Therefore, the accuracy of the models decrease. Even though the dimension reduction applied is a naive one and less computing intensive, it still increases the time taken compared with just with \ac{tfidf}. The more reduction is performed, the time taken would increase as well.\\
 
 \subsection{Graph of TF-IDF with Naive Dimension Reduction}
 \begin{figure} [H]
@@ -385,7 +385,7 @@ The time taken in this experiment is much higher than the experiment of \ac{tfid
 The decrement in time could be due to SVD reduced the features and only return the most prominent features of the news articles. These prominent features would make the differences between the categories of news articles more obvious to the classification models. Thus, the time taken to process the features is also reduced, a speedup. This speedup comes at a cost which is accuracy. For \ac{svm} and \ac{nn}, the reduction in accuracy is slight thus it would be logical to trade the slight accuracy with the speedup but in \ac{knn}, the trade off would be lopsided in the favour of time taken.\\
 
 \subsection{Graph of TF-IDF with SVD}
-\begin{figure} [ht]
+\begin{figure} [H]
 	\centering
 	\includegraphics[width=\textwidth]{tfidfsvd}
 	\caption{TFIDF with SVD}
@@ -398,7 +398,7 @@ This figure show the fluctuations of the accuracy of the classification models a
 
 Similar to previous result, \ac{svm} and \ac{nn} accuracy remain stable around 0.8 as the dimension reduces from 8000 to 508. When the dimension of the feature matrix is reduced to an extreme of 54 then the accuracy of both \ac{svm} and \ac{nn} deteriorated to around 0.7.
 
-\Ac{svm} is the best classification model out of the 3, it has slightly better performance than \ac{nn} in most of the scenarios. It is most resilient to the changes in dimension. This is because \ac{svm} depend on the prominent features of the data to classify the data into different classes, the dimension of the data do not has much influence on \ac{svm} computational complexity. \cite{dimRedCat}. \Ac{nn} has comparable accuracy with \ac{svm} but it would take longer time than \ac{svm} to produce the similar result.
+\Ac{svm} is the best classification model out of the 3, it has slightly better performance than \ac{nn} in most of the scenarios. It is most resilient to the changes in dimension. This is because \ac{svm} depend on the prominent features of the data to classify the data into different classes, the dimension of the data do not has much influence on \ac{svm} computational complexity. \cite{dimRedCat}. \Ac{nn} has comparable accuracy with \ac{svm} but it would take longer time than \ac{svm} to produce the similar result.\\
 
 
 \section{Conclusion}

@@ -7,7 +7,7 @@ text width=15em, text centered, rounded corners, minimum height=4em]
 
 \chapter{Research Methodology}
 \section{Introduction}
-This section would illustrate the process flow to carry out the experiments and fulfill the aforementioned objectives of this study. The following flow charts would illustrate the steps taken to conduct the several experiments.
+This section would illustrate the process flow to carry out the experiments and fulfill the aforementioned objectives of this study. The following flow charts would illustrate the steps taken to conduct the several experiments.\\
 
 \section{Text preprocessing process flow}
 \begin{figure} [ht]
@@ -82,7 +82,7 @@ There would be 2 different document representation method or feature extraction 
 
 In a number of experiments, the feature matrix output of the 2 feature extraction method would undergo dimension reduction. There is a parameter to the dimension reduction methods to control to what extends should the feature matrix be reduced to. By manipulating this parameter, feature matrices of different dimension would be produced. These matrices with different dimension would be used as training data for classification models. Different dimension of the feature matrices would certainly has an effect on the performance of the classification models. The performance of the classification models trained with feature matrices of different dimension would be evaluated. Thus, the effect of dimension reduction has on the performance of classification models could be determined.
 
-Since there are 2 document representation method and 2 dimension reduction method, there would be a combination of 4 experiments. In addition to the experiments without dimension reduction, there would be a total of 6 experiments. These experiments use different combination of document representation method, dimension reductions and all the 3 classification models. From the results of all the experiments, the best combination of document representation, dimension reduction and classification models for news articles would be identified.
+Since there are 2 document representation method and 2 dimension reduction method, there would be a combination of 4 experiments. In addition to the experiments without dimension reduction, there would be a total of 6 experiments. These experiments use different combination of document representation method, dimension reductions and all the 3 classification models. From the results of all the experiments, the best combination of document representation, dimension reduction and classification models for news articles would be identified.\\
 
 \section{The dataset}
 \graphicspath{{./images/}}
@@ -153,7 +153,7 @@ Basically, there are 2 feature extraction method used in the experiments, namely
 
 There are 2 dimension reduction algorithms involved, one is a naive method, which means that the features or columns lesser than a certain value would be removed. In other words, words or terms that do not appear much in the dataset would be removed. Another dimension reduction algorithm is truncated single value decomposition (\ac{svd}). This method would retain the essence of the data, the part of the data with maximum variance. 
 
-After feature extraction and dimension reduction (if needed) are applied, the resulting features would be used to train text classification models. There are 3 text classification algorithms chosen in these experiments namely k-nearest neighbour (\ac{knn}), support vector machine (\ac{svm}), and neural network (\ac{nn}). All 3 of the machine algorithms would be applied to all the different resulting features and the accuracy scores would be evaluated.
+After feature extraction and dimension reduction (if needed) are applied, the resulting features would be used to train text classification models. There are 3 text classification algorithms chosen in these experiments namely k-nearest neighbour (\ac{knn}), support vector machine (\ac{svm}), and neural network (\ac{nn}). All 3 of the machine algorithms would be applied to all the different resulting features and the accuracy scores would be evaluated.\\
 
 
 \section{Conclusion}
