@@ -365,18 +365,61 @@
   url      = {http://www.sciencedirect.com/science/article/pii/S1877050917320872},
 }
 
-@article{arabicNews,
-	title = "SANAD: Single-label Arabic News Articles Dataset for automatic text categorization",
-	journal = "Data in Brief",
-	volume = "25",
-	pages = "104076",
+@article{arabicNews,
+	title = "SANAD: Single-label Arabic News Articles Dataset for automatic text categorization",
+	journal = "Data in Brief",
+	volume = "25",
+	pages = "104076",
+	year = "2019",
+	issn = "2352-3409",
+	doi = "https://doi.org/10.1016/j.dib.2019.104076",
+	url = "http://www.sciencedirect.com/science/article/pii/S2352340919304305",
+	author = "Omar Einea and Ashraf Elnagar and Ridhwan Al Debsi",
+	keywords = "Arabic, Natural language processing, News articles, Single-label text classification",
+	abstract = "Text Classification is one of the most popular Natural Language Processing (NLP) tasks. Text classification (aka categorization) is an active research topic in recent years. However, much less attention was directed towards this task in Arabic, due to the lack of rich representative resources for training an Arabic text classifier. Therefore, we introduce a large Single-labeled Arabic News Articles Dataset (SANAD) of textual data collected from three news portals. The dataset is a large one consisting of almost 200k articles distributed into seven categories that we offer to the research community on Arabic computational linguistics. We anticipate that this rich dataset would make a great aid for a variety of NLP tasks on Modern Standard Arabic (MSA) textual data, especially for single label text classification purposes. We present the data in raw form. SANAD is composed of three main datasets scraped from three news portals, which are AlKhaleej, AlArabiya, and Akhbarona. SANAD is made public and freely available at https://data.mendeley.com/datasets/57zpx667y9."
+}
+
+@article{improvedtfidf,
+	title = "Improved TFIDF in big news retrieval: An empirical study",
+	journal = "Pattern Recognition Letters",
+	volume = "93",
+	pages = "113 - 122",
+	year = "2017",
+	note = "Pattern Recognition Techniques in Data Mining",
+	issn = "0167-8655",
+	doi = "https://doi.org/10.1016/j.patrec.2016.11.004",
+	url = "http://www.sciencedirect.com/science/article/pii/S0167865516303178",
+	author = "Chien-Hsing Chen",
+	keywords = "Big news, Term weighting, Two-stage learning, News classification, News clustering",
+	abstract = "Thomson Reuters news articles have been considered integral data sources that have given rise to several inspiring applications of text classification and clustering. The most well-known term weighting approach, the term frequency-inversedocument frequency (TFIDF) method, is often used to assign term weights that support such applications. Thomson Reuters reports pertinent incoming news (e.g., the refugee crisis in Europe) over a given period of time, and the most prominent terms (e.g., “refugee”) are thus frequently found in a large collection of news stories. When term weights are measured via the TFIDF method, such weights must be heavily compromised while the collection of news is sufficiently large. As the TFIDF approach is vulnerable to biases because the most important terms are typically referred to as noise, thus leading lower term weights, news retrieval without the use of the most important terms is difficult and ineffective. We thus present a new distance-based term weighting method for overcoming this bias by considering a basic characteristic whereby each news article must be similar or different from others while processing big news that include large amounts of news. All news must not be considered to contribute equally to the weighting of a particular term. In this study, the weight of a particular term is assessed based on its distance in an article to other instances of the same term, and this weight is highly sensitive to whether similar articles cause a term to occur and to whether different articles cause a term to disappear. The most important terms are thus delivered in large news corpora when studying similarities between news stories. In addition, we create a two-stage learning algorithm to refine the term's weights, and we develop an intelligent model that applies our term weighting method to Reuters news analyses based upon classification and clustering problems. The experimental results show that our methods perform better performance than TFIDF in terms of news classification and clustering."
+}
+
+@article{pcaText,
+	title = "Empirical evaluation of feature projection algorithms for multi-view text classification",
+	journal = "Expert Systems with Applications",
+	volume = "130",
+	pages = "97 - 112",
 	year = "2019",
-	issn = "2352-3409",
-	doi = "https://doi.org/10.1016/j.dib.2019.104076",
-	url = "http://www.sciencedirect.com/science/article/pii/S2352340919304305",
-	author = "Omar Einea and Ashraf Elnagar and Ridhwan Al Debsi",
-	keywords = "Arabic, Natural language processing, News articles, Single-label text classification",
-	abstract = "Text Classification is one of the most popular Natural Language Processing (NLP) tasks. Text classification (aka categorization) is an active research topic in recent years. However, much less attention was directed towards this task in Arabic, due to the lack of rich representative resources for training an Arabic text classifier. Therefore, we introduce a large Single-labeled Arabic News Articles Dataset (SANAD) of textual data collected from three news portals. The dataset is a large one consisting of almost 200k articles distributed into seven categories that we offer to the research community on Arabic computational linguistics. We anticipate that this rich dataset would make a great aid for a variety of NLP tasks on Modern Standard Arabic (MSA) textual data, especially for single label text classification purposes. We present the data in raw form. SANAD is composed of three main datasets scraped from three news portals, which are AlKhaleej, AlArabiya, and Akhbarona. SANAD is made public and freely available at https://data.mendeley.com/datasets/57zpx667y9."
+	issn = "0957-4174",
+	doi = "https://doi.org/10.1016/j.eswa.2019.04.020",
+	url = "http://www.sciencedirect.com/science/article/pii/S0957417419302507",
+	author = "Marcin Michał Mirończuk and Jarosław Protasiewicz and Witold Pedrycz",
+	keywords = "Multi-view text classification, Multi-view document classification, Information fusion, Information fusion in text classification, Evaluation method, Ranking method",
+	abstract = "This study aims to propose (i) a multi-view text classification method and (ii) a ranking method that allows for selecting the best information fusion layer among many variations. Multi-view document classification is worth a detailed study as it makes it possible to combine different feature sets into yet another view that further improves text classification. For this purpose, we propose a multi-view framework for text classification that is composed of two levels of information fusion. At the first level, classifiers are constructed using different data views, i.e. different vector space models by various machine learning algorithms. At the second level, the information fusion layer uses input information using a features projection method and a meta-classifier modelled by a selected machine learning algorithm. A final decision based on classification results produced by the models positioned at the first layer is reached. Moreover, we propose a ranking method to assess various configurations of the fusion layer. We use heuristics that utilise statistical properties of F-score values calculated for classification results produced at the fusion layer. The information fusion layer of the classification framework and ranking method has been empirically evaluated. For this purpose, we introduce a use case checking whether companies’ domains identify their innovativeness. The results empirically demonstrate that the information fusion layer enhances classification quality. The Friedman’s aligned rank and Wilcoxon signed-rank statistical tests and the effect size support this hypothesis. In addition, the Spearman statistical test carried out for the obtained results demonstrated that the assessment made by the proposed ranking method converges to a well-established method named Hellinger - The Technique for Order Preference by Similarity to Ideal Solution (H-TOPSIS). Thus, the proposed approach may be used for the assessment of classifier performance."
+}
+
+@article{recentReview,
+	title = "A recent overview of the state-of-the-art elements of text classification",
+	journal = "Expert Systems with Applications",
+	volume = "106",
+	pages = "36 - 54",
+	year = "2018",
+	issn = "0957-4174",
+	doi = "https://doi.org/10.1016/j.eswa.2018.03.058",
+	url = "http://www.sciencedirect.com/science/article/pii/S095741741830215X",
+	author = "Marcin Michał Mirończuk and Jarosław Protasiewicz",
+	keywords = "Text classification, Document classification, Text classification overview, Document classification overview",
+	abstract = "The aim of this study is to provide an overview the state-of-the-art elements of text classification. For this purpose, we first select and investigate the primary and recent studies and objectives in this field. Next, we examine the state-of-the-art elements of text classification. In the following steps, we qualitatively and quantitatively analyse the related works. Herein, we describe six baseline elements of text classification including data collection, data analysis for labelling, feature construction and weighing, feature selection and projection, training of a classification model, and solution evaluation. This study will help readers acquire the necessary information about these elements and their associated techniques. Thus, we believe that this study will assist other researchers and professionals to propose new studies in the field of text classification."
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

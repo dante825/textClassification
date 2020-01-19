@@ -1,7 +1,7 @@
 %!TEX ROOT = main.tex
 \chapter{Literature Review}
 \section{Introduction}
-This study is investigating the effect of different document representation methods pair with different dimension reduction methods have on the performance of text classification models. The 3 aspects mentioned cover the whole pipeline of text classification, which are feature extraction from raw text, document representation; reduce the dimension of the vector space model, dimension reduction; and the classification models. The main focus on this study remain on the effect of dimension reduction has on text classification models.\\
+This study is investigating the effect of dimension reduction on the feature matrix extracted from news articles. The effect would be shown in the results of the classification models trained with the reduced feature matrix. This would be the whole pipeline of text classification. Document representation which is the feature extraction part. Dimension reduction which is to reduce the dimension of the feature matrix. Classification is the part where the data is used to train classification models and the results are analysed. Thus, in this section, methods from these 3 stages in text classification would be reviewed.
 
 \section{Document Representation}
 \subsection{Term Frequency}
@@ -15,56 +15,64 @@ Even though it is a simple document representation method, it is proven to be ab
 \subsection{Term Frequency - Inverse Document Freqeuncy (TF-IDF)}
 Term frequency-Inverse document frequency (\ac{tfidf}) is also a \ac{bow} approach. It is build on the concept of term frequency but take it a step further to overcome the setback of term frequency. 
 
-Besides term frequency, \ac{tfidf} also take into account the inverse document frequency which means that it also take the frequency of words in other documents into account. \ac{tfidf} provide a measure of weight or importance to the words. The value of \ac{tfidf} estimate the amount of information provided by each word in its document. The value of \ac{tfidf} increases proportionally to the number of times a word appears in a document but is offset by the frequency of the word in the corpus. \cite{textMiningTfidf} The characteristic of \ac{tfidf} can counter the high frequency of some common words, such as the stop words in a language. 
-
-The main differences between term frequency and \ac{tfidf} is that in term frequency, if a word has a high frequency in many documents it would be a prominent feature of the data. In TF-IDF however, term frequency alone would not make a word a prominent feature. If a word has high frequency in many documents, the inverse document frequency of \ac{tfidf} would offset its high frequency therefore the word would not be a prominent feature. A word with high \ac{tfidf} score would appear many times in a document but not in many documents. 
-
-The value in the vector space model resulting from \ac{tfidf} would be in decimals as the values assigned are scores or weights for each of the words. The values in the resulting vector space model from term frequency on the other hand, consists of integers which represent the frequency of the words appear in the text.
-
-\Ac{tfidf} is a simple document representation method that has proven to be efficient and reliable. It has a few setbacks as it only take into account the term frequency and inverse document frequency and not the semantic of the words. \cite{tfidfDrawback}. However, the focus area of this study is on the sparse and huge vector space model which TF-IDF produces.\\
-
-Formula for \ac{tfidf} is shown below:
+Besides term frequency, \ac{tfidf} also take into account the inverse document frequency which means that it also take the frequency of words in other documents into account. \ac{tfidf} provide a measure of weight or importance to the words. The value of \ac{tfidf} estimate the amount of information provided by each word in its document. The value of \ac{tfidf} increases proportionally to the number of times a word appears in a document but is offset by the frequency of the word in the corpus. \cite{textMiningTfidf}. The characteristic of \ac{tfidf} can counter the high frequency of some common words, such as the stop words in a language. \Ac{tfidf} can calculated as shown below:
 
 \begin{equation}
 TFIDF = tf \times \log_e \frac{N}{df}
 \end{equation}
-	
+
 where:
-	
+
 \begin{center}
-\begin{tabular}{l @{ $=$ } l}
-	$tf$ & the number of times a word appears in a document \\
-	$N$ & the total number of documents in the corpus \\
-	$df$ & the number of documents that contain the word
-\end{tabular}
+	\begin{tabular}{l @{ $=$ } l}
+		$tf$ & the number of times a word appears in a document \\
+		$N$ & the total number of documents in the corpus \\
+		$df$ & the number of documents that contain the word\\
+	\end{tabular}
 \end{center}
 
+The main differences between term frequency and \ac{tfidf} is that in term frequency, if a word has a high frequency in many documents it would be a prominent feature of the data. In TF-IDF however, term frequency alone would not make a word a prominent feature. If a word has high frequency in many documents, the inverse document frequency of \ac{tfidf} would offset its high frequency therefore the word would not be a prominent feature. A word with high \ac{tfidf} score would appear many times in a document but not in many documents.
+
+The value in the vector space model resulting from \ac{tfidf} would be in decimals as the values assigned are scores or weights for each of the words. The values in the resulting vector space model from term frequency on the other hand, consists of integers which represent the frequency of the words appear in the text.
+
+\Ac{tfidf} is a simple document representation method that has proven to be efficient and reliable. It has been applied in the field of text classification on news articles by Wongso, Luwinda, Trisnajaya, Rusli and Rudy (2017) from Indonesia. The researchers applied \ac{tfidf} on Indonesian news articles to extract the features from the text. \cite{WONGSO2017137}. Even though this study is focus on news articles in English, the method applied would be similar since Indonesian is still a Latin character based language.
+
+\Ac{tfidf} has a few setbacks as it only take into account the term frequency and inverse document frequency and not the semantic of the words. \cite{tfidfDrawback}. Another setback of \ac{tfidf} is when a prominent term is found in many documents, such a term would given a lower weight or points. Chen (2016) found this problem while applying \ac{tfidf} in the big news retrieval system. \cite{improvedtfidf}. When an important term is referred to noise by \ac{tfidf}, news retrieval without the important term would prove to be difficult. However, this situation only occur when there is a bias in the dataset when an important term appear in many of the news articles or document. As long as the dataset is not bias, \ac{tfidf} would still be an effective document representation method.\\
+
 \subsection{Summary}
-Both term frequency and \ac{tfidf} are chosen as the document representation method in this study. Term frequency and \ac{tfidf} are simple and relatively easy to implement. Both of the methods are efficient and tried and true over the years. Most importantly, the output of huge and sparse matrix from term frequency and TF-IDF is the topic of interest in this study.\\
+Both term frequency and \ac{tfidf} are chosen as the document representation method in this study. Term frequency and \ac{tfidf} are simple and relatively easy to implement. Both of the methods are efficient and tried and true over the years. Most importantly, the output of huge and sparse matrix from term frequency and TF-IDF is the topic of interest in this study.
 
 
 \section{Dimension Reduction}
+\subsection{Naive Dimension Reduction}
+Naive dimension reduction is the simplest of all dimension reduction algorithms. It is simply removing terms that appear less frequent from the feature matrix. As explained in the document representation section, term frequency and \ac{tfidf} would product a large and sparse matrix based on the frequency of all the words in the corpus or news articles. 
+
+Naive dimension reduction would remove those words or terms that only appear less than a certain number of times in the whole corpus. For instance, a special word is only used in one of the document out of all the documents in the corpus. This word would create a column in the feature matrix while only one row of this column has a value while all the other rows of this column would be 0. This column would be removed under naive dimension reduction. By removing columns such as this, the dimension of the feature matrix is reduced and only the important features of the matrix remained.
+
+Moldaguva and Rosnafisah (2018) has applied this naive dimension reduction on news articles dataset and has found that it increase the performance of the classification models by reducing the dimension of the feature matrix. The performance enhancement is due to the computation complexity of the classification model is decreased as the number of dimension decreased. \cite{knnVectorSpaceReduction}.\\
+
+
 \subsection{Principal Component Analysis (PCA)}
-\Ac{pca} is probably one of the most popular multivariate statistical technique in dimension reduction. \Ac{pca} would transform a data table with values from inter-related variables into new orthogonal variables. The variables would be the principal components of the data. In other words, \ac{pca} transform data from high dimensional space into low dimensional space with linear transformation while preserving the original data features as much as possible. \cite{pcaImage} The output from \ac{pca} is the principal components of the data which hold 80\% to 90\% of the information of the original data.
+\Ac{pca} is probably one of the most popular multivariate statistical technique in dimension reduction. \Ac{pca} would transform a data table with values from inter-related variables into new orthogonal variables. The variables would be the principal components of the data. In other words, \ac{pca} transform data from high dimensional space into low dimensional space with linear transformation while preserving the original data features as much as possible. \cite{pcaImage}. The output from \ac{pca} is the principal components of the data which hold 80\% to 90\% of the information of the original data.
 
-\Ac{pca} has several objectives, it would extract the most important information from the dataset, the dimension of the dataset would be compressed so that only the important information remained. The dataset is also simplified after \ac{pca} has processed it. \cite{pcaObj}
+\Ac{pca} has several objectives, it would extract the most important information from the dataset, the dimension of the dataset would be compressed so that only the important information remained. The dataset is also simplified after \ac{pca} has processed it. \cite{pcaObj}.
 
-\Ac{pca} has been successfully applied to image classification problems. After the features are extracted from the images, \ac{pca} is applied to extract the important features from the images. This reduction in dimension allow the researchers to save storage space for the images and still able to process the images in a satisfactory manner. While \ac{pca} do reduce the dimension of the input data but this reduction has a cost too. \Ac{pca} need to consume a large amount of memory and take some time to reduce a data with high dimension. \cite{pcaImage}
+\Ac{pca} has been successfully applied to image classification problems. After the features are extracted from the images, \ac{pca} is applied to extract the important features from the images. This reduction in dimension allow the researchers to save storage space for the images and still able to process the images in a satisfactory manner. While \ac{pca} do reduce the dimension of the input data but this reduction has a cost too. \Ac{pca} need to consume a large amount of memory and take some time to reduce a data with high dimension. \cite{pcaImage}.
 
 \Ac{pca} is proven to be efficient in pattern recognition and image analysis and has been extensively applied in face recognition system. However, it is found that \ac{pca} is not capable of processing data with high dimensionality and sparsity. \ac{pca} is only effective when reducing tens or few hundreds of dimensions. \cite{dimRedCat}. Thus, \ac{pca} might not be suitable to be applied in this study which involves text data and the text data would be converted into a large and sparse matrix.\\
 
 \subsection{Nonnegative Matrix Factorization (NMF)}
-\Ac{nmf} is a multiplicative updating solution to decompose a nonnegative temporal-frequency data matrix into the sum of individual components. The sum of individual components are calculated from a nonnegative basis matrix. \cite{nmfBook}
+\Ac{nmf} is a multiplicative updating solution to decompose a nonnegative temporal-frequency data matrix into the sum of individual components. The sum of individual components are calculated from a nonnegative basis matrix. \cite{nmfBook}.
 
-\Ac{nmf} and its variant have found to be applied in many fields such as feature extractions, segmentation and clustering, dimension reduction and others. In \ac{pca} and \ac{svd}, the signs of the data is not restricted in any way but \ac{nmf} has a non-negativity constraint. This means that \ac{nmf} can only described by using additive components only. This is due to the influences of classical studies where most of the values are in the positives. This non-negativity constraint of \ac{nmf} has proved to be problematic when the data matrix is not strictly in the positives. \cite{semiNmfPca}
+\Ac{nmf} and its variant have found to be applied in many fields such as feature extractions, segmentation and clustering, dimension reduction and others. In \ac{pca} and \ac{svd}, the signs of the data is not restricted in any way but \ac{nmf} has a non-negativity constraint. This means that \ac{nmf} can only described by using additive components only. This is due to the influences of classical studies where most of the values are in the positives. This non-negativity constraint of \ac{nmf} has proved to be problematic when the data matrix is not strictly in the positives. \cite{semiNmfPca}.
 
-\Ac{nmf} has been applied to learn the latent space of the input text data from Twitter. With \ac{nmf} the data is decomposed into bi-orthogonal non-negative 3-factor, the rows and columns from the different axis are simultaneously clustered. \cite{nmfTwitter}
+\Ac{nmf} has been applied to learn the latent space of the input text data from Twitter. With \ac{nmf} the data is decomposed into bi-orthogonal non-negative 3-factor, the rows and columns from the different axis are simultaneously clustered. \cite{nmfTwitter}.
 
 \Ac{nmf} might be more suitable for clustering as it took the least amount of time in clustering the data compared to \ac{svd} and \ac{pca}. \cite{nmfClustering}. This advantage of \ac{nmf} over \ac{svd} and \ac{pca} is negligible since this study would focus on classification rather than clustering.\\
 
 
 \subsection{Truncated Single Value Decomposition (SVD)}
-Single value decomposition (\ac{svd}) is one of the most commonly used dimension reduction algorithms. It generalizes a complex matrix with many dimensions into a matrix of lower dimension via an extension of the polar decomposition. \Ac{svd} detects the part of the data that contains the maximum variance in a set of orthogonal basis vectors. The data with the maximum variance would be the most prominent features of the data. \cite{svdDef}
+Single value decomposition (\ac{svd}) is one of the most commonly used dimension reduction algorithms. It generalizes a complex matrix with many dimensions into a matrix of lower dimension via an extension of the polar decomposition. \Ac{svd} detects the part of the data that contains the maximum variance in a set of orthogonal basis vectors. The data with the maximum variance would be the most prominent features of the data. \cite{svdDef}.
 
 The mathematical equation for \ac{svd} of a matrix X is shown as follows:
 \begin{equation}
@@ -81,16 +89,18 @@ where:
 \end{center}
 
 	
-\Ac{lsa} a technique applied in natural language processing that apply \ac{svd} in its process. \Ac{svd} is applied in \ac{lsa} to transform the features by dropping the least significant values in the matrix thus reducing the dimensions of the matrix. \cite{fuzzyLash}
+\Ac{lsa} a technique applied in natural language processing that apply \ac{svd} in its process. \Ac{svd} is applied in \ac{lsa} to transform the features by dropping the least significant values in the matrix thus reducing the dimensions of the matrix. \cite{fuzzyLash}.
 
-Truncated \ac{svd} is a variant of \ac{svd}. Similar to \ac{pca}, truncated \ac{svd} is a matrix factorization technique that factors matrix M into 3 matrices namely, $U$, $\Sigma$ and $V$. There is a slight difference between truncated \ac{svd} and \ac{pca}. \Ac{pca} performed the factorization on the covariance matrix while truncated \ac{svd} performed the factorization on the data matrix directly. Truncated \ac{svd} differ slightly from \ac{svd} in the way of that \ac{svd} would always produce matrices of $n$ columns if given $n \times n$ matrix but truncated \ac{svd} given the same matrix can produce matrices with specified number of columns. \cite{truncatedSVD}
+\Ac{svd} has been applied extensively in text classification, it is an established method in text classification field. A new method has been derived from \ac{svd} for more sophisticated feature projection. \Ac{svd} also has comparable performance with other state of the art dimension reduction method such as \ac{pca} and \ac{lda}. \cite{recentReview}. Wongso and others (2017) also applied \ac{svd} on the output matrix of \ac{tfidf} for feature selection before training the classification models. This shows that \ac{svd} still trusted and able to perform well in text classification. \cite{WONGSO2017137}.
 
+Truncated \ac{svd} is a variant of \ac{svd}. Similar to \ac{pca}, truncated \ac{svd} is a matrix factorization technique that factors matrix M into 3 matrices namely, $U$, $\Sigma$ and $V$. There is a slight difference between truncated \ac{svd} and \ac{pca}. \Ac{pca} performed the factorization on the covariance matrix while truncated \ac{svd} performed the factorization on the data matrix directly. Truncated \ac{svd} differ slightly from \ac{svd} in the way of that \ac{svd} would always produce matrices of $n$ columns if given $n \times n$ matrix but truncated \ac{svd} given the same matrix can produce matrices with specified number of columns. \cite{truncatedSVD}.
+ 
 Truncated \ac{svd} can reduced the dimension of the data into lesser dimension when compare to other dimension reduction algorithms such as \ac{lda} and \ac{pca}. The classification model trained with the output of SVD is also higher than that of \ac{lda} and \ac{pca}. \cite{dimRedCat}. Thus, \ac{svd} would be a great choice for the dimension reduction algorithm in this study.\\
 	
 \subsection{Summary}
 The 3 dimension reduction algorithms above are considered to be \ac{bss} methods, unsupervised learning algorithms. Out of the 3 dimension reduction algorithms, truncated \ac{svd} is the most suitable to be applied in this study. This is because \ac{pca} is not efficient in reducing high dimensional and sparse data and \ac{nmf} is only efficient in clustering algorithm. Most importantly, truncated \ac{svd} overcome the drawback of \ac{pca} and has been proven to be effective and achieve better result than \ac{pca} and others. Thus, truncated \ac{svd} is chosen to be the dimension reduction algorithm to be applied on the feature matrix extracted from the text.\\
 
-\section{Document Classification}
+\section{Classification Models}
 \subsection{Support Vector Machine}
 Support Vector Machine (\ac{svm}) is a machine learning algorithm that construct a hyperplane to separate the data points into different classes. It has been proven to be very effective in dealing with high dimensional data. \cite{webSvm}. It is also proven to produce dramatically better results in text classification shown in experiments with the Reuters dataset. \cite{inductiveText}. However, various issues need to be considered when applying \ac{svm} in text classification, the processing of the data, which kernel to use, and the parameters of \ac{svm}. A variant of \ac{svm}, called one-class \ac{svm} which is trained only with positive information has been used in text classification. \cite{oneSvm}.  The authors experimented with different kernels of \ac{svm} with different type of document representation method. The kernels tested include linear, sigmoid, polynomial, and radial basis. The document representation methods applied are binary representation, frequency representation, \ac{tfidf}, and Hadamard representation. The best result, F1 score of 0.507 is achieved with binary representation, feature length 10 and with linear kernel function.  
 
@@ -122,15 +132,15 @@ where:
 \Ac{knn} needs minimal training, it only needs to plot the training samples on a feature space and calculate the Euclidean distance between the new data point with the training samples to determine which category the new data point should be classified as. \Ac{knn} has been applied in text classification before, it is found that \ac{knn} take significantly longer time to classify a document. This is because \ac{knn} need to compute the distance between the new data point with the existing data points and find the nearest data points. Since the authors are using term vector space document representation method, the dimension of the feature space is high, thus more time is needed for \ac{knn} to compute all the distance between the new data point with the training data points. Other than the time taken to compute the distance, the $k$ value is another obstacle in \ac{knn} algorithm. In a high dimensionality feature space and the points are not evenly distributed, the $k$ value is hard to be determined.
 
 To overcome the problems mentioned above, the authors applied naive term vector space reduction method, divide the document feature matrix into parts. Term vector space reduction reduces 
-the sparsity of the document term matrix by removing the features less appeared in the corpus. By reducing the term vector space, a slight deterioration in the classification accuracy but the time cost is dramatically reduced. \ac{knn} still achieved an accuracy of 92.7\% but the time taken reduced from 53 minutes to 11 minutes. \cite{knnVectorSpaceReduction}
+the sparsity of the document term matrix by removing the features less appeared in the corpus. By reducing the term vector space, a slight deterioration in the classification accuracy but the time cost is dramatically reduced. \ac{knn} still achieved an accuracy of 92.7\% but the time taken reduced from 53 minutes to 11 minutes. \cite{knnVectorSpaceReduction}.
 
 
 \subsection{Neural Network}
 Neural network (\ac{nn}) has a resurgence in recent years as there is a breakthrough in the neural network since Geofrey Hinton (et al.) discovered a technique called Contrastive Divergence that could quickly model inputs in a \ac{rbm}. \Ac{rbm} is a 2-layer neural network that model the input by bouncing it through the network. This process is less computationally complex than backpropagation. \cite{nnHinton}.
 	
-Currently, neural network is applied in deep learning to solve various problems, text classification being one of them. Ranjan (et al.) applied Lion Fuzzy Neural Network on text classification. The researchers used WordNet ontology to retrieve the semantic of the words, and then added context information onto it, thus the features obtained are semantic-context features. The classification part is performed by Lion Fuzzy Neural Network, which is a variant of \ac{bpl} Neural Network that includes fuzzy bounding and Lion Algorithm. The neural network model used is trained incrementally. It achieves a higher accuracy than Naïve Bayes and other variant of the Lion Neural Network. \cite{lionNn}
+Currently, neural network is applied in deep learning to solve various problems, text classification being one of them. Ranjan (et al.) applied Lion Fuzzy Neural Network on text classification. The researchers used WordNet ontology to retrieve the semantic of the words, and then added context information onto it, thus the features obtained are semantic-context features. The classification part is performed by Lion Fuzzy Neural Network, which is a variant of \ac{bpl} Neural Network that includes fuzzy bounding and Lion Algorithm. The neural network model used is trained incrementally. It achieves a higher accuracy than Naïve Bayes and other variant of the Lion Neural Network. \cite{lionNn}.
 	
-Besides the modified neural network shown above, a simple feed-forward neural network is also proven to be efficient in text classification. By using the Hadamard product as document representation method, a simple neural network also can achieve a good classification accuracy in text classification compare to Naïve Bayes, \ac{knn}, and \ac{svm}. \cite{oneNn}\\
+Besides the modified neural network shown above, a simple feed-forward neural network is also proven to be efficient in text classification. By using the Hadamard product as document representation method, a simple neural network also can achieve a good classification accuracy in text classification compare to Naïve Bayes, \ac{knn}, and \ac{svm}. \cite{oneNn}.\\
 	
 
 \section{Conclusion}
