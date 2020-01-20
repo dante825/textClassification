@@ -295,7 +295,7 @@ The performance increment from term frequency to \ac{tfidf} seems to prove that 
 
 Similar with the experiment with term frequency, naive dimension reduction is applied to the vector space model generated from \ac{tfidf}. The trend over all the 3 machine learning models when the number of features decreases are similar. The accuracy of the classification models decreases and the time taken increases. 
 
-The accuracy achieved by \ac{knn} with \ac{tfidf} plus naive dimension reduction is still passable at 0.76 when the features reduced from 8000 to 6026. \Ac{knn}'s accuracy dropped slightly to 0.69 when the number of features decreases to 20200. When the number of features decreases from 2020 to 54, the accuracy of \ac{knn} dropped for quite a large margin, from 0.69 to 0.06. The time taken by \ac{knn} increases from 3.76s to 21.20s as the features decreases.
+The accuracy achieved by \ac{knn} with \ac{tfidf} plus naive dimension reduction is still passable at 0.76 when the features reduced from 8000 to 6026. \Ac{knn}'s accuracy dropped slightly to 0.69 when the number of features decreases to 2020. When the number of features decreases from 2020 to 54, the accuracy of \ac{knn} dropped by quite a large margin, from 0.69 to 0.06. The time taken by \ac{knn} increases from 3.76s to 21.20s as the features decreases.
 
 \Ac{svm} has the same behaviour with \ac{knn} in this experiment, its accuracy decreases from 0.87 to 0.75 and then to 0.32 when the number of features decreases from 6026 to 1030 to 54. The time taken increases from 2.49s to 11.63s as the number of features decreases.
 
